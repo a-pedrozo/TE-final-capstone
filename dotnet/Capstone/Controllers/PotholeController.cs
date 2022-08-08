@@ -32,5 +32,19 @@ namespace Capstone.Controllers
             return Ok(potholes);
         }
 
+        [HttpPost]
+        
+        public ActionResult AddPothole(Pothole newPothole)
+        {
+            newPothole = potholeDAO.AddPothole(newPothole);
+
+            if (newPothole == null)
+            {
+                return NotFound("This did not work");
+            }
+
+            return Ok(newPothole);
+        }
+
     }
 }

@@ -10,8 +10,8 @@ namespace Capstone.DAO
     public interface IPotholeDAO
     {
         List<Pothole> GetAllPotholes();
-        
-        
+
+        Pothole AddPothole(Pothole newPothole);
         
     }
 }

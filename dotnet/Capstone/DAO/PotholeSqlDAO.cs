@@ -48,5 +48,31 @@ namespace Capstone.DAO
             return potholes;
                 
         }
+
+        public Pothole AddPothole(Pothole newPothole )
+        {
+           
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string sql = "INSERT INTO potholes (date_reported, severity, latitude,longitude,address,city)" +
+                    " VALUES(@dateReported,@severity,@latitude, @longitude, @address, @city);" +
+                    " SELECT @@IDENTITY";
+                SqlCommand command = new SqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@dateReported", newPothole.DateReported);
+                command.Parameters.AddWithValue("@severity", newPothole.Severity);
+                command.Parameters.AddWithValue("@latitude", newPothole.Latitude);
+                command.Parameters.AddWithValue("@longitude", newPothole.Longitude);
+                command.Parameters.AddWithValue("@address", newPothole.Address);
+                command.Parameters.AddWithValue("@city", newPothole.City);
+
+                int id = Convert.ToInt32(command.ExecuteScalar());
+                newPothole.Id = id;
+
+            }
+                return newPothole;
+
+        }
     }   
 }
