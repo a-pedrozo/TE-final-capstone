@@ -13,7 +13,6 @@
         <label for="date">Date Reported</label>
         <input type="date" name="date" v-model="newPothole.dateReported">
         <input type="submit" id="submitButton">
-        
     </form>
 
   </div>
@@ -32,7 +31,6 @@ data(){
             address: '',
             dateReported: '',
             severity: 0,
-
         }
     }
 },
@@ -49,12 +47,13 @@ methods:{
     reportPothole(){
         // this.newPothole.dateReported = this.dateToday();
         // console.log(this.dateToday());
-        PotholeService.reportPothole(this.newPothole);
-        this.$store.commit('REPORT_POTHOLE', this.newPothole);
-        this.$router.push({name: 'home'});
-        
+        PotholeService.reportPothole(this.newPothole)
+        .then((response) => {
+            this.$store.commit('REPORT_POTHOLE', response.data);
+            this.$router.push({name: 'home'})
+            })
+        }
     }
-}
 }
 </script>
 
