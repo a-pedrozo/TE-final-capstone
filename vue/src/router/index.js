@@ -7,6 +7,7 @@ import Register from "../views/Register.vue";
 import store from "../store/index";
 import PotholeDetails from "../views/PotholeDetails.vue";
 import NotFound from "../views/NotFound.vue";
+import Report from "../views/Report.vue";
 
 Vue.use(Router);
 
@@ -65,6 +66,11 @@ const router = new Router({
       name: 'NotFound',
       component: NotFound
     },
+    {
+      path: "report",
+      name: "report",
+      component: Report,
+    }
   ],
 });
 

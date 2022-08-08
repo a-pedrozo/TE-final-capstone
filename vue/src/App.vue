@@ -24,6 +24,12 @@
         v-if="$store.state.token">
         &nbsp;|&nbsp;Logout
       </router-link>
+        <router-link
+        class="nav-item"
+        v-bind:to="{ name: 'report' }">&nbsp;|&nbsp;
+        Report a Pothole
+        
+      </router-link>
     </div>
     
     <router-view />

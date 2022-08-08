@@ -27,7 +27,7 @@ CREATE TABLE users (
 CREATE TABLE potholes (
 	pothole_id int IDENTITY(1,1) NOT NULL,
 	date_reported date NOT NULL,
-	severity int check (severity between 1 and 3),
+	severity int check (severity between 0 and 3),
 	latitude varchar(25),
 	longitude varchar(25),
 	address varchar(150),
@@ -43,5 +43,6 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg4
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
 INSERT INTO potholes (date_reported, severity, address, city) VALUES ('2022/05/08', 3, '420 Fort Twenty Street', 'Weed City');
+
 
 GO

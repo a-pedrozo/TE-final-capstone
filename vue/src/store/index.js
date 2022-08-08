@@ -57,9 +57,11 @@ export default new Vuex.Store({
     },
     DELETE_POTHOLE(state, potholeId) {
       let index = state.potholes.findIndex(pothole => pothole.potholeId === potholeId)
-      
       if (index >= 0)
       state.potholes.splice(index, 1);
     },
+    REPORT_POTHOLE(state, newPothole){
+      state.potholes.push(newPothole);
+    }
   }
 })
