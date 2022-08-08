@@ -45,7 +45,7 @@ namespace Capstone.DAO
             }
             return potholes;
         }
-
+        
         public bool DeletePothole(int potholeId)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))

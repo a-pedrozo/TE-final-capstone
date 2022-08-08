@@ -1,5 +1,5 @@
 <template>
- <button v-on:click.prevent="deletePothole()">Delete</button>
+ <button v-if="$store.state.user.role=='admin'" v-on:click.prevent="deletePothole()">Delete</button>
 </template>
 
 <script>
@@ -11,6 +11,7 @@ export default {
             let confirmed = confirm('Are you sure you want to delete this pothole? This cannot be undone.');
 
             if(confirmed) {
+                console.log(this.$store.state.user.role);
                 PotholeService.deletePothole(this.pothole.id)
                     .then(() => {
                         this.$store.commit('DELETE_POTHOLE', this.pothole.id);

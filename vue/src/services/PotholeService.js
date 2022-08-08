@@ -1,20 +1,16 @@
 import axios from 'axios';
 
-const http = axios.create({
-    baseURL: "https://localhost:44315/"
-});
-
 export default{
     getPotholes() {
-        return http.get('pothole');
+        return axios.get('pothole');
     },
     deletePothole(potholeId) {
-        return http.delete('pothole/' + potholeId)
+        return axios.delete('pothole/' + potholeId)
     },
     getPothole(potholeId) {
-        return http.get('pothole/' + potholeId)
+        return axios.get('pothole/' + potholeId)
     },
     reportPothole(newPothole){
-        return http.post('pothole', newPothole);
+        return axios.post('pothole', newPothole);
     }
 }

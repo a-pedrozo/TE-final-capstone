@@ -26,7 +26,9 @@
       </router-link>
         <router-link
         class="nav-item"
-        v-bind:to="{ name: 'report' }">&nbsp;|&nbsp;
+        v-bind:to="{ name: 'report' }"
+        v-if="$store.state.token">
+        &nbsp;|&nbsp;
         Report a Pothole
         
       </router-link>
