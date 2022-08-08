@@ -26,7 +26,7 @@
       </router-link>
         <router-link
         class="nav-item"
-        v-bind:to="{ name: 'report' }">
+        v-bind:to="{ name: 'report' }">&nbsp;|&nbsp;
         Report a Pothole
         
       </router-link>

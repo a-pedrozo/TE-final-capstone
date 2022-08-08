@@ -1,7 +1,7 @@
 <template>
   <div>
       <h1> Report a Pothole </h1>
-    <form v-on:submit.prevent="reportPothole()"> 
+    <form v-on:submit.prevent="reportPothole()" class="form"> 
         <label for="latitude">Latitude</label>
         <input type="text" name="latitude" v-model="newPothole.latitude">
         <label for="longitude">Longitude</label>
@@ -12,7 +12,7 @@
         <input type="text" name="city" v-model="newPothole.city">
         <label for="date">Date Reported</label>
         <input type="date" name="date" v-model="newPothole.dateReported">
-        <input type="submit">
+        <input type="submit" id="submitButton">
         
     </form>
 
@@ -51,6 +51,7 @@ methods:{
         // console.log(this.dateToday());
         PotholeService.reportPothole(this.newPothole);
         this.$store.commit('REPORT_POTHOLE', this.newPothole);
+        this.$router.push({name: 'home'});
         
     }
 }
@@ -58,5 +59,15 @@ methods:{
 </script>
 
 <style>
-
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 75%;
+    
+}
+#submitButton{
+    margin: 2rem;
+    width: 100px;
+}
 </style>

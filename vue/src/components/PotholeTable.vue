@@ -1,6 +1,6 @@
 <template>
   <div class="pothole-table">
-    <div v-for='pothole in this.$store.state.potholes' v-bind:key='pothole.id'>
+    <div v-for='pothole in this.$store.state.potholes' v-bind:key='pothole.id' class="cards">
         <p class="id">ID: {{pothole.id}} </p> 
         <p class="date-reported">Date Reported: {{pothole.dateReported.substring(0,10)}}</p>
         <p class="severity">Severity: {{pothole.severity}}</p>
@@ -31,5 +31,10 @@ export default {
 </script>
 
 <style>
+.cards{
+    border: 2px solid black;
+    margin: 1rem;
+    padding: 2rem;
 
+}
 </style>
