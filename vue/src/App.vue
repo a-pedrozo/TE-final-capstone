@@ -2,7 +2,7 @@
      Note that you have classes from bootstrap available to you.
      See https://getbootstrap.com/docs/4.5/getting-started/introduction/ for reference on bootstrap -->
 <template>
-  <div id="app" class="container"> <!-- If you start to get random styling you don't like, remove container from this div -->
+  <div id="app"> <!-- If you start to get random styling you don't like, remove container from this div -->
     <div id="nav">
       <router-link class="nav-item" v-bind:to="{ name: 'home' }">
         <i class="fas fa-home"></i> <!-- This is a font awesome icon -->
@@ -46,5 +46,17 @@ export default {
 @import '../node_modules/bootstrap/scss/bootstrap';
 
 // Your custom styles go below this point
+
+
+
+html {
+  background-color: seagreen;
+  margin: 1rem;
+}
+body {
+  background-color: rebeccapurple;
+  padding: 1rem;
+  margin: 1rem;
+}
 
 </style>

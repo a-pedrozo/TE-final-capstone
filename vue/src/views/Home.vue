@@ -13,6 +13,6 @@ import PotholeTable from '../components/PotholeTable.vue';
 export default {
   components: { PotholeTable },
   name: "home"
-  
+
 };
 </script>
