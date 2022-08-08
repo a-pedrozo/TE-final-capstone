@@ -27,7 +27,7 @@ CREATE TABLE users (
 CREATE TABLE potholes (
 	pothole_id int IDENTITY(1,1) NOT NULL,
 	date_reported date NOT NULL,
-	severity int check (severity between 1 and 3),
+	severity int check (severity between 0 and 3),
 	latitude varchar(25),
 	longitude varchar(25),
 	address varchar(150),

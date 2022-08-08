@@ -7,5 +7,8 @@ const http = axios.create({
 export default{
     getPotholes() {
         return http.get('pothole');
+    },
+    reportPothole(newPothole){
+        return http.post('pothole', newPothole);
     }
 }

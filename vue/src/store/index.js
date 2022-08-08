@@ -45,6 +45,9 @@ export default new Vuex.Store({
     },
     LIST_POTHOLES(state, potholeList) {
       state.potholes = potholeList;
+    },
+    REPORT_POTHOLE(state, newPothole){
+      state.potholes.push(newPothole);
     }
   }
 })
