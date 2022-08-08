@@ -25,6 +25,15 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {}, // If a user is an admin, their user.role will be 'admin'
     potholes: [],
+    activePothole: {
+      id: null,
+      dateReported: null,
+      severity: null,
+      latitude: '',
+      longitude: '',
+      address: '',
+      city: '',
+    }
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -45,6 +54,12 @@ export default new Vuex.Store({
     },
     LIST_POTHOLES(state, potholeList) {
       state.potholes = potholeList;
-    }
+    },
+    DELETE_POTHOLE(state, potholeId) {
+      let index = state.potholes.findIndex(pothole => pothole.potholeId === potholeId)
+      
+      if (index >= 0)
+      state.potholes.splice(index, 1);
+    },
   }
 })

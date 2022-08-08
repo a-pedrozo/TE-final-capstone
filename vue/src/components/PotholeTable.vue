@@ -1,7 +1,9 @@
 <template>
   <div class="pothole-table">
     <div v-for='pothole in this.$store.state.potholes' v-bind:key='pothole.id'>
-        <p class="id">ID: {{pothole.id}} </p> 
+        <router-link 
+        v-bind:to="{ name: 'PotholeDetails', params: { id: pothole.id } }">
+        <p class="id">ID: {{pothole.id}} </p> </router-link>
         <p class="date-reported">Date Reported: {{pothole.dateReported.substring(0,10)}}</p>
         <p class="severity">Severity: {{pothole.severity}}</p>
         <p class="location-lat-and-long">Location (latitude and longitude): {{pothole.latitude}}, {{pothole.longitude}}</p>

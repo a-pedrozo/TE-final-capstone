@@ -5,6 +5,8 @@ import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import Register from "../views/Register.vue";
 import store from "../store/index";
+import PotholeDetails from "../views/PotholeDetails.vue";
+import NotFound from "../views/NotFound.vue";
 
 Vue.use(Router);
 
@@ -28,6 +30,11 @@ const router = new Router({
       meta: {
         requiresAuth: false,
       },
+    },
+    {
+      path: '/:id',
+      name: 'PotholeDetails',
+      component: PotholeDetails
     },
     {
       path: "/login",
@@ -55,7 +62,8 @@ const router = new Router({
     },
     {
       path: "*",
-      redirect: "/",
+      name: 'NotFound',
+      component: NotFound
     },
   ],
 });

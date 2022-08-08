@@ -10,8 +10,10 @@ namespace Capstone.DAO
     public interface IPotholeDAO
     {
         List<Pothole> GetAllPotholes();
-        
-        
-        
+
+        Pothole GetPothole(int potholeId);
+
+        public bool DeletePothole(int potholeId);
+
     }
 }
