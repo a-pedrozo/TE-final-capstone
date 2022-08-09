@@ -41,7 +41,7 @@ namespace Capstone.DAO
                     newPothole.Address = Convert.ToString(reader["address"]);
                     newPothole.City = Convert.ToString(reader["city"]);
                     newPothole.ReportDate = Convert.ToDateTime(reader["report_date"]);
-                    newPothole.IsReviewed = Convert.ToBoolean(reader["is_Reviewed"]);
+                    newPothole.IsReviewed = GetNullableBool(reader,"is_Reviewed");
                     newPothole.ReportNotes = Convert.ToString(reader["report_notes"]);
                     newPothole.InspectionDate = GetNullableDate(reader, "inspection_date");
                     newPothole.IsInspected = GetNullableBool(reader, "is_Inspected");
@@ -86,7 +86,7 @@ namespace Capstone.DAO
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string sql = "DELETE FROM potholes WHERE pothole_id = @potholeId";
+                string sql = "DELETE FROM reports WHERE pothole_id = @potholeId; DELETE FROM potholes WHERE pothole_id = @potholeId";
 
                 SqlCommand command = new SqlCommand(sql, conn);
                 command.Parameters.AddWithValue("@potholeId", potholeId);
@@ -149,6 +149,12 @@ namespace Capstone.DAO
 
                 int id = Convert.ToInt32(command.ExecuteScalar());
                 newPothole.Id = id;
+
+                string addReport = "INSERT INTO reports (pothole_id, report_date) VALUES(@id, @reportDate)";
+                SqlCommand c = new SqlCommand(addReport, conn);
+                c.Parameters.AddWithValue("@id", newPothole.Id);
+                c.Parameters.AddWithValue("@reportDate", newPothole.ReportDate);
+                c.ExecuteNonQuery();
 
             }
                 return newPothole;
