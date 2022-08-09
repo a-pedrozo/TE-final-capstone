@@ -37,7 +37,7 @@ namespace Capstone.Controllers
         [Authorize]
         public ActionResult AddPothole(Pothole newPothole)
         {
-            newPothole.DateReported = DateTime.Today;
+            //newPothole.DateReported = DateTime.Today; date reported moved to report table
             newPothole = potholeDAO.AddPothole(newPothole);
 
             if (newPothole == null)
@@ -75,5 +75,7 @@ namespace Capstone.Controllers
 
             return Ok();
         }
+
+    
     }
 }
