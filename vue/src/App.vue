@@ -8,33 +8,55 @@
         <i class="fas fa-home"></i> <!-- This is a font awesome icon -->
         Home 
       </router-link>
-      <router-link
-        class="nav-item"
-        v-bind:to="{ name: 'register' }"
-        v-if="!$store.state.token">&nbsp;|&nbsp;Register</router-link>
-      <router-link
+    <router-view />
+
+<!--sidebar-->
+    <div>
+    <nav id="sidebar">
+      <div id="sidebar-content">
+        <h3>Site Name?????</h3>
+        <ul class="sidebar-navs"> 
+          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Actions you can do</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                 <router-link
         class="nav-item"
         v-bind:to="{ name: 'login' }"
         v-if="!$store.state.token">
-        &nbsp;|&nbsp;Login
+        <button>Login</button>
       </router-link>
-      <router-link
+      </li>
+      <li>
+        <router-link
         class="nav-item"
         v-bind:to="{ name: 'logout' }"
         v-if="$store.state.token">
-        &nbsp;|&nbsp;Logout
+        <button>Logout</button>
       </router-link>
-        <router-link
+        </li>
+        <li>
+          <router-link
         class="nav-item"
-        v-bind:to="{ name: 'report' }"
-        v-if="$store.state.token">
-        &nbsp;|&nbsp;
-        Report a Pothole
-        
-      </router-link>
+        v-bind:to="{ name: 'register' }"
+        v-if="!$store.state.token"><button>Register</button></router-link>
+          </li>
+                  <li>
+                    <router-link
+                    class="view-potholes"
+                    v-bind:to="{name: 'AllPotholes'}">View All Potholes</router-link>
+                    </li>
+                    <li>
+                      <router-link class="add-pothole"
+                      v-bind:to="{name: 'report'}">Report a Pothole</router-link>
+                    </li>
+      </ul>
+      </ul>
+      </div>
+    </nav>
     </div>
-    
-    <router-view />
+    <!--sidebar-->
+
+    </div>
   </div>
 </template>
 
