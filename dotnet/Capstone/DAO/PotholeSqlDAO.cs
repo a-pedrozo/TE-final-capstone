@@ -43,15 +43,11 @@ namespace Capstone.DAO
                     newPothole.ReportDate = Convert.ToDateTime(reader["report_date"]);
                     newPothole.IsReviewed = Convert.ToBoolean(reader["is_Reviewed"]);
                     newPothole.ReportNotes = Convert.ToString(reader["report_notes"]);
-                    if (reader["inspection_date"] != DBNull.Value)
-                    {
-                    newPothole.InspectionDate = Convert.ToDateTime(reader["inspection_date"]);
-                    }
-                    
-                    newPothole.IsInspected = Convert.ToBoolean(reader["is_Inspected"]);
+                    newPothole.InspectionDate = GetNullableDate(reader, "inspection_date");
+                    newPothole.IsInspected = GetNullableBool(reader, "is_Inspected");
                     newPothole.InspectionNotes = Convert.ToString(reader["inspection_notes"]);
-                    newPothole.RepairDate = Convert.ToDateTime(reader["repair_date"]);
-                    newPothole.IsRepaired = Convert.ToBoolean(reader["is_Repaired"]);
+                    newPothole.RepairDate = GetNullableDate(reader, "repair_date");
+                    newPothole.IsRepaired = GetNullableBool(reader, "is_Repaired");
                     newPothole.RepairNotes = Convert.ToString(reader["repair_notes"]);
 
                     potholes.Add(newPothole);
@@ -60,7 +56,31 @@ namespace Capstone.DAO
             }
             return potholes;
         }
-        
+
+        private static DateTime GetNullableDate(SqlDataReader reader, string column)
+        {
+            if (reader[column] != DBNull.Value)
+            {
+                return Convert.ToDateTime(reader[column]);
+            }
+            else
+            {
+                return default;
+            }
+        }
+
+        private static bool GetNullableBool(SqlDataReader reader, string column)
+        {
+            if (reader[column] != DBNull.Value)
+            {
+                return Convert.ToBoolean(reader[column]);
+            }
+            else
+            {
+                return default;
+            }
+        }
+
         public bool DeletePothole(int potholeId)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
