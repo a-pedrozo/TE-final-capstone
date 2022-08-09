@@ -24,7 +24,10 @@ namespace Capstone.DAO
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open(); // date reported moved to report table 
-                string sql = "SELECT p.pothole_id, p.severity, p.latitude, p.longitude, p.address, p.city FROM potholes p"; 
+                string sql = "SELECT p.pothole_id, p.severity, p.latitude, p.longitude, p.address, p.city, r.report_date, r.is_Reviewed," +
+                    " r.report_notes, i.inspection_date, i.is_Inspected, i.inspection_notes, re.repair_date, re.is_Repaired, re.repair_notes" +
+                    "FROM potholes p LEFT OUTER JOIN reports r ON r.pothole_id = p.pothole_id LEFT OUTER JOIN inspections i ON i.pothole_id = p.pothole_id" +
+                    "LEFT OUTER JOIN repairs re ON re.pothole_id = p.pothole_id"; 
                 SqlCommand command = new SqlCommand(sql, conn);
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -37,6 +40,15 @@ namespace Capstone.DAO
                     newPothole.Longitude = Convert.ToString(reader["longitude"]);
                     newPothole.Address = Convert.ToString(reader["address"]);
                     newPothole.City = Convert.ToString(reader["city"]);
+                    newPothole.ReportDate = Convert.ToDateTime(reader["date_reported"]);
+                    newPothole.IsReviewed = Convert.ToBoolean(reader["is_Reviewed"]);
+                    newPothole.ReportNotes = Convert.ToString(reader["report_notes"]);
+                    newPothole.InspectionDate = Convert.ToDateTime(reader["inspection_date"]);
+                    newPothole.IsInspected = Convert.ToBoolean(reader["is_Inspected"]);
+                    newPothole.InspectionNotes = Convert.ToString(reader["inspection_notes"]);
+                    newPothole.RepairDate = Convert.ToDateTime(reader["repair_date"]);
+                    newPothole.IsRepaired = Convert.ToBoolean(reader["is_Repaired"]);
+                    newPothole.RepairNotes = Convert.ToString(reader["repair_notes"]);
 
                     potholes.Add(newPothole);
                 }
