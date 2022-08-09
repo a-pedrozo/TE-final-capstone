@@ -55,16 +55,10 @@ export default {
 
 // Your custom styles go below this point
 
+*{
+  background-color: #ede3d9;
+}
 
 
-html {
-  background-color: seagreen;
-  margin: 1rem;
-}
-body {
-  background-color: rebeccapurple;
-  padding: 1rem;
-  margin: 1rem;
-}
 
 </style>

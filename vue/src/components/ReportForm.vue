@@ -10,8 +10,8 @@
         <input type="text" name="address" v-model="newPothole.address">
         <label for="city">City</label>
         <input type="text" name="city" v-model="newPothole.city">
-        <label for="date">Date Reported</label>
-        <input type="date" name="date" v-model="newPothole.dateReported">
+        <!--<label for="date">Date Reported</label>
+        <input type="date" name="date" v-model="newPothole.dateReported">-->
         <input type="submit" id="submitButton">
     </form>
 
@@ -29,24 +29,24 @@ data(){
             longitude: '',
             city: '',
             address: '',
-            dateReported: '',
+            //dateReported: '',
             severity: 0,
         }
     }
 },
 computed: {
     dateToday(){
-        let month = Date.getMonth();
-        let day = Date.getDate();
-        let year = Date.getFullYear();
+        let d = new Date();
+        let month = d.getMonth()+1;
+        let day = d.getDate();
+        let year = d.getFullYear();
 
-        return year + month + day;
+        return year +'-'+ month + '-' + day;
     }
 },
 methods:{
     reportPothole(){
-        // this.newPothole.dateReported = this.dateToday();
-        // console.log(this.dateToday());
+        //this.newPothole.dateReported = this.dateToday;
         PotholeService.reportPothole(this.newPothole)
         .then((response) => {
             this.$store.commit('REPORT_POTHOLE', response.data);
