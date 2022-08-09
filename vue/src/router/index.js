@@ -8,6 +8,7 @@ import store from "../store/index";
 import PotholeDetails from "../views/PotholeDetails.vue";
 import NotFound from "../views/NotFound.vue";
 import Report from "../views/Report.vue";
+import ViewAllPotholes from "../views/ViewAllPotholes.vue"
 
 Vue.use(Router);
 
@@ -31,6 +32,11 @@ const router = new Router({
       meta: {
         requiresAuth: false,
       },
+    },
+    {
+      path: '/pothole',
+      name: 'AllPotholes',
+      component: ViewAllPotholes
     },
     {
       path: '/:id',
