@@ -31,7 +31,7 @@ CREATE TABLE reports (
 	pothole_id int NOT NULL,
 	report_date date,
 	is_Reviewed BIT NOT NULL,
-	notes varchar(300),
+	report_notes varchar(300),
 	CONSTRAINT PK_reports PRIMARY KEY (report_id),
 	CONSTRAINT [FK_reports_potholes] FOREIGN KEY (pothole_id) REFERENCES [potholes] (pothole_id),
 )
@@ -41,7 +41,7 @@ CREATE TABLE inspections (
 	pothole_id int NOT NULL,
 	inspection_date date,
 	is_Inspected BIT NOT NULL,
-	notes varchar(300),
+	inspection_notes varchar(300),
 	CONSTRAINT PK_inspections PRIMARY KEY (inspection_id),
 	CONSTRAINT [FK_inspections_potholes] FOREIGN KEY (pothole_id) REFERENCES [potholes] (pothole_id),
 )
@@ -49,9 +49,9 @@ CREATE TABLE inspections (
 CREATE TABLE repairs (
 	repair_id int IDENTITY(4000,1) NOT NULL,
 	pothole_id int NOT NULL,
-	report_date date,
+	repair_date date,
 	is_Repaired BIT NOT NULL,
-	notes varchar(300),
+	repair_notes varchar(300),
 	CONSTRAINT PK_repairs PRIMARY KEY (repair_id),
 	CONSTRAINT [FK_repairs_potholes] FOREIGN KEY (pothole_id) REFERENCES [potholes] (pothole_id),
 )
@@ -71,10 +71,10 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg4
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
 INSERT INTO potholes (address, city) VALUES ('711 Fresh Avenue', 'Somewhere City');
-INSERT INTO reports (pothole_id, report_date, is_Reviewed, notes) VALUES (1000, '8/9/2022', 0, 'No notes at this time');
+INSERT INTO reports (pothole_id, report_date, is_Reviewed, report_notes) VALUES (1000, '8/9/2022', 1, 'No notes at this time');
 
 INSERT INTO potholes (address, city) VALUES ('3852 Wristwatch Place', 'Bayview');
-INSERT INTO reports (pothole_id, report_date, is_Reviewed, notes) VALUES (1001, '8/9/2022', 0, 'This one is a doozy, folks');
+INSERT INTO reports (pothole_id, report_date, is_Reviewed, report_notes) VALUES (1001, '8/9/2022', 0, 'This one is a doozy, folks');
 
 select * from potholes
 select * from reports
