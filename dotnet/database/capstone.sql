@@ -18,7 +18,7 @@ GO
 
 CREATE TABLE potholes (
 	pothole_id int IDENTITY(1000,1) NOT NULL,
-	severity int check (severity between 0 and 3),
+	severity int check (severity between 0 and 3) DEFAULT 0,
 	latitude varchar(25),
 	longitude varchar(25),
 	address varchar(150),
