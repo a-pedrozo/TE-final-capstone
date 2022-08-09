@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Capstone.DAO;
 using Capstone.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Capstone.Controllers
 {
@@ -33,9 +34,10 @@ namespace Capstone.Controllers
         }
 
         [HttpPost]
-        
+        [Authorize]
         public ActionResult AddPothole(Pothole newPothole)
         {
+            newPothole.DateReported = DateTime.Today;
             newPothole = potholeDAO.AddPothole(newPothole);
 
             if (newPothole == null)
@@ -60,6 +62,7 @@ namespace Capstone.Controllers
 
 
         [HttpDelete("{potholeId}")]
+        [Authorize(Roles = "admin")]
         public ActionResult DeletePothole(int potholeId)
         {
 
