@@ -130,7 +130,7 @@ namespace Capstone.DAO
             };
         }
 
-        public Pothole AddPothole(Pothole newPothole )
+        public Pothole AddPothole(Pothole newPothole)
         {
            
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -158,6 +158,23 @@ namespace Capstone.DAO
 
             }
                 return newPothole;
+        }
+
+        public bool ReviewPothole(int potholeId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string sql = "UPDATE reports SET reports.is_Reviewed = 1 WHERE pothole_id = @pothole_id; " +
+                             "INSERT INTO inspections (pothole_id) VALUES(@pothole_id)";
+                SqlCommand command = new SqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@pothole_id", potholeId);
+
+                int rowsAffeced = command.ExecuteNonQuery();
+
+                return rowsAffeced > 0;
+            }
         }
     }   
 }
