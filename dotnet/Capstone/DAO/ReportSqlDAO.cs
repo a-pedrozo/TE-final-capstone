@@ -2,10 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Capstone.Models;
 
 namespace Capstone.DAO
 {
     public class ReportSqlDAO
     {
+        private string connectionString;
+
+        public ReportSqlDAO(string dbConnectionString)
+        {
+            connectionString = dbConnectionString;
+        }
+
+
     }
 }

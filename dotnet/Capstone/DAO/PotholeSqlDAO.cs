@@ -101,7 +101,7 @@ namespace Capstone.DAO
             {
                 conn.Open();
                 string sql = "INSERT INTO potholes (severity, latitude,longitude,address,city)" +
-                    " VALUES(@dateReported,@severity,@latitude, @longitude, @address, @city);" +
+                    " VALUES(@severity,@latitude, @longitude, @address, @city);" +
                     " SELECT @@IDENTITY";
                 SqlCommand command = new SqlCommand(sql, conn);
 
