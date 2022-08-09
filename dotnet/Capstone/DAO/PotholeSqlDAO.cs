@@ -23,8 +23,8 @@ namespace Capstone.DAO
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
-                string sql = "SELECT p.pothole_id, p.date_reported, p.severity, p.latitude, p.longitude, p.address, p.city FROM potholes p";
+                conn.Open(); // date reported moved to report table 
+                string sql = "SELECT p.pothole_id, p.severity, p.latitude, p.longitude, p.address, p.city FROM potholes p"; 
                 SqlCommand command = new SqlCommand(sql, conn);
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -32,7 +32,6 @@ namespace Capstone.DAO
                 {
                     Pothole newPothole = new Pothole();
                     newPothole.Id = Convert.ToInt32(reader["pothole_id"]);
-                    newPothole.DateReported = Convert.ToDateTime(reader["date_reported"]);
                     newPothole.Severity = Convert.ToInt32(reader["severity"]);
                     newPothole.Latitude = Convert.ToString(reader["latitude"]);
                     newPothole.Longitude = Convert.ToString(reader["longitude"]);
@@ -67,7 +66,7 @@ namespace Capstone.DAO
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string sql = "SELECT p.pothole_id, p.date_reported, p.severity, p.latitude, p.longitude, p.address, p.city FROM potholes p WHERE pothole_id = @potholeId";
+                string sql = "SELECT p.pothole_id, p.severity, p.latitude, p.longitude, p.address, p.city FROM potholes p WHERE pothole_id = @potholeId";
                 SqlCommand command = new SqlCommand(sql, conn);
                 command.Parameters.AddWithValue("@potholeId", potholeId);
 
@@ -87,7 +86,6 @@ namespace Capstone.DAO
             return new Pothole()
             {
                 Id = Convert.ToInt32(reader["pothole_id"]),
-                DateReported = Convert.ToDateTime(reader["date_reported"]),
                 Severity = Convert.ToInt32(reader["severity"]),
                 Latitude = Convert.ToString(reader["latitude"]),
                 Longitude = Convert.ToString(reader["longitude"]),
@@ -102,12 +100,11 @@ namespace Capstone.DAO
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string sql = "INSERT INTO potholes (date_reported, severity, latitude,longitude,address,city)" +
+                string sql = "INSERT INTO potholes (severity, latitude,longitude,address,city)" +
                     " VALUES(@dateReported,@severity,@latitude, @longitude, @address, @city);" +
                     " SELECT @@IDENTITY";
                 SqlCommand command = new SqlCommand(sql, conn);
 
-                command.Parameters.AddWithValue("@dateReported", newPothole.DateReported);
                 command.Parameters.AddWithValue("@severity", newPothole.Severity);
                 command.Parameters.AddWithValue("@latitude", newPothole.Latitude);
                 command.Parameters.AddWithValue("@longitude", newPothole.Longitude);

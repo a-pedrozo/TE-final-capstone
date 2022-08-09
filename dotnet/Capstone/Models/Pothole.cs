@@ -8,7 +8,6 @@ namespace Capstone.Models
     public class Pothole
     {
         public int Id { get; set; }
-        public DateTime DateReported { get; set; }
         public int Severity { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
