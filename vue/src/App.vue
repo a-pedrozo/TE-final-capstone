@@ -9,7 +9,7 @@
     <div class="side">
     <nav id="sidebar">
       <div id="sidebar-content">
-        <h3>Site Name?????</h3>
+        <h3>Pothole Tracker</h3>
         <ul class="sidebar-navs">  
                 <ul>
                  <li>
@@ -23,13 +23,15 @@
               <router-link
                class="view-potholes"
                v-bind:to="{name: 'AllPotholes'}">
-               <i class="fa-regular fa-car-burst"></i>
+               <i class="fas fa-car-crash"></i>
                View All Potholes
                </router-link>
                </li>
                <li>
                <router-link class="add-pothole"
+               v-if="$store.state.token"
                 v-bind:to="{name: 'report'}">
+                <i class="fas fa-clipboard-list"></i>
                 Report a Pothole</router-link>
               </li>
               <li>
@@ -117,12 +119,16 @@ html{
   transition: all 0.3s;
   border-right: 5px solid  #727A6B;
   font-size: 20px;
+ 
 }
 
 ul{
   list-style: none;
   display: flex;
   flex-direction: column;
+  padding: 0 0 0 0;
+  margin-left: 1rem;
+  
 }
 
 li{
