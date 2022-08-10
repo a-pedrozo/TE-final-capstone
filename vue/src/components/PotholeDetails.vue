@@ -2,7 +2,7 @@
     <div>
         <div v-if="pothole">
             <p class="id">ID: {{pothole.id}} </p>
-            <p class="date-reported">Date Reported: {{pothole.dateReported.substring(0,10)}}</p>
+            <p class="date-reported">Date Reported: {{pothole.reportDate.substring(0,10)}}</p>
             <p class="severity">Severity: {{pothole.severity}}</p>
             <p class="location-lat-and-long">Location (latitude and longitude): {{pothole.latitude}}, {{pothole.longitude}}</p>
             <p class="location-address">Location (address): {{pothole.address}}</p>

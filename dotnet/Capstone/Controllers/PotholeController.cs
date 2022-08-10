@@ -22,7 +22,6 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
-
         public ActionResult GetAllPotholes()
         {
             List<Pothole> potholes = potholeDAO.GetAllPotholes();
@@ -37,14 +36,13 @@ namespace Capstone.Controllers
         [Authorize]
         public ActionResult AddPothole(Pothole newPothole)
         {
-            //newPothole.DateReported = DateTime.Today; date reported moved to report table
+            newPothole.ReportDate = DateTime.Today; 
             newPothole = potholeDAO.AddPothole(newPothole);
 
             if (newPothole == null)
             {
                 return NotFound("This did not work");
             }
-
             return Ok(newPothole);
         }
 
@@ -65,17 +63,26 @@ namespace Capstone.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult DeletePothole(int potholeId)
         {
-
             bool deleted = potholeDAO.DeletePothole(potholeId);
 
             if(deleted == false)
             {
                 return BadRequest("Unable to delete pothole--please check pothole ID and try again");
             }
-
             return Ok();
         }
 
-    
+        [HttpPut("{potholeId}")]
+        [Authorize(Roles = "admin")]
+        public ActionResult ReviewPothole(int potholeId)
+        {
+            bool reviewed = potholeDAO.ReviewPothole(potholeId);
+
+            if(reviewed == false)
+            {
+                return BadRequest("Unable to review pothole--please check pothole ID and try again");
+            }
+            return Ok();
+        }
     }
 }
