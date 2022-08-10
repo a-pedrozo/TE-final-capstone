@@ -1,5 +1,6 @@
 <template>
   <div class="pothole-table">
+      <h1>View All Potholes</h1>
     <div class="cards" v-for='pothole in $store.state.potholes' v-bind:key='pothole.id'>
         <router-link 
         v-bind:to="{ name: 'PotholeDetails', params: { id: pothole.id } }">
@@ -37,6 +38,6 @@ export default {
     border: 2px solid black;
     margin: 1rem;
     padding: 2rem;
-
+    background-color: #ede3d9;
 }
 </style>
