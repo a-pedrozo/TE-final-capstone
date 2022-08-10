@@ -37,6 +37,7 @@ data() {
                 .then(() => {   
                     this.updateStore();
                     this.pothole.isReviewed = true;
+
                 })
             } else if (this.pothole.isReviewed == true) {
                 PotholeService.unReviewPothole(this.pothole.id) 
@@ -45,6 +46,7 @@ data() {
                     this.pothole.isReviewed = false;
                 })
                 }
+                location.reload();
         },
         updateStore(){
             PotholeService.getPotholes()

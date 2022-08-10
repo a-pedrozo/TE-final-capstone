@@ -71,7 +71,7 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg4
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
 INSERT INTO potholes (address, city) VALUES ('711 Fresh Avenue', 'Somewhere City');
-INSERT INTO reports (pothole_id, report_date, is_Reviewed, report_notes) VALUES (1000, '8/9/2022', 0, 'No notes at this time');
+INSERT INTO reports (pothole_id, report_date, is_Reviewed, report_notes) VALUES (1000, '8/9/2022', 1, 'No notes at this time');
 
 INSERT INTO potholes (address, city) VALUES ('3852 Wristwatch Place', 'Bayview');
 INSERT INTO reports (pothole_id, report_date, is_Reviewed, report_notes) VALUES (1001, '8/9/2022', 0, 'This one is a doozy, folks');
