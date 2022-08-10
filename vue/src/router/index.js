@@ -73,7 +73,7 @@ const router = new Router({
       component: NotFound
     },
     {
-      path: "report",
+      path: "/report",
       name: "report",
       component: Report,
     }

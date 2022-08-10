@@ -50,10 +50,12 @@ methods:{
         PotholeService.reportPothole(this.newPothole)
         .then((response) => {
             this.$store.commit('REPORT_POTHOLE', response.data);
-            this.$router.push({name: 'home'})
+            this.$router.push({name: 'AllPotholes'})
             })
         }
+   
     }
+   
 }
 </script>
 
