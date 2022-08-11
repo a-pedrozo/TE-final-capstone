@@ -17,8 +17,8 @@ namespace Capstone.Models
         public bool IsReviewed { get; set; }
         public bool IsInspected { get; set; }
         public bool IsRepaired { get; set; }
-        public DateTime InspectionDate { get; set; }
-        public DateTime RepairDate { get; set; }
+        public DateTime? InspectionDate { get; set; } // the question mark makes it so this can be null or a DateTime
+        public DateTime? RepairDate { get; set; } // the question mark makes it so this can be null or a DateTime
         public string ReportNotes { get; set; }
         public string InspectionNotes { get; set; }
         public string RepairNotes { get; set; }

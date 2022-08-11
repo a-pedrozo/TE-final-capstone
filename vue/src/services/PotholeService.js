@@ -12,5 +12,11 @@ export default{
     },
     reportPothole(newPothole){
         return axios.post('pothole', newPothole);
+    },
+    reviewPothole(potholeId, pothole) {
+        return axios.put('pothole/' + potholeId, pothole)
+    },
+    unReviewPothole(potholeId) {
+        return axios.put('pothole/' + potholeId + '/un')
     }
 }

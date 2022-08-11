@@ -62,6 +62,7 @@ export default new Vuex.Store({
     },
     REPORT_POTHOLE(state, newPothole){
       state.potholes.push(newPothole);
-    }
+    },
+    
   }
 })

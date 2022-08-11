@@ -1,20 +1,19 @@
 <template>
   <div>
-      <pothole-table />
+    <pothole-table />
   </div>
 </template>
 
 <script>
-import PotholeTable from '../components/PotholeTable.vue'
+import PotholeTable from "../components/PotholeTable.vue";
 
 export default {
- components: { 
-     PotholeTable
-      },
-  name: 'AllPotholes'
-}
+  components: {
+    PotholeTable,
+  },
+  name: "AllPotholes",
+};
 </script>
 
 <style>
-
 </style>

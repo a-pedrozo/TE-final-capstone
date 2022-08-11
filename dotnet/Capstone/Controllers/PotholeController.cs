@@ -74,9 +74,22 @@ namespace Capstone.Controllers
 
         [HttpPut("{potholeId}")]
         [Authorize(Roles = "admin")]
-        public ActionResult ReviewPothole(int potholeId)
+        public ActionResult ReviewPothole(int potholeId, Pothole pothole)
         {
-            bool reviewed = potholeDAO.ReviewPothole(potholeId);
+            bool reviewed = potholeDAO.ReviewPothole(potholeId, pothole.InspectionDate);
+
+            if (reviewed == false)
+            {
+                return BadRequest("Unable to review pothole--please check pothole ID and try again");
+            }
+            return Ok();
+        }
+
+        [HttpPut("{potholeId}/un")]
+        [Authorize(Roles = "admin")]
+        public ActionResult UnReviewPothole(int potholeId)
+        {
+            bool reviewed = potholeDAO.UnReviewPothole(potholeId);
 
             if(reviewed == false)
             {

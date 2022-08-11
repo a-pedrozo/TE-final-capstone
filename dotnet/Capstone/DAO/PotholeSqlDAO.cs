@@ -57,7 +57,7 @@ namespace Capstone.DAO
             return potholes;
         }
 
-        private static DateTime GetNullableDate(SqlDataReader reader, string column)
+        private static DateTime? GetNullableDate(SqlDataReader reader, string column)
         {
             if (reader[column] != DBNull.Value)
             {
@@ -65,7 +65,7 @@ namespace Capstone.DAO
             }
             else
             {
-                return default;
+                return null;
             }
         }
 
@@ -102,7 +102,10 @@ namespace Capstone.DAO
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string sql = "SELECT p.pothole_id, p.severity, p.latitude, p.longitude, p.address, p.city FROM potholes p WHERE pothole_id = @potholeId";
+                string sql = "SELECT p.pothole_id, p.severity, p.latitude, p.longitude, p.address, p.city, r.report_date, r.is_Reviewed," +
+                    " r.report_notes, i.inspection_date, i.is_Inspected, i.inspection_notes, re.repair_date, re.is_Repaired, re.repair_notes " +
+                    "FROM potholes p LEFT OUTER JOIN reports r ON r.pothole_id = p.pothole_id LEFT OUTER JOIN inspections i ON i.pothole_id = p.pothole_id " +
+                    "LEFT OUTER JOIN repairs re ON re.pothole_id = p.pothole_id WHERE p.pothole_id = @potholeId";
                 SqlCommand command = new SqlCommand(sql, conn);
                 command.Parameters.AddWithValue("@potholeId", potholeId);
 
@@ -121,12 +124,21 @@ namespace Capstone.DAO
         {
             return new Pothole()
             {
-                Id = Convert.ToInt32(reader["pothole_id"]),
-                Severity = Convert.ToInt32(reader["severity"]),
-                Latitude = Convert.ToString(reader["latitude"]),
-                Longitude = Convert.ToString(reader["longitude"]),
-                Address = Convert.ToString(reader["address"]),
-                City = Convert.ToString(reader["city"])
+            Id = Convert.ToInt32(reader["pothole_id"]),
+            Severity = Convert.ToInt32(reader["severity"]),
+            Latitude = Convert.ToString(reader["latitude"]),
+            Longitude = Convert.ToString(reader["longitude"]),
+            Address = Convert.ToString(reader["address"]),
+            City = Convert.ToString(reader["city"]),
+            ReportDate = Convert.ToDateTime(reader["report_date"]),
+            IsReviewed = GetNullableBool(reader, "is_Reviewed"),
+            ReportNotes = Convert.ToString(reader["report_notes"]),
+            InspectionDate = GetNullableDate(reader, "inspection_date"),
+            IsInspected = GetNullableBool(reader, "is_Inspected"),
+            InspectionNotes = Convert.ToString(reader["inspection_notes"]),
+            RepairDate = GetNullableDate(reader, "repair_date"),
+            IsRepaired = GetNullableBool(reader, "is_Repaired"),
+            RepairNotes = Convert.ToString(reader["repair_notes"]),
             };
         }
 
@@ -160,13 +172,31 @@ namespace Capstone.DAO
                 return newPothole;
         }
 
-        public bool ReviewPothole(int potholeId)
+        public bool ReviewPothole(int potholeId, DateTime? date)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
                 string sql = "UPDATE reports SET reports.is_Reviewed = 1 WHERE pothole_id = @pothole_id; " +
-                             "INSERT INTO inspections (pothole_id) VALUES(@pothole_id)";
+                             "INSERT INTO inspections (pothole_id, inspection_date) VALUES(@pothole_id, @inspectionDate)";
+                SqlCommand command = new SqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@pothole_id", potholeId);
+                command.Parameters.AddWithValue("@inspectionDate", date);
+
+                int rowsAffeced = command.ExecuteNonQuery();
+
+                return rowsAffeced > 0;
+            }
+        }
+
+        public bool UnReviewPothole(int potholeId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string sql = "UPDATE reports SET reports.is_Reviewed = 0 WHERE pothole_id = @pothole_id; " +
+                             "DELETE FROM inspections WHERE pothole_id = @pothole_id";
                 SqlCommand command = new SqlCommand(sql, conn);
 
                 command.Parameters.AddWithValue("@pothole_id", potholeId);
@@ -176,5 +206,6 @@ namespace Capstone.DAO
                 return rowsAffeced > 0;
             }
         }
+
     }   
 }
