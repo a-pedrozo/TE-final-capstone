@@ -26,6 +26,7 @@
           Location (address): {{ pothole.address }}
         </p>
         <p class="city">City: {{ pothole.city }}</p>
+        <p class="status">Status: {{pothole.status}}</p>
       </div>
     </div>
   </div>
@@ -57,5 +58,8 @@ export default {
   margin: 1rem;
   padding: 2rem;
   background-color: #ede3d9;
+}
+.status{
+  font-weight: bold;
 }
 </style>

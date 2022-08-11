@@ -13,6 +13,7 @@
             <p class="inspection-date">Inspection Date: {{pothole.inspectionDate ? pothole.inspectionDate.substring(0,10): 'None'}}
             <p class="repaired">Repaired: {{pothole.isRepaired == true ? 'Yes' : 'No'}}</p>
             <p class="repair-date">Repair Date: {{pothole.repairDate ? pothole.repairDate.substring(0,10): 'None'}}</p>
+            
         </div>
     </div>
 </template>
@@ -48,4 +49,7 @@ export default {
 </script>
 
 <style>
+.reviewed {
+    font-weight: bolder;
+}
 </style>

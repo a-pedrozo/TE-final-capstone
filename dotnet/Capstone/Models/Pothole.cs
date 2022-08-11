@@ -22,6 +22,22 @@ namespace Capstone.Models
         public string ReportNotes { get; set; }
         public string InspectionNotes { get; set; }
         public string RepairNotes { get; set; }
-
+        public string Status { get
+            {
+                if (IsRepaired)
+                {
+                    return "Repaired";
+                }
+                else if (IsInspected)
+                {
+                    return "Inspected";
+                }
+                else if(IsReviewed)
+                {
+                    return "Reviewed";
+                }
+                return "Awaiting Review";
+            } 
+        }
     }
 }
