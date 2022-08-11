@@ -48,4 +48,7 @@ export default {
 </script>
 
 <style>
+.reviewed {
+    font-weight: bolder;
+}
 </style>
