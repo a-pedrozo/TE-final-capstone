@@ -110,5 +110,18 @@ namespace Capstone.Controllers
             }
             return Ok();
         }
+
+        [HttpPut("{potholeId}/unre")]
+        [Authorize(Roles = "admin")]
+        public ActionResult UnScheduleRepair(int potholeId)
+        {
+            bool reviewed = potholeDAO.UnScheduleRepair(potholeId);
+
+            if (reviewed == false)
+            {
+                return BadRequest("Unable to unschedule repair--please check pothole ID and try again");
+            }
+            return Ok();
+        }
     }
 }

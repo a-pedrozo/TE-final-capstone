@@ -226,5 +226,23 @@ namespace Capstone.DAO
                 return rowsAffeced > 0;
             }
         }
+
+        public bool UnScheduleRepair(int potholeId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string sql = "UPDATE inspections SET inspections.is_Inspected = 0 WHERE pothole_id = @pothole_id; " +
+                             "UPDATE potholes SET severity = 0 WHERE pothole_id = @pothole_id; " +
+                             "DELETE from repairs WHERE pothole_id = @pothole_id;";
+                SqlCommand command = new SqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@pothole_id", potholeId);
+
+                int rowsAffeced = command.ExecuteNonQuery();
+
+                return rowsAffeced > 0;
+            }
+        }
     }   
 }

@@ -6,7 +6,7 @@
     <button 
         v-if="$store.state.user.role=='admin'" 
         v-on:click.prevent="reviewPothole()"
-        :disabled='!date'
+        :disabled='(!date && !pothole.isReviewed) || pothole.isInspected'
     >
         {{ 
             (pothole.isReviewed === false) ? "Mark as Reviewed" : "Mark as not Reviewed" 

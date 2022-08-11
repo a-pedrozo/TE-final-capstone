@@ -2,7 +2,7 @@
   <button
     v-if="$store.state.user.role == 'admin'"
     v-on:click.prevent="deletePothole()"
-  >
+  :disabled="pothole.isReviewed">
     Delete
   </button>
 </template>

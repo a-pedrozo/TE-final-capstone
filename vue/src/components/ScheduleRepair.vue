@@ -2,6 +2,7 @@
   <div>
     <label for="severity">Severity:</label>
     <select name="severity" v-model.number="severity">
+        <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -11,7 +12,7 @@
     <button
       v-if="$store.state.user.role == 'admin'"
       v-on:click.prevent="scheduleRepair()"
-      :disabled="!date || severity < 1"
+      :disabled="!pothole.isReviewed || ((!date || severity < 1) && !pothole.isInspected)"
     >
       {{
         pothole.isInspected === false ? "Schedule Repair" : "Unschedule Repair"
@@ -50,14 +51,16 @@ export default {
           }
         );
       }
-      //   else if (this.pothole.isReviewed == true) {
-      //       PotholeService.unReviewPothole(this.pothole.id).then(() => {
-      //           this.updateStore();
-      //       this.pothole.isReviewed = false;
-      //       this.pothole.inspectionDate = null;
-      //       this.date = '';
-      //     });
-      //   }
+        else if (this.pothole.isReviewed == true) {
+            PotholeService.unScheduleRepair(this.pothole.id).then(() => {
+                this.updateStore();
+            this.pothole.isInspected = false;
+            this.pothole.repairDate = null;
+            this.pothole.severity = 0;
+            this.date = '';
+            this.severity = 0;
+          });
+        }
     }
   }
 };
