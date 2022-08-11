@@ -6,6 +6,7 @@
     <button 
         v-if="$store.state.user.role=='admin'" 
         v-on:click.prevent="reviewPothole()"
+        :disabled='!date'
     >
         {{ 
             (pothole.isReviewed === false) ? "Mark as Reviewed" : "Mark as not Reviewed" 
@@ -78,7 +79,7 @@ export default {
   props: ["pothole"],
   data() {
       return {
-          date:''
+          date:'',
       }
   },
 
@@ -87,14 +88,16 @@ export default {
         this.pothole.inspectionDate=this.date;
         console.log("Look here", this.pothole);
       if (this.pothole.isReviewed == false) {
-        PotholeService.reviewPothole(this.pothole.id, this.pothole).then(() => {
-          this.updateStore();
+          PotholeService.reviewPothole(this.pothole.id, this.pothole).then(() => {
+              this.updateStore();
           this.pothole.isReviewed = true;
         });
       } else if (this.pothole.isReviewed == true) {
-        PotholeService.unReviewPothole(this.pothole.id).then(() => {
-          this.updateStore();
+          PotholeService.unReviewPothole(this.pothole.id).then(() => {
+              this.updateStore();
           this.pothole.isReviewed = false;
+          this.pothole.inspectionDate = null;
+          this.date = '';
         });
       }
     },
