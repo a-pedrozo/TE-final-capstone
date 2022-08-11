@@ -18,5 +18,8 @@ export default{
     },
     unReviewPothole(potholeId) {
         return axios.put('pothole/' + potholeId + '/un')
+    },
+    scheduleRepair(potholeId, pothole) {
+        return axios.put('pothole/' + potholeId + '/re', pothole)
     }
 }
