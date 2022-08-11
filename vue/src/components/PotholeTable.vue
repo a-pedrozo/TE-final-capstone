@@ -59,4 +59,7 @@ export default {
   padding: 2rem;
   background-color: #ede3d9;
 }
+.status{
+  font-weight: bold;
+}
 </style>
