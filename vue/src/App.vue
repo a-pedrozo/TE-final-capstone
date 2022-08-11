@@ -104,7 +104,7 @@ html {
   height:auto;
   min-height: 100vh;
     background-color: #ede3d9;
-    width: 100vw;
+    min-width: 100vw;
 }
 .header {
   display: flex;
@@ -152,6 +152,9 @@ h3 {
 }
 .view{
   background-color: green;
+}
+.home {
+  margin-left: 250px;
 }
 
 </style>

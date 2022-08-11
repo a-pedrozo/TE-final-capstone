@@ -54,6 +54,12 @@ export default new Vuex.Store({
     },
     LIST_POTHOLES(state, potholeList) {
       state.potholes = potholeList;
+      state.potholes.forEach(pothole => {
+        let array = [];
+        array.push(pothole.latitude);
+        array.push(pothole.longitude);
+        pothole.arrayLatLong = array;
+      })
     },
     DELETE_POTHOLE(state, potholeId) {
       let index = state.potholes.findIndex(pothole => pothole.potholeId === potholeId)
