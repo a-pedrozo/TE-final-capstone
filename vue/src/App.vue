@@ -2,146 +2,146 @@
      Note that you have classes from bootstrap available to you.
      See https://getbootstrap.com/docs/4.5/getting-started/introduction/ for reference on bootstrap -->
 <template>
-  <div id="app"> <!-- If you start to get random styling you don't like, remove container from this div -->
+  <div id="app">
+    <!-- If you start to get random styling you don't like, remove container from this div -->
     <div id="nav">
-
-<!--sidebar-->
-    <div class="side">
-    <nav id="sidebar">
-      <div id="sidebar-content">
-        <h3>Pothole Tracker</h3>
-        <ul class="sidebar-navs">  
-                <ul>
-                 <li>
-                  <router-link class="nav-item"
-                  v-bind:to="{ name: 'home' }">
-                   <i class="fas fa-home"></i> <!-- This is a font awesome icon -->
-                   Home 
+      <!--sidebar-->
+      <div class="side">
+        <nav id="sidebar">
+          <div id="sidebar-content">
+            <h3>Pothole Tracker</h3>
+            <ul class="sidebar-navs">
+              <ul>
+                <li>
+                  <router-link class="nav-item" v-bind:to="{ name: 'home' }">
+                    <i class="fas fa-home"></i>
+                    <!-- This is a font awesome icon -->
+                    Home
                   </router-link>
-                 </li>
-              <li>
-              <router-link
-               class="view-potholes"
-               v-bind:to="{name: 'AllPotholes'}">
-               <i class="fas fa-car-crash"></i>
-               View All Potholes
-               </router-link>
-               </li>
-               <li>
-               <router-link class="add-pothole"
-               v-if="$store.state.token"
-                v-bind:to="{name: 'report'}">
-                <i class="fas fa-clipboard-list"></i>
-                Report a Pothole</router-link>
-              </li>
-              <li>
-             <router-link
-               class="nav-item"
-               id="register"
-               v-bind:to="{ name: 'register' }"
-               v-if="!$store.state.token"><button>Register</button></router-link>
-              </li>
-              <li>
-                 <router-link
-                class="nav-item"
-                id="login"
-                v-bind:to="{ name: 'login' }"
-                v-if="!$store.state.token">
-                  <button>Login</button>
-                 </router-link>
-              </li>
-              <li>
-               <router-link
-                class="nav-item"
-                id="logout"
-               v-bind:to="{ name: 'logout' }"
-               v-if="$store.state.token">
-              <button>Logout</button>
-              </router-link>
-              </li>
-      </ul>
-      </ul>
+                </li>
+                <li>
+                  <router-link
+                    class="view-potholes"
+                    v-bind:to="{ name: 'AllPotholes' }"
+                  >
+                    <i class="fas fa-car-crash"></i>
+                    View All Potholes
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    class="add-pothole"
+                    v-if="$store.state.token"
+                    v-bind:to="{ name: 'report' }"
+                  >
+                    <i class="fas fa-clipboard-list"></i>
+                    Report a Pothole</router-link
+                  >
+                </li>
+                <li>
+                  <router-link
+                    class="nav-item"
+                    id="register"
+                    v-bind:to="{ name: 'register' }"
+                    v-if="!$store.state.token"
+                    ><button>Register</button></router-link
+                  >
+                </li>
+                <li>
+                  <router-link
+                    class="nav-item"
+                    id="login"
+                    v-bind:to="{ name: 'login' }"
+                    v-if="!$store.state.token"
+                  >
+                    <button>Login</button>
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    class="nav-item"
+                    id="logout"
+                    v-bind:to="{ name: 'logout' }"
+                    v-if="$store.state.token"
+                  >
+                    <button>Logout</button>
+                  </router-link>
+                </li>
+              </ul>
+            </ul>
+          </div>
+        </nav>
       </div>
-    </nav>
-    </div>
-    <!--sidebar-->
+      <!--sidebar-->
 
-  <router-view />
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  
-  }
+export default {};
 </script>
 
 <!-- Application-Wide Styles go here. 
      Any valid CSS or SCSS is allowable here. See https://sass-lang.com/documentation/style-rules for info on SCSS -->
 <style lang="scss">
-
-@import './styles/colors.scss';
+@import "./styles/colors.scss";
 
 // Import the bootstrap styles. If you want to override Bootstrap colors, it needs to happen above this line
-@import '../node_modules/bootstrap/scss/bootstrap';
+@import "../node_modules/bootstrap/scss/bootstrap";
 
 // Your custom styles go below this point
-html{
+html {
   background-color: #ede3d9;
 }
-#app{
+#app {
   display: flex;
   justify-content: center;
-  
 }
-.header{
+.header {
   display: flex;
   //flex-grow: ;
   background-color: #af9d89;
 }
 
-.side{
+.side {
   display: flex;
   justify-content: left;
   width: 100%;
 }
 
-#sidebar{
+#sidebar {
   width: 250px;
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   z-index: 999;
-  background: #CCD5C4;
+  background: #ccd5c4;
   color: #fff;
   transition: all 0.3s;
-  border-right: 5px solid  #727A6B;
+  border-right: 5px solid #727a6b;
   font-size: 20px;
- 
 }
 
-ul{
+ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   padding: 0 0 0 0;
   margin-left: 1rem;
-  
 }
 
-li{
+li {
   display: flex;
   padding-bottom: 1rem;
   padding-top: 1rem;
 }
-h3{
-  color: #1C2915;
+h3 {
+  color: #1c2915;
 }
-#app{
+#app {
   background-color: #af9d89;
 }
-
-
 </style>

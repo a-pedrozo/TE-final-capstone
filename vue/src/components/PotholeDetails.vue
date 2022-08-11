@@ -18,34 +18,34 @@
 </template>
 
 <script>
-import PotholeService from '../services/PotholeService.js';
-
 export default {
-created() {
-    let potholeId = parseInt(this.$route.params.id);
+    name: "Pothole Details",
+  props: ["pothole"],
+};
 
-    PotholeService.getPothole(potholeId)
-    .then(response => {
-        //console.log(response)
-        this.pothole = response.data;
-        //console.log(response.data);
-        if (!this.pothole) {
-            this.$router.push({name: 'NotFound'});
-        }
-    })
-    .catch( response => {
-        console.error(response);
-    })
-    },
-data() {
-    return {
-        pothole: undefined
-    }
-}
-}
-
+    // created() {
+    //     let potholeId = parseInt(this.$route.params.id);
+    
+    //     PotholeService.getPothole(potholeId)
+    //     .then(response => {
+    //         //console.log(response)
+    //         this.pothole = response.data;
+    //         //console.log(response.data);
+    //         if (!this.pothole) {
+    //             this.$router.push({name: 'NotFound'});
+    //         }
+    //     })
+    //     .catch( response => {
+    //         console.error(response);
+    //     })
+    //     },
+    // data() {
+    //     return {
+    //         pothole: undefined
+    //     }
+    // }
+    // }
 </script>
 
 <style>
-
 </style>
