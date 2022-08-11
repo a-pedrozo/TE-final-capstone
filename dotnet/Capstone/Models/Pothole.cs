@@ -26,7 +26,7 @@ namespace Capstone.Models
             {
                 if (IsRepaired)
                 {
-                    return "Repaired On: " + RepairDate;
+                    return "Repaired On: " + RepairDate.Value.ToShortDateString();
                 }
                 else if (IsInspected)
                 {

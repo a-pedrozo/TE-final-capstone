@@ -24,28 +24,6 @@ export default {
   props: ["pothole"],
 };
 
-    // created() {
-    //     let potholeId = parseInt(this.$route.params.id);
-    
-    //     PotholeService.getPothole(potholeId)
-    //     .then(response => {
-    //         //console.log(response)
-    //         this.pothole = response.data;
-    //         //console.log(response.data);
-    //         if (!this.pothole) {
-    //             this.$router.push({name: 'NotFound'});
-    //         }
-    //     })
-    //     .catch( response => {
-    //         console.error(response);
-    //     })
-    //     },
-    // data() {
-    //     return {
-    //         pothole: undefined
-    //     }
-    // }
-    // }
 </script>
 
 <style>
