@@ -13,7 +13,7 @@
             <p class="inspection-date">Inspection Date: {{pothole.inspectionDate ? pothole.inspectionDate.substring(0,10): 'None'}}
             <p class="repaired">Repaired: {{pothole.isRepaired == true ? 'Yes' : 'No'}}</p>
             <p class="repair-date">Repair Date: {{pothole.repairDate ? pothole.repairDate.substring(0,10): 'None'}}</p>
-            
+            <p class="reviewed">Status: {{pothole.status}}</p>
         </div>
     </div>
 </template>
