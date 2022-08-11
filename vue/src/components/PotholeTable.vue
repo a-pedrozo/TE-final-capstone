@@ -23,7 +23,7 @@ import PotholeService from '../services/PotholeService.js';
 
 export default {
     methods: {
-        getListOfPotholes(){
+        updateStore(){
             PotholeService.getPotholes()
                 .then(response => {
                     this.$store.commit('LIST_POTHOLES',response.data);
@@ -32,7 +32,7 @@ export default {
         }
     },
     created() {
-        this.getListOfPotholes();
+        this.updateStore();
     }
 
 }

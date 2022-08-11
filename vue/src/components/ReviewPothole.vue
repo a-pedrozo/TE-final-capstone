@@ -1,5 +1,8 @@
 <template>
- <button v-if="$store.state.user.role=='admin'" v-on:click.prevent="reviewPothole()">{{ (pothole.isReviewed === false) ? "Mark as Reviewed" : "Mark as not Reviewed" }}</button>
+<div>
+    <input type="date" name= "date" v-model="date">
+    <button v-if="$store.state.user.role=='admin'" v-on:click.prevent="reviewPothole()">{{ (pothole.isReviewed === false) ? "Mark as Reviewed" : "Mark as not Reviewed" }}</button>
+</div>
 </template>
 
 <script>
@@ -27,13 +30,17 @@ data() {
     return {
         pothole: {
             isReviewed: ''
-        }
+        },
+        date:'',
+        
     }
 },
  methods: {
         reviewPothole(){
+            this.pothole.inspectionDate = this.date;
+            console.log('yo jimoo', this.pothole);
             if(this.pothole.isReviewed == false) {
-                PotholeService.reviewPothole(this.pothole.id)
+                PotholeService.reviewPothole(this.pothole.id, this.pothole)
                 .then(() => {   
                     this.updateStore();
                     this.pothole.isReviewed = true;
@@ -46,7 +53,7 @@ data() {
                     this.pothole.isReviewed = false;
                 })
                 }
-                location.reload();
+                //location.reload();
         },
         updateStore(){
             PotholeService.getPotholes()

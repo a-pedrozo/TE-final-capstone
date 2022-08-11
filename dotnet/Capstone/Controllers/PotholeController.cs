@@ -74,9 +74,9 @@ namespace Capstone.Controllers
 
         [HttpPut("{potholeId}")]
         [Authorize(Roles = "admin")]
-        public ActionResult ReviewPothole(int potholeId)
+        public ActionResult ReviewPothole(int potholeId, Pothole pothole)
         {
-            bool reviewed = potholeDAO.ReviewPothole(potholeId);
+            bool reviewed = potholeDAO.ReviewPothole(potholeId, pothole.InspectionDate);
 
             if (reviewed == false)
             {

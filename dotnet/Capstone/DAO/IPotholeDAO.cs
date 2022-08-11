@@ -17,7 +17,7 @@ namespace Capstone.DAO
 
         Pothole AddPothole(Pothole newPothole);
 
-        public bool ReviewPothole(int potholeId);
+        public bool ReviewPothole(int potholeId, DateTime? date);
 
         public bool UnReviewPothole(int potholeId);
     }

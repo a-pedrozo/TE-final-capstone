@@ -57,7 +57,7 @@ namespace Capstone.DAO
             return potholes;
         }
 
-        private static DateTime GetNullableDate(SqlDataReader reader, string column)
+        private static DateTime? GetNullableDate(SqlDataReader reader, string column)
         {
             if (reader[column] != DBNull.Value)
             {
@@ -65,7 +65,7 @@ namespace Capstone.DAO
             }
             else
             {
-                return default;
+                return null;
             }
         }
 
@@ -172,16 +172,17 @@ namespace Capstone.DAO
                 return newPothole;
         }
 
-        public bool ReviewPothole(int potholeId)
+        public bool ReviewPothole(int potholeId, DateTime? date)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
                 string sql = "UPDATE reports SET reports.is_Reviewed = 1 WHERE pothole_id = @pothole_id; " +
-                             "INSERT INTO inspections (pothole_id) VALUES(@pothole_id)";
+                             "INSERT INTO inspections (pothole_id, inspection_date) VALUES(@pothole_id, @inspectionDate)";
                 SqlCommand command = new SqlCommand(sql, conn);
 
                 command.Parameters.AddWithValue("@pothole_id", potholeId);
+                command.Parameters.AddWithValue("@inspectionDate", date);
 
                 int rowsAffeced = command.ExecuteNonQuery();
 
