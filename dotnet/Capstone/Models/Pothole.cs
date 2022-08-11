@@ -26,15 +26,15 @@ namespace Capstone.Models
             {
                 if (IsRepaired)
                 {
-                    return "Repaired On: " + RepairDate;
+                    return "Repaired On: " + RepairDate.Value.ToShortDateString();
                 }
                 else if (IsInspected)
                 {
-                    return "Inspected On: " + InspectionDate;
+                    return "Inspected On: " + InspectionDate.Value.ToShortDateString();
                 }
                 else if(IsReviewed)
                 {
-                    return "Reported On: " + ReportDate;
+                    return "Reported On: " + ReportDate.Value.ToShortDateString();
                 }
                 return "Awaiting Review";
             } 
