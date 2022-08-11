@@ -25,4 +25,10 @@ export default{
     unScheduleRepair(potholeId) {
         return axios.put('pothole/' + potholeId + '/unre')
     },
+    markAsRepaired(potholeId) {
+        return axios.put('pothole/' + potholeId + '/repair')
+    },
+    markAsUnrepaired(potholeId) {
+        return axios.put('pothole/' + potholeId + '/unrepair')
+    },
 }

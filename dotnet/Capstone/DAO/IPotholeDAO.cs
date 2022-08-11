@@ -24,5 +24,9 @@ namespace Capstone.DAO
         public bool ScheduleRepair(int potholeId, Pothole pothole);
 
         public bool UnScheduleRepair(int potholeId);
+
+        public bool MarkAsRepaired(int potholeId);
+
+        public bool MarkAsUnrepaired(int potholeId);
     }
 }

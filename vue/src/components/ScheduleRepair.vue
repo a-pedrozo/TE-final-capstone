@@ -12,7 +12,7 @@
     <button
       v-if="$store.state.user.role == 'admin'"
       v-on:click.prevent="scheduleRepair()"
-      :disabled="!pothole.isReviewed || ((!date || severity < 1) && !pothole.isInspected)"
+      :disabled="!pothole.isReviewed || ((!date || severity < 1) && !pothole.isInspected) || pothole.isRepaired"
     >
       {{
         pothole.isInspected === false ? "Schedule Repair" : "Unschedule Repair"

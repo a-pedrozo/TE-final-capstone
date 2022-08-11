@@ -244,5 +244,39 @@ namespace Capstone.DAO
                 return rowsAffeced > 0;
             }
         }
+
+        public bool MarkAsRepaired(int potholeId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string sql = "UPDATE repairs SET repairs.is_Repaired = 1 WHERE pothole_id = @pothole_id; ";
+                            
+                SqlCommand command = new SqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@pothole_id", potholeId);
+
+                int rowsAffeced = command.ExecuteNonQuery();
+
+                return rowsAffeced > 0;
+            }
+        }
+
+        public bool MarkAsUnrepaired(int potholeId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string sql = "UPDATE repairs SET repairs.is_Repaired = 0 WHERE pothole_id = @pothole_id; ";
+
+                SqlCommand command = new SqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@pothole_id", potholeId);
+
+                int rowsAffeced = command.ExecuteNonQuery();
+
+                return rowsAffeced > 0;
+            }
+        }
     }   
 }

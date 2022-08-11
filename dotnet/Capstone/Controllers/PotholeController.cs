@@ -123,5 +123,31 @@ namespace Capstone.Controllers
             }
             return Ok();
         }
+
+        [HttpPut("{potholeId}/repair")]
+        [Authorize(Roles = "admin")]
+        public ActionResult MarkAsRepaired(int potholeId)
+        {
+            bool reviewed = potholeDAO.MarkAsRepaired(potholeId);
+
+            if (reviewed == false)
+            {
+                return BadRequest("Unable to mark as repaired--please check pothole ID and try again");
+            }
+            return Ok();
+        }
+
+        [HttpPut("{potholeId}/unrepair")]
+        [Authorize(Roles = "admin")]
+        public ActionResult MarkAsUnrepaired(int potholeId)
+        {
+            bool reviewed = potholeDAO.MarkAsUnrepaired(potholeId);
+
+            if (reviewed == false)
+            {
+                return BadRequest("Unable to mark as unrepaired--please check pothole ID and try again");
+            }
+            return Ok();
+        }
     }
 }
