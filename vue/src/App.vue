@@ -72,6 +72,7 @@
           </div>
         </nav>
       </div>
+
       <!--sidebar-->
 
       <router-view />
@@ -98,11 +99,19 @@ html {
 #app {
   display: flex;
   justify-content: center;
+
+  //background-color: #af9d89;
+  height:auto;
+  min-height: 100vh;
+    background-color: #ede3d9;
+    width: 100vw;
 }
 .header {
   display: flex;
-  //flex-grow: ;
+  //flex-grow:
   background-color: #af9d89;
+  justify-content: center;
+  width:100rem;
 }
 
 .side {
@@ -141,7 +150,8 @@ li {
 h3 {
   color: #1c2915;
 }
-#app {
-  background-color: #af9d89;
+.view{
+  background-color: green;
 }
+
 </style>
