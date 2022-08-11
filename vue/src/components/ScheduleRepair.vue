@@ -1,23 +1,27 @@
 <template>
-  <div>
+  <div v-show="pothole.isReviewed">
     <label for="severity">Severity:</label>
     <select name="severity" v-model.number="severity">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
+        <option value="0"></option>
+        <option value="1">Low</option>
+        <option value="2">Medium</option>
+        <option value="3">High</option>
         </select>
     <label for="date">Repair Date:</label>
     <input type="date" name="date" v-model="date" />
-    <button
+    <button name="inspect"
       v-if="$store.state.user.role == 'admin'"
       v-on:click.prevent="scheduleRepair()"
       :disabled="!pothole.isReviewed || ((!date || severity < 1) && !pothole.isInspected) || pothole.isRepaired"
     >
       {{
-        pothole.isInspected === false ? "Schedule Repair" : "Unschedule Repair"
+        pothole.isInspected === false ? "Inspect & Schedule Repair" : "Uninspect & Unschedule Repair"
       }}
     </button>
+        <label name="inspect" v-if="pothole.isRepaired">Unable to Uninspect Repaired potholes. Unrepair to Uninspect.</label>
+        <label name="inspect" v-if="(!pothole.isInspected && (!date && severity < 1))">Provide a Severity and Repair Date.</label>
+        <label name="inspect" v-else-if="(!pothole.isInspected && (severity < 1))">Provide a Severity.</label>
+        <label name="inspect" v-else-if="(!pothole.isInspected && (!date))">Provide a Repair Date.</label>
   </div>
 </template>
 
