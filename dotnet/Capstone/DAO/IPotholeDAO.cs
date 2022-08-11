@@ -17,8 +17,10 @@ namespace Capstone.DAO
 
         Pothole AddPothole(Pothole newPothole);
 
-        public bool ReviewPothole(int potholeId, DateTime? date);
+        public bool ScheduleInspection(int potholeId, DateTime? date);
 
-        public bool UnReviewPothole(int potholeId);
+        public bool UnScheduleInspection(int potholeId);
+
+        public bool ScheduleRepair(int potholeId, Pothole pothole);
     }
 }

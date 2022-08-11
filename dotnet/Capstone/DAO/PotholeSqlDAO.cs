@@ -40,7 +40,7 @@ namespace Capstone.DAO
                     newPothole.Longitude = Convert.ToString(reader["longitude"]);
                     newPothole.Address = Convert.ToString(reader["address"]);
                     newPothole.City = Convert.ToString(reader["city"]);
-                    newPothole.ReportDate = Convert.ToDateTime(reader["report_date"]);
+                    newPothole.ReportDate = GetNullableDate(reader, "report_date");
                     newPothole.IsReviewed = GetNullableBool(reader,"is_Reviewed");
                     newPothole.ReportNotes = Convert.ToString(reader["report_notes"]);
                     newPothole.InspectionDate = GetNullableDate(reader, "inspection_date");
@@ -172,7 +172,7 @@ namespace Capstone.DAO
                 return newPothole;
         }
 
-        public bool ReviewPothole(int potholeId, DateTime? date)
+        public bool ScheduleInspection(int potholeId, DateTime? date)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -190,7 +190,7 @@ namespace Capstone.DAO
             }
         }
 
-        public bool UnReviewPothole(int potholeId)
+        public bool UnScheduleInspection(int potholeId)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -207,5 +207,24 @@ namespace Capstone.DAO
             }
         }
 
+        public bool ScheduleRepair(int potholeId, Pothole pothole)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string sql = "UPDATE inspections SET inspections.is_Inspected = 1 WHERE pothole_id = @pothole_id; " +
+                             "UPDATE potholes SET severity = @severity WHERE pothole_id = @pothole_id; " +
+                             "INSERT INTO repairs (pothole_id, repair_date) VALUES(@pothole_id, @repairDate)";
+                SqlCommand command = new SqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@pothole_id", potholeId);
+                command.Parameters.AddWithValue("@repairDate", pothole.RepairDate);
+                command.Parameters.AddWithValue("@severity", pothole.Severity);
+
+                int rowsAffeced = command.ExecuteNonQuery();
+
+                return rowsAffeced > 0;
+            }
+        }
     }   
 }

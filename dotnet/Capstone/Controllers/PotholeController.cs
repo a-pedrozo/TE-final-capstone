@@ -41,7 +41,7 @@ namespace Capstone.Controllers
 
             if (newPothole == null)
             {
-                return NotFound("This did not work");
+                return NotFound("Unable to add pothole--please try again");
             }
             return Ok(newPothole);
         }
@@ -74,26 +74,39 @@ namespace Capstone.Controllers
 
         [HttpPut("{potholeId}")]
         [Authorize(Roles = "admin")]
-        public ActionResult ReviewPothole(int potholeId, Pothole pothole)
+        public ActionResult ScheduleInspection(int potholeId, Pothole pothole)
         {
-            bool reviewed = potholeDAO.ReviewPothole(potholeId, pothole.InspectionDate);
+            bool reviewed = potholeDAO.ScheduleInspection(potholeId, pothole.InspectionDate);
 
             if (reviewed == false)
             {
-                return BadRequest("Unable to review pothole--please check pothole ID and try again");
+                return BadRequest("Unable to schedule inspection--please check pothole ID and try again");
             }
             return Ok();
         }
 
         [HttpPut("{potholeId}/un")]
         [Authorize(Roles = "admin")]
-        public ActionResult UnReviewPothole(int potholeId)
+        public ActionResult UnScheduleInspection(int potholeId)
         {
-            bool reviewed = potholeDAO.UnReviewPothole(potholeId);
+            bool reviewed = potholeDAO.UnScheduleInspection(potholeId);
 
             if(reviewed == false)
             {
-                return BadRequest("Unable to review pothole--please check pothole ID and try again");
+                return BadRequest("Unable to unschedule inspection--please check pothole ID and try again");
+            }
+            return Ok();
+        }
+
+        [HttpPut("{potholeId}/re")]
+        [Authorize(Roles = "admin")]
+        public ActionResult ScheduleRepair(int potholeId, Pothole pothole)
+        {
+            bool reviewed = potholeDAO.ScheduleRepair(potholeId, pothole);
+
+            if (reviewed == false)
+            {
+                return BadRequest("Unable to schedule repair--please check pothole ID and try again");
             }
             return Ok();
         }
