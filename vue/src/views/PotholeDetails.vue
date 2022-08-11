@@ -4,6 +4,7 @@
     <pothole-details :pothole="pothole" />
     <delete-pothole :pothole="pothole" />
     <review-pothole :pothole="pothole" />
+    <schedule-repair :pothole="pothole" />
   </div>
 </template>
 
@@ -12,6 +13,8 @@ import PotholeDetails from "@/components/PotholeDetails.vue";
 import DeletePothole from "@/components/DeletePothole.vue";
 import ReviewPothole from "@/components/ReviewPothole.vue";
 import PotholeService from "@/services/PotholeService.js";
+import ScheduleRepair from "@/components/ScheduleRepair.vue";
+
 
 export default {
   name: "PotHoleDetails",
@@ -19,6 +22,7 @@ export default {
     PotholeDetails,
     DeletePothole,
     ReviewPothole,
+    ScheduleRepair,
   },
   created() {
     let potholeId = parseInt(this.$route.params.id);
