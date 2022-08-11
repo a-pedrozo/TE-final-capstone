@@ -5,7 +5,98 @@
   <div id="app">
     <!-- If you start to get random styling you don't like, remove container from this div -->
     <div id="nav">
-      <!--sidebar-->
+      <!--navbar-->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">ICON???!!???!?!?!?!?</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+        <router-link class="nav-link"
+        v-bind:to="{ name: 'home' }">
+                    <i class="fas fa-home"></i>
+                    Home
+                  </router-link>
+                  
+      </li>
+      
+      <li class="nav-item">
+        <!--<a class="nav-link" href="#">Link</a>-->
+        <router-link
+                    class="nav-link"
+                    v-bind:to="{ name: 'AllPotholes' }"
+                  >
+                    <i class="fas fa-car-crash"></i>
+                    View All Potholes
+                  </router-link>
+      </li>
+
+      <li class="nav-item">
+        <!--<a class="nav-link" href="#">Link</a>-->
+        <router-link
+                    class="nav-link"
+                    v-if="$store.state.token"
+                    v-bind:to="{ name: 'report' }"
+                  >
+                    <i class="fas fa-clipboard-list"></i>
+                    Report a Pothole</router-link
+                  >
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle"
+        href="#" id="navbarDropdown"
+        role="button" data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+          <!--<a class="dropdown-item" href="#">Register</a>-->
+          <router-link
+                    class="dropdown-item"
+                    id="register"
+                    v-bind:to="{ name: 'register' }"
+                    v-if="!$store.state.token"
+                    >Register
+                    </router-link>
+
+          <router-link
+                    class="dropdown-item"
+                    id="login"
+                    v-bind:to="{ name: 'login' }"
+                    v-if="!$store.state.token"
+                  >
+                    Login
+                  </router-link>
+
+          <!--<a class="dropdown-item" href="#">Logout</a>-->
+          <router-link
+                    class="dropdown-item"
+                    id="logout"
+                    v-bind:to="{ name: 'logout' }"
+                    v-if="$store.state.token"
+                  >
+                    Logout
+                    </router-link>
+        </div>
+      </li>
+      <!--<li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>-->
+    </ul>
+  </div>
+</nav>
+      <!--sidebar-
       <div class="side">
         <nav id="sidebar">
           <div id="sidebar-content">
@@ -15,7 +106,7 @@
                 <li>
                   <router-link class="nav-item" v-bind:to="{ name: 'home' }">
                     <i class="fas fa-home"></i>
-                    <!-- This is a font awesome icon -->
+                    This is a font awesome icon 
                     Home
                   </router-link>
                 </li>
@@ -73,7 +164,7 @@
         </nav>
       </div>
 
-      <!--sidebar-->
+     -->
 
       <router-view />
     </div>
@@ -93,65 +184,5 @@ export default {};
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 // Your custom styles go below this point
-html {
-  background-color: #ede3d9;
-}
-#app {
-  display: flex;
-  justify-content: center;
-
-  //background-color: #af9d89;
-  height:auto;
-  min-height: 100vh;
-    background-color: #ede3d9;
-    width: 100vw;
-}
-.header {
-  display: flex;
-  //flex-grow:
-  background-color: #af9d89;
-  justify-content: center;
-  width:100rem;
-}
-
-.side {
-  display: flex;
-  justify-content: left;
-  width: 100%;
-}
-
-#sidebar {
-  width: 250px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  z-index: 999;
-  background: #ccd5c4;
-  color: #fff;
-  transition: all 0.3s;
-  border-right: 5px solid #727a6b;
-  font-size: 20px;
-}
-
-ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  padding: 0 0 0 0;
-  margin-left: 1rem;
-}
-
-li {
-  display: flex;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
-}
-h3 {
-  color: #1c2915;
-}
-.view{
-  background-color: green;
-}
 
 </style>
