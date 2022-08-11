@@ -70,11 +70,15 @@ CREATE TABLE users (
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
-INSERT INTO potholes (address, city) VALUES ('711 Fresh Avenue', 'Somewhere City');
+INSERT INTO potholes (latitude, longitude, address, city) VALUES ('39.998159','-83.042176','1256-1280 Kinnear Rd', 'Columbus');
 INSERT INTO reports (pothole_id, report_date, is_Reviewed, report_notes) VALUES (1000, '8/9/2022', 0, 'No notes at this time');
 
-INSERT INTO potholes (address, city) VALUES ('3852 Wristwatch Place', 'Bayview');
+INSERT INTO potholes (latitude, longitude, address, city) VALUES ('39.975428','-83.003223','High & Russell', 'Columbus');
 INSERT INTO reports (pothole_id, report_date, is_Reviewed, report_notes) VALUES (1001, '8/9/2022', 0, 'This one is a doozy, folks');
+
+INSERT INTO potholes (latitude, longitude, address, city) VALUES ('40.146961','-82.911106','7165-7151 Hilmar Dr,', 'Westerville');
+INSERT INTO reports (pothole_id, report_date, is_Reviewed, report_notes) VALUES (1002, '8/11/2022', 0, 'woohoo');
+
 
 select * from potholes
 select * from reports
