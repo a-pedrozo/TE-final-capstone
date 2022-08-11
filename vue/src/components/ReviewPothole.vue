@@ -1,6 +1,7 @@
 <template>
 
 <div>
+    <label for="date">Inspection Date:</label>
     <input type="date" name= "date" v-model="date">
     <button 
         v-if="$store.state.user.role=='admin'" 
@@ -84,8 +85,9 @@ export default {
   methods: {
     reviewPothole() {
         this.pothole.inspectionDate=this.date;
+        console.log("Look here", this.pothole);
       if (this.pothole.isReviewed == false) {
-        PotholeService.reviewPothole(this.pothole.id).then(() => {
+        PotholeService.reviewPothole(this.pothole.id, this.pothole).then(() => {
           this.updateStore();
           this.pothole.isReviewed = true;
         });
