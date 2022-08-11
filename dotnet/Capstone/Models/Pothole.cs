@@ -13,7 +13,7 @@ namespace Capstone.Models
         public string Longitude { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
-        public DateTime? ReportDate { get; set; }
+        public DateTime? ReportDate { get; set; } // the question mark makes it so this can be null or a DateTime
         public bool IsReviewed { get; set; }
         public bool IsInspected { get; set; }
         public bool IsRepaired { get; set; }
@@ -30,11 +30,11 @@ namespace Capstone.Models
                 }
                 else if (IsInspected)
                 {
-                    return "Inspected On: " + InspectionDate;
+                    return "Inspected On: " + InspectionDate.Value.ToShortDateString();
                 }
                 else if(IsReviewed)
                 {
-                    return "Reported On: " + ReportDate;
+                    return "Reported On: " + ReportDate.Value.ToShortDateString();
                 }
                 return "Awaiting Review";
             } 

@@ -26,7 +26,7 @@
           Location (address): {{ pothole.address }}
         </p>
         <p class="city">City: {{ pothole.city }}</p>
-        <p class="status">Status: {{pothole.status}}</p>
+        <p class="status">Status: {{ pothole.status.substring(0,10) }}</p>
       </div>
     </div>
   </div>
