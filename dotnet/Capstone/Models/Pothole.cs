@@ -13,7 +13,7 @@ namespace Capstone.Models
         public string Longitude { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
-        public DateTime? ReportDate { get; set; }
+        public DateTime? ReportDate { get; set; } // the question mark makes it so this can be null or a DateTime
         public bool IsReviewed { get; set; }
         public bool IsInspected { get; set; }
         public bool IsRepaired { get; set; }
