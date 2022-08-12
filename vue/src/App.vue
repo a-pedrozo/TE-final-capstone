@@ -165,8 +165,10 @@
       </div>
 
      -->
+<div id='view-window'>
 
       <router-view />
+</div>
     </div>
   </div>
 </template>
@@ -184,6 +186,8 @@ export default {};
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 // Your custom styles go below this point
-
+#view-window {
+  padding: 1rem;
+}
 
 </style>
