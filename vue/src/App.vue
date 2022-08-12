@@ -7,9 +7,9 @@
     <div id="nav">
       <!--navbar-->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"
-          >HoleHuntr Premium <i class="far fa-kiss-wink-heart"></i
-        ></a>
+        <router-link class="navbar-brand" v-bind:to="{ name: 'home' }">
+                HoleHuntr Premium<i class="far fa-kiss-wink-heart"></i>
+              </router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -128,4 +128,6 @@ export default {};
 #view-window {
   padding: 1rem;
 }
+
+
 </style>
