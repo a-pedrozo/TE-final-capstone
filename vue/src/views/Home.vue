@@ -31,7 +31,9 @@ export default {
 };
 </script>
 <style>
+
 body {
   max-width: 100vw;
 }
+
 </style>

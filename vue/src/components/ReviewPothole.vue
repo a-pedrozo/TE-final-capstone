@@ -4,14 +4,16 @@
     <label for="date">Inspection Date:</label>
     <input type="date" name= "date" v-model="date">
     <button 
-        v-if="$store.state.user.role=='admin'" 
+        name="review" v-if="$store.state.user.role=='admin'" 
         v-on:click.prevent="reviewPothole()"
         :disabled='(!date && !pothole.isReviewed) || pothole.isInspected'
     >
         {{ 
-            (pothole.isReviewed === false) ? "Mark as Reviewed" : "Mark as not Reviewed" 
+            (pothole.isReviewed === false) ? "Review & Schedule Inspection" : "Unreview & Unschedule Inspection" 
         }}
     </button>
+    <label name="review" v-if="pothole.isInspected">Unable to Unreview Inspected potholes. Uninspect to Unreview.</label>
+    <label name="review" v-if="!date">Provide an Inspection Date.</label>
 </div>
 
 </template>

@@ -57,7 +57,7 @@ export default {
   border: 2px solid black;
   margin: 1rem;
   padding: 2rem;
-  background-color: #ede3d9;
+  /* background-color: #ede3d9; */
 }
 .status{
   font-weight: bold;
