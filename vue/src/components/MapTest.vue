@@ -1,7 +1,7 @@
 <template>
   <l-map
     ref="myMap"
-    style="height: 750px; width: 1000px"
+    style="height: 550px; width: auto; border: black solid 2px"
     :zoom="zoom"
     :center="center"
     @ready="doSomethingOnReady()"
