@@ -195,5 +195,7 @@ export default {};
 // Your custom styles go below this point
 #view-window {
   padding: 1rem;
+  background-color: rgb(221, 228, 248);
+  height: 94vmin;
 }
 </style>

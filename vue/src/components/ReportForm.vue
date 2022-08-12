@@ -1,35 +1,72 @@
 <template>
   <div>
-    <h1>Report a Pothole</h1>
-    <form v-on:submit.prevent="reportPothole()" class="form">
-      <label for="latitude">Latitude</label>
-      <input type="text" name="latitude" v-model="newPothole.latitude" />
-      <label for="longitude">Longitude</label>
-      <input type="text" name="longitude" v-model="newPothole.longitude" />
-      <label for="address">Address</label>
-      <input type="text" name="address" v-model="newPothole.address" />
-      <label for="city">City</label>
-      <input type="text" name="city" v-model="newPothole.city" />
-      <!--<label for="date">Date Reported</label>
-        <input type="date" name="date" v-model="newPothole.dateReported">-->
-      <input type="submit" id="submitButton" />
-    </form>
+    <div class="content">
+      <div class="left">
+        <h1>Report a Pothole</h1>
 
-    <l-map
-      ref="myMap"
-      style="height: 750px; width: 1000px"
-      :zoom="zoom"
-      :center="center"
-      @ready="doSomethingOnReady()"
-      v-on:click="testing"
-    >
-      <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-          <l-circle-marker v-if="showMarker == true"
-      :lat-lng="this.newPothole.arrayLatLong"
-      :color="red"
-    >
-    </l-circle-marker>
-    </l-map>
+        <form v-on:submit.prevent="reportPothole()" class="form">
+          <h4>Please tell us where the hole is!</h4>
+          <div class="form-info">
+            <label for="latitude">Latitude</label>
+            <input
+              type="text"
+              name="latitude"
+              v-model="newPothole.latitude"
+              v-bind:class="{ test: !newPothole.latitude }"
+              placeholder="click on the map to autofill!"
+            />
+          </div>
+          <div class="form-info">
+            <label for="longitude">Longitude</label>
+            <input
+              type="text"
+              name="longitude"
+              v-model="newPothole.longitude"
+              v-bind:class="{ test: !newPothole.longitude }"
+              placeholder="click on the map to autofill!"
+            />
+          </div>
+          <div class="form-info">
+            <label for="address">Address</label>
+            <input type="text" name="address" v-model="newPothole.address" />
+          </div>
+          <div class="form-info">
+            <label for="city">City</label>
+            <input type="text" name="city" v-model="newPothole.city" />
+          </div>
+          <!--<label for="date">Date Reported</label>
+        <input type="date" name="date" v-model="newPothole.dateReported">-->
+          <input type="submit" id="submitButton" />
+        </form>
+          <p>
+            Your hole will need to be reviewed by an employee before displaying
+            on the map
+          </p>
+      </div>
+      <div class="map">
+        <l-map
+          ref="myMap"
+          style="
+            height: 750px;
+            width: 55vw;
+            border: black solid 2px;
+            border-radius: 10px;
+          "
+          :zoom="zoom"
+          :center="center"
+          @ready="doSomethingOnReady()"
+          v-on:click="testing"
+        >
+          <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+          <l-circle-marker
+            v-if="showMarker == true"
+            :lat-lng="this.newPothole.arrayLatLong"
+            :color="red"
+          >
+          </l-circle-marker>
+        </l-map>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -40,7 +77,7 @@ export default {
   components: {
     LMap,
     LTileLayer,
-    LCircleMarker
+    LCircleMarker,
   },
   data() {
     return {
@@ -50,19 +87,19 @@ export default {
         city: "",
         address: "",
         severity: 0,
-        showMarker: 'false',
-        arrayLatLong: []
+        showMarker: "false",
+        arrayLatLong: [],
       },
-        map: null,
-        url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        attribution:
-            '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        zoom: 11,
-        center: [39.962851, -82.998311],
-        circle: {
-            radius: 50
-        },
-      }
+      map: null,
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      attribution:
+        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      zoom: 11,
+      center: [39.962851, -82.998311],
+      circle: {
+        radius: 50,
+      },
+    };
   },
   computed: {
     dateToday() {
@@ -85,13 +122,13 @@ export default {
       });
     },
     testing(event) {
-    let array = [];
-    this.newPothole.latitude = event.latlng.lat;
-    this.newPothole.longitude = event.latlng.lng;
-    array.push(this.newPothole.latitude);
-    array.push(this.newPothole.longitude);
-    this.newPothole.arrayLatLong = array;
-    this.showMarker = true;
+      let array = [];
+      this.newPothole.latitude = event.latlng.lat;
+      this.newPothole.longitude = event.latlng.lng;
+      array.push(this.newPothole.latitude);
+      array.push(this.newPothole.longitude);
+      this.newPothole.arrayLatLong = array;
+      this.showMarker = true;
     },
     doSomethingOnReady() {
       this.map = this.$refs.myMap.mapObject;
@@ -107,14 +144,91 @@ export default {
 </script>
 
 <style>
+h1 {
+  text-decoration-line: underline;
+}
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 1rem;
+}
+.left {
+  width: 100%;
+  /* text-align: center; */
+  padding: 1rem;
+}
+h4 {
+  text-align: center;
+  margin: 2rem 0 1rem 0;
+}
+.left > p {
+  font-style: italic;
+  margin: 0 0 1rem 0;
+  text-align: center;
+  font-size: 1.4vmin;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 75%;
+  height: 30rem;
+  width: 100%;
+}
+
+.left, .map {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+}
+
+.map {
+  align-content: right;
 }
 #submitButton {
-  margin: 2rem;
-  width: 100px;
+  margin: 1rem;
+  width: auto;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 0 0 0;
+}
+
+.form-info {
+  display: flex;
+  width: auto;
+  margin: 1rem 1rem 1rem 1rem;
+  display: flex;
+  background-color: rgb(202, 202, 202);
+  justify-content: space-between;
+  font-size: 1.7vmin;
+  border-radius: 5px;
+
+  /* border: red 3px solid; */
+}
+
+label {
+  display: flex;
+  width: 25%;
+  height: 5vh;
+  justify-content: flex-end;
+  text-align: right;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 0;
+  font-weight: bold;
+}
+input {
+  height: auto;
+  width: 75%;
+  border-radius: 5px;
+  padding: 0 0 0 1rem;
+}
+
+.test {
+  font-style: italic;
 }
 </style>
