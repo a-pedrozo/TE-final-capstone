@@ -94,8 +94,4 @@ export default {
 </script>
 
 <style>
-.colormaybe {
-  color: red;
-  background-color: green;
-}
 </style>

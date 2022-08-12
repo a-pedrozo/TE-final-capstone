@@ -25,14 +25,9 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {}, // If a user is an admin, their user.role will be 'admin'
     potholes: [],
-    activePothole: {
-      id: null,
-      dateReported: null,
-      severity: null,
-      latitude: '',
-      longitude: '',
-      address: '',
-      city: '',
+    newPothole: {
+      lat: null,
+      lng: null,
     }
   },
   mutations: {
@@ -69,6 +64,5 @@ export default new Vuex.Store({
     REPORT_POTHOLE(state, newPothole){
       state.potholes.push(newPothole);
     },
-    
   }
 })
