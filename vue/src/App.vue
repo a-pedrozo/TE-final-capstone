@@ -6,9 +6,9 @@
     <!-- If you start to get random styling you don't like, remove container from this div -->
     <div id="nav">
       <!--navbar-->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-dark">
         <router-link class="navbar-brand" v-bind:to="{ name: 'home' }">
-                HoleHuntr Premium<i class="far fa-kiss-wink-heart"></i>
+                HoleHuntr Premium  <i class="far fa-kiss-wink-heart"></i>
               </router-link>
         <button
           class="navbar-toggler"
@@ -24,15 +24,8 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              
-              <router-link class="nav-link" v-bind:to="{ name: 'home' }">
-                <i class="fas fa-home"></i>
-                Home
-              </router-link>
-            </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
             
               <router-link class="nav-link" v-bind:to="{ name: 'AllPotholes' }">
                 <i class="fas fa-car-crash"></i>
@@ -127,7 +120,20 @@ export default {};
 // Your custom styles go below this point
 #view-window {
   padding: 1rem;
+  background-color: #CFDDC4;
+  padding-top: 3rem;
+}
+html{
+  background-color: #CFDDC4;
 }
 
+.navbar{
+  background-color: #1C2915;
+  color: #cfddc4;
+  padding-bottom: 1.5rem;
+  padding-top: 1rem;
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
 
 </style>
