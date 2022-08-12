@@ -1,8 +1,6 @@
 <template>
   <div>
-    <header class="home">
-      <h1>Home</h1>
-    </header>
+    
     <body class="content">
       <div class="sweatyholes">
         <h3>Hot sweaty holes in your area</h3>
@@ -12,8 +10,8 @@
           v-bind:key="pothole.id"
         >
           <ul>
-            <li v-if="pothole.isReviewed && !pothole.isRepaired || $store.state.user.role == 'admin'">
-              table of potholes {{ pothole.id }} {{ pothole.status }}
+            <li v-if="pothole.isReviewed || $store.state.user.role == 'admin'"> <!--&& !pothole.isRepaired-->
+              {{ pothole.address }}:  {{ pothole.status }}
             </li>
           </ul>
         </div>
@@ -45,23 +43,28 @@ body {
   max-width: 100vw;
 }
 
-.elmap {
-  
-}
 
 #potholelist {
   display: flex;
   flex-direction: column;
-  justify-content: left;
+  align-content: center;
 }
 
 .content {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
 .sweatyholes {
   display: flex;
   flex-direction: column;
+  margin-left: 5rem;
+  border-radius: 8px;
+  backdrop-filter: blur(20px);
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  max-width: fit-content;
 }
+
 </style>
