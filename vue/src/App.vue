@@ -6,10 +6,10 @@
     <!-- If you start to get random styling you don't like, remove container from this div -->
     <div id="nav">
       <!--navbar-->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"
-          >HoleHuntr Premium <i class="far fa-kiss-wink-heart"></i
-        ></a>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <router-link class="navbar-brand" v-bind:to="{ name: 'home' }">
+                HoleHuntr Premium  <i class="far fa-kiss-wink-heart"></i>
+              </router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -24,16 +24,9 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-              <router-link class="nav-link" v-bind:to="{ name: 'home' }">
-                <i class="fas fa-home"></i>
-                Home
-              </router-link>
-            </li>
 
-            <li class="nav-item">
-              <!--<a class="nav-link" href="#">Link</a>-->
+            <li class="nav-item active">
+            
               <router-link class="nav-link" v-bind:to="{ name: 'AllPotholes' }">
                 <i class="fas fa-car-crash"></i>
                 View All Potholes
@@ -41,7 +34,7 @@
             </li>
 
             <li class="nav-item">
-              <!--<a class="nav-link" href="#">Link</a>-->
+           
               <router-link
                 class="nav-link"
                 v-if="$store.state.token"
@@ -62,10 +55,10 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Dropdown
+                Login/Logout
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <!--<a class="dropdown-item" href="#">Register</a>-->
+            
                 <router-link
                   class="dropdown-item"
                   id="register"
@@ -83,7 +76,7 @@
                   Login
                 </router-link>
 
-                <!--<a class="dropdown-item" href="#">Logout</a>-->
+             
                 <router-link
                   class="dropdown-item"
                   id="logout"
@@ -104,75 +97,7 @@
           </ul>
         </div>
       </nav>
-      <!--sidebar-
-      <div class="side">
-        <nav id="sidebar">
-          <div id="sidebar-content">
-            <h3>Pothole Tracker</h3>
-            <ul class="sidebar-navs">
-              <ul>
-                <li>
-                  <router-link class="nav-item" v-bind:to="{ name: 'home' }">
-                    <i class="fas fa-home"></i>
-                    This is a font awesome icon 
-                    Home
-                  </router-link>
-                </li>
-                <li>
-                  <router-link
-                    class="view-potholes"
-                    v-bind:to="{ name: 'AllPotholes' }"
-                  >
-                    <i class="fas fa-car-crash"></i>
-                    View All Potholes
-                  </router-link>
-                </li>
-                <li>
-                  <router-link
-                    class="add-pothole"
-                    v-if="$store.state.token"
-                    v-bind:to="{ name: 'report' }"
-                  >
-                    <i class="fas fa-clipboard-list"></i>
-                    Report a Pothole</router-link
-                  >
-                </li>
-                <li>
-                  <router-link
-                    class="nav-item"
-                    id="register"
-                    v-bind:to="{ name: 'register' }"
-                    v-if="!$store.state.token"
-                    ><button>Register</button></router-link
-                  >
-                </li>
-                <li>
-                  <router-link
-                    class="nav-item"
-                    id="login"
-                    v-bind:to="{ name: 'login' }"
-                    v-if="!$store.state.token"
-                  >
-                    <button>Login</button>
-                  </router-link>
-                </li>
-                <li>
-                  <router-link
-                    class="nav-item"
-                    id="logout"
-                    v-bind:to="{ name: 'logout' }"
-                    v-if="$store.state.token"
-                  >
-                    <button>Logout</button>
-                  </router-link>
-                </li>
-              </ul>
-            </ul>
-          </div>
-        </nav>
-      </div>
-
-     -->
+     
       <div id="view-window">
         <router-view />
       </div>
@@ -195,7 +120,21 @@ export default {};
 // Your custom styles go below this point
 #view-window {
   padding: 1rem;
-  background-color: rgb(221, 228, 248);
-  height: 94vmin;
+  background-color: #CFDDC4;
+  padding-top: 3rem;
 }
+html{
+  background-color: #CFDDC4;
+
+}
+
+.navbar{
+  background-color: #1C2915;
+  color: #cfddc4;
+  padding-bottom: 1.5rem;
+  padding-top: 1rem;
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
 </style>
