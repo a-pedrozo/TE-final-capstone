@@ -15,7 +15,7 @@
       :visible="pothole.isReviewed || $store.state.user.role == 'admin'"
       :color="markerColor(pothole)"
     >
-      <l-popup :content="potholeinfo"
+      <l-popup 
         ><router-link
           v-bind:to="{ name: 'PotholeDetails', params: { id: pothole.id } }"
         >

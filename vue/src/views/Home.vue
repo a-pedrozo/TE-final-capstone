@@ -5,7 +5,7 @@
       <h1>HoleHuntr Premium <i class="far fa-kiss-wink-heart"></i></h1>
     </header>
     <body>
-      <tiny>your next hole awaits...</tiny>
+      <small>your next hole awaits...</small>
       <div>
        <map-test />
       </div>
