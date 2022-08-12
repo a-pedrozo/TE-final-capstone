@@ -1,6 +1,7 @@
 <template>
+<div>
   <l-map
-    ref="myMap"
+    ref="myMap" class="map"
     style="
       height: 550px;
       width: auto;
@@ -30,6 +31,8 @@
       </l-popup>
     </l-circle-marker>
   </l-map>
+    <img class="legend" src="../images/mapLegend.png">
+    </div>
 </template>
 
 <script>
@@ -99,4 +102,15 @@ export default {
 </script>
 
 <style>
+.legend {
+  position: relative;
+  bottom: 186px;
+  left: 1115px;
+  z-index: 1;
+  scale: 80%;
+}
+
+.map {
+  z-index: 0;
+}
 </style>
