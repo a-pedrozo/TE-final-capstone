@@ -1,7 +1,12 @@
 <template>
   <l-map
     ref="myMap"
-    style="height: 550px; width: auto; border: black solid 2px"
+    style="
+      height: 550px;
+      width: auto;
+      min-width: 200px;
+      border: black solid 2px;
+    "
     :zoom="zoom"
     :center="center"
     @ready="doSomethingOnReady()"
@@ -15,7 +20,7 @@
       :visible="pothole.isReviewed || $store.state.user.role == 'admin'"
       :color="markerColor(pothole)"
     >
-      <l-popup 
+      <l-popup
         ><router-link
           v-bind:to="{ name: 'PotholeDetails', params: { id: pothole.id } }"
         >

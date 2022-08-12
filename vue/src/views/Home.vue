@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div>
     <header class="home">
       <h1>Home</h1>
@@ -21,17 +20,6 @@
       </div>
       <div class="elmap">
         <map-test />
-=======
-  <div class="home">
-
-    <header>
-      <h1>HoleHuntr Premium <i class="far fa-kiss-wink-heart"></i></h1>
-    </header>
-    <body>
-      <small>your next hole awaits...</small>
-      <div>
-       <map-test />
->>>>>>> b3e1225830828fe1b490e43baddd303d8f86b17a
       </div>
     </body>
   </div>
