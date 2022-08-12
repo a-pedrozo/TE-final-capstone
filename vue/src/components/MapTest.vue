@@ -4,7 +4,7 @@
     style="
       height: 550px;
       width: auto;
-      min-width: 200px;
+      min-width: 600px;
       border: black solid 2px;
     "
     :zoom="zoom"

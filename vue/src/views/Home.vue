@@ -12,7 +12,7 @@
           v-bind:key="pothole.id"
         >
           <ul>
-            <li v-if="pothole.isReviewed && !pothole.isRepaired">
+            <li v-if="pothole.isReviewed && !pothole.isRepaired || $store.state.user.role == 'admin'">
               table of potholes {{ pothole.id }} {{ pothole.status }}
             </li>
           </ul>
@@ -46,18 +46,20 @@ body {
 }
 
 .elmap {
-  display: flex;
-  justify-content: right;
+  
 }
 
 #potholelist {
   display: flex;
   flex-direction: column;
+  justify-content: left;
 }
+
 .content {
   display: flex;
   flex-direction: row;
 }
+
 .sweatyholes {
   display: flex;
   flex-direction: column;
