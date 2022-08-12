@@ -2,10 +2,10 @@
   <div class="home">
 
     <header>
-      <h1>Home</h1>
+      <h1>HoleHuntr Premium <i class="far fa-kiss-wink-heart"></i></h1>
     </header>
     <body>
-      <h1>Hello from home</h1>
+      <tiny>your next hole awaits...</tiny>
       <div>
        <map-test />
       </div>
