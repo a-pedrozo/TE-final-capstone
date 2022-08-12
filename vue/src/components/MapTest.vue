@@ -5,6 +5,7 @@
     :zoom="zoom"
     :center="center"
     @ready="doSomethingOnReady()"
+    v-on:click="testing"
   >
     <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
     <l-marker
@@ -12,6 +13,8 @@
       :lat-lng="pothole.arrayLatLong"
       :key="pothole.id"
       :visible="pothole.isReviewed || $store.state.user.role == 'admin'"
+      
+      
     >
       <l-popup :content="potholeinfo"
         ><router-link
@@ -28,8 +31,9 @@
 
 <script>
 import PotholeService from "../services/PotholeService.js";
-import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LPopup} from "vue2-leaflet";
 //import { Icon } from 'leaflet';
+
 
 export default {
   components: {
@@ -53,6 +57,9 @@ export default {
   },
 
   methods: {
+    testing(event){
+      console.log(event);
+    },
     doSomethingOnReady() {
       this.map = this.$refs.myMap.mapObject;
     },
@@ -75,3 +82,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.colormaybe {
+  color: red;
+  background-color: green;
+}
+</style>
