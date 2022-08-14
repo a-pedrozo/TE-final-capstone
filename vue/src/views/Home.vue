@@ -1,7 +1,6 @@
 <template>
   <div>
-    
-    <body class="content">
+    <body class="contents">
       <div class="sweatyholes">
         <h3>Hot sweaty holes in your area</h3>
         <div>
@@ -37,8 +36,10 @@ export default {
 };
 </script>
 <style>
+
 body {
   max-width: 100vw;
+  height: 100%;
 }
 
 
@@ -48,17 +49,21 @@ body {
   align-content: center;
 }
 
-.content {
+.contents {
+  margin: 2rem;
   display: grid;
   grid-template-columns: 50% 50%;
   background-color: #CFDDC4;
+  height: 100%;
+
 }
 
 .sweatyholes {
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  margin-left: 5rem;
-
+  /* margin-left: 5rem; */
+  height: 80vh;
   border-radius: 8px;
   backdrop-filter: blur(20px);
   background-color: rgba(255, 255, 255, 0.5);
@@ -67,7 +72,7 @@ body {
   max-width: 80%;
   }
   .elmap{
-    padding-right: 5rem;
+    /* padding-right: 5rem; */
   }
 
 </style>

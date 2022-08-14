@@ -159,7 +159,7 @@ h1 {
   /* text-align: center; */
   padding: 1rem;
 }
-h4 {
+.form h4 {
   text-align: center;
   margin: 2rem 0 1rem 0;
 }
@@ -210,7 +210,7 @@ h4 {
   /* border: red 3px solid; */
 }
 
-label {
+.form-info label {
   display: flex;
   width: 25%;
   height: 5vh;
@@ -221,7 +221,7 @@ label {
   margin: 0;
   font-weight: bold;
 }
-input {
+.form-info input {
   height: auto;
   width: 75%;
   border-radius: 5px;
