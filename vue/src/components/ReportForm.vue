@@ -28,11 +28,13 @@
           </div>
           <div class="form-info">
             <label for="address">Address</label>
-            <input type="text" name="address" v-model="newPothole.address" />
+            <input type="text" name="address" v-model="newPothole.address" v-bind:class="{ test: !newPothole.address }"
+              placeholder="click on the map to autofill!"/>
           </div>
           <div class="form-info">
             <label for="city">City</label>
-            <input type="text" name="city" v-model="newPothole.city" />
+            <input type="text" name="city" v-model="newPothole.city" v-bind:class="{ test: !newPothole.city }"
+              placeholder="click on the map to autofill!" />
           </div>
           <!--<label for="date">Date Reported</label>
         <input type="date" name="date" v-model="newPothole.dateReported">-->
@@ -61,7 +63,6 @@
           <l-circle-marker
             v-if="showMarker == true"
             :lat-lng="this.newPothole.arrayLatLong"
-            :color="red"
           >
           </l-circle-marker>
         </l-map>
@@ -129,6 +130,13 @@ export default {
       array.push(this.newPothole.longitude);
       this.newPothole.arrayLatLong = array;
       this.showMarker = true;
+      let lat = parseFloat(this.newPothole.latitude);
+      let long = parseFloat(this.newPothole.longitude) 
+      PotholeService.reverseGeoCode(lat, long).then((response) => {
+        console.log(response.data);
+        this.newPothole.address = response.data.features[0].properties.address_line1;
+        this.newPothole.city = response.data.features[0].properties.city;
+      })
     },
     doSomethingOnReady() {
       this.map = this.$refs.myMap.mapObject;
