@@ -49,7 +49,9 @@
         <l-map
           ref="myMap"
           style="
-            height: 750px;
+            
+            min-height: 550px;
+            height:80vh;
             width: 55vw;
             border: black solid 2px;
             border-radius: 10px;
