@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+const geoCoderAxios = axios.create({
+    baseURL: 'https://api.geoapify.com/v1/geocode'
+})
+
 export default{
     getPotholes() {
         return axios.get('pothole');
@@ -31,4 +35,7 @@ export default{
     markAsUnrepaired(potholeId) {
         return axios.put('pothole/' + potholeId + '/unrepair')
     },
+    reverseGeoCode(lat, long) {
+        return geoCoderAxios.get('/reverse?lat=' + lat + '&lon=' + long + '&apiKey=8200a34491764f28a521fc9873d3e710')
+    }
 }
