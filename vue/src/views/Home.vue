@@ -2,15 +2,28 @@
   <div>
     <body class="contents">
       <div class="sweatyholes">
-        <h3>Hot sweaty holes in your area</h3>
-        <div>
-          <div id="potholelist"
+        <div class="header">
+          <h3>Known Potholes in Columbus</h3>
+        </div>
+
+        <div
+          id="potholelist"
           v-for="pothole in $store.state.potholes"
-          v-bind:key="pothole.id">
-            <p v-if="pothole.isReviewed || $store.state.user.role == 'admin'"> <!--&& !pothole.isRepaired-->
-              &#8226; {{ pothole.address }}:  {{ pothole.status }}
-            </p>
-          </div>
+          v-bind:key="pothole.id"
+        >
+          <p
+            class="pholeaddress"
+            v-if="pothole.isReviewed || $store.state.user.role == 'admin'"
+          >
+            <!--&& !pothole.isRepaired-->
+            &#8226; {{ pothole.address }}:
+          </p>
+          <p
+            class="pholestatus"
+            v-if="pothole.isReviewed || $store.state.user.role == 'admin'"
+          >
+            {{ pothole.status }}
+          </p>
         </div>
       </div>
       <div class="elmap">
@@ -33,33 +46,43 @@ export default {
       this.$store.commit("LIST_POTHOLES", response.data);
     });
   },
+  computed: {
+    potholes() {
+      if (this.$store.state.user.role == "admin") {
+        return this.$store.state.potholes;
+      }
+      return this.$store.state.potholes.filter(
+        (pothole) => pothole.isReviewed || pothole.isInspected
+      );
+    },
+  },
 };
 </script>
 <style>
-
 body {
   max-width: 100vw;
   height: 100%;
 }
 
-
 #potholelist {
   display: flex;
   flex-direction: column;
   align-content: center;
+  padding-left: 8rem;
+  font-size: 20px;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 }
 
 .contents {
   margin: 2rem;
   display: grid;
   grid-template-columns: 50% 50%;
-  background-color: #CFDDC4;
+  background-color: #cfddc4;
   height: 100%;
-
 }
 
 .sweatyholes {
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   /* margin-left: 5rem; */
@@ -70,9 +93,26 @@ body {
   box-shadow: 0 1px 18px rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.3);
   max-width: 80%;
-  }
-  .elmap{
-    /* padding-right: 5rem; */
-  }
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 
+.elmap {
+  /* padding-right: 5rem; */
+}
+.header {
+  padding-left: 3rem;
+  position: sticky;
+  top: 0;
+  background-color: #1c2915;
+  color: white;
+  padding: 10px;
+  border: 2px solid #1c2915;
+}
+.pholestatus {
+  margin-left: 50px;
+}
+.pholeaddress {
+  font-weight: bold;
+}
 </style>

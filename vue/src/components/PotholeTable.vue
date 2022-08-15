@@ -3,8 +3,8 @@
     <h1 id="title">View All Potholes</h1>
     <div class="pothole-table">
       <div class="search">
-        <h4>Search</h4>
-        <div id="search-bar-styling">
+        <h4 class="search-option">Search</h4>
+        <!-- <div id="search-bar-styling"> -->
           <div class="search-option">
             <label for="address-search">Street Name:</label>
             <input
@@ -24,11 +24,18 @@
           </div>
           <div class="search-option">
             <label for="status-filter">Status: </label>
-            <div
+            <!-- <div
               class="checkbox-option"
               v-if="$store.state.user.role == 'admin'"
-            >
-              <input
+            > -->
+            <select name="status-filter" v-model.number="search.status">
+            <option value=""></option>
+            <option value="Awaiting Review" v-if="$store.state.user.role == 'admin'">Awaiting Review</option>
+            <option value="Reviewed">Reviewed</option>
+            <option value="Inspected">Inspected</option>
+            <option value="Repaired">Repaired</option>
+            </select>
+              <!-- <input
                 type="checkbox"
                 name="isAwaitingReviewCheck"
                 v-model="search.isAwaitingReview"
@@ -58,8 +65,8 @@
                 v-model="search.isRepaired"
               />
               <label for="isRepairedCheck">Repaired</label>
-            </div>
-          </div>
+            </div> -->
+          <!-- </div> -->
         </div>
       </div>
       <div class="pothole-cards">
@@ -69,15 +76,12 @@
           class="cards"
         >
           <p class="location-address">Address: {{ pothole.address }}</p>
+          <p class="city">City: {{ pothole.city }}</p>
           <p class="date-reported">
             Date Reported: {{ pothole.reportDate.substring(0, 10) }}
           </p>
-          <!-- <p class="reviewed" v-if="$store.state.user.role == 'admin'">
-            Reviewed: {{ pothole.isReviewed == true ? "Yes" : "No" }}
-          </p> -->
-          <p class="location-lat-and-long">Latitude: {{ pothole.latitude }}</p>
-          <p>Longitude: {{ pothole.longitude }}</p>
-          <p class="city">City: {{ pothole.city }}</p>
+          <!-- <p class="location-lat-and-long">Latitude: {{ pothole.latitude }}</p>
+          <p>Longitude: {{ pothole.longitude }}</p> -->
           <p class="status">Status: {{ pothole.status }}</p>
           <router-link
             v-bind:to="{ name: 'PotholeDetails', params: { id: pothole.id } }"
@@ -102,6 +106,7 @@ export default {
         isInspected: false,
         isRepaired: false,
         isAwaitingReview: false,
+        status:"",
         severity: 0,
       },
       potholes: this.$store.state.potholes,
@@ -116,13 +121,13 @@ export default {
           } else if (
             this.search.address && !p.address.toLowerCase().includes(this.search.address.toLowerCase())) {
             return false;
-          } else if (this.search.isRepaired && !p.isRepaired) {
+          } else if (this.search.status=="Repaired" && !p.isRepaired) {
             return false;
-          } else if (this.search.isInspected && !p.isInspected) {
+          } else if (this.search.status=="Inspected" && !p.isInspected) {
             return false;
-          } else if (this.search.isReviewed && !p.isReviewed) {
+          } else if (this.search.status=="Reviewed" && !p.isReviewed) {
             return false;
-          } else if (this.search.isAwaitingReview && p.isReviewed) {
+          } else if (this.search.status=="Awaiting Review" && p.isReviewed) {
             return false;
           }
           return true;
@@ -157,25 +162,24 @@ export default {
 .search {
   padding: 1rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(20px);
-  width: 80%;
-}
-#search-bar-styling {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   width: 100%;
+  margin: 1rem 0;
+  
 }
+
+
 .search-option {
   margin: 1rem;
-  width: 30%;
+  min-width: 15%;
+
 }
 .checkbox-option {
   margin-left: 1rem;
@@ -186,6 +190,8 @@ export default {
 .search h4 {
   font-weight: bold;
   text-decoration: underline;
+  width: auto;
+  text-align: center;
 }
 
 .search .search-option input,
@@ -199,21 +205,24 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: space-evenly;
-  align-items: left;
+  align-content: center;
+  column-gap: 1em;
+  
+  margin: auto;
 }
 .cards {
-  border: 2px solid black;
-  margin: 1rem;
+  
+  margin: 1rem 0 1rem 0;
   padding: 2rem;
-  width: 30%;
-
+  max-width: calc(98.2%/3);
+  width: calc(98.2%/3); 
+  flex-grow: 1;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(20px);
-  /* background-color: #ede3d9; */
+
 }
 .status {
   font-weight: bold;
