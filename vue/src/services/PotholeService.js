@@ -4,6 +4,7 @@ const geoCoderAxios = axios.create({
     baseURL: 'https://api.geoapify.com/v1/geocode'
 })
 
+
 export default{
     getPotholes() {
         return axios.get('pothole');

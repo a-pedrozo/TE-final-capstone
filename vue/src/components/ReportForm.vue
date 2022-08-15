@@ -50,6 +50,10 @@
               placeholder="click on the map to autofill!"
             />
           </div>
+          <div>
+          <button @clic="onPickFile">Upload photo</button>
+          <input type="file" ref="fileInput" accept="image/*" @change="onFilePicked"/>
+          </div>
           <input type="submit" id="submitButton" />
         </form>
         <p>
@@ -85,9 +89,26 @@
   </div>
 </template>
 
-<script>
+<script> 
+
 import PotholeService from "../services/PotholeService.js";
 import { LMap, LTileLayer, LCircleMarker } from "vue2-leaflet";
+import { initializeApp } from 'firebase/app';
+import { getStorage } from "firebase/storage";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBQeW0yeRjWlRkshtjTqTFtpAcgo1xhfg0",
+  authDomain: "capstone-f5ad4.firebaseapp.com",
+  projectId: "capstone-f5ad4",
+  storageBucket: "capstone-f5ad4.appspot.com",
+  messagingSenderId: "978395809050",
+  appId: "1:978395809050:web:c5e77ab85b9bd8c5cb98a3"
+};
+
+const firebase = initializeApp(firebaseConfig);
+
+const storage = getStorage(firebase);
+
 export default {
   components: {
     LMap,
@@ -96,6 +117,7 @@ export default {
   },
   data() {
     return {
+      image: null,
       newPothole: {
         latitude: "",
         longitude: "",
@@ -128,10 +150,28 @@ export default {
     },
   },
   methods: {
+    onPickFile() {
+      this.$refs.fileInput.click()
+    },
+    onFilePicked(event) {
+      const files = event.target.files
+      const fileReader = new FileReader()
+      fileReader.addEventListener('load', () => {
+        this.imageUrl = fileReader.result
+      })
+      fileReader.readAsDataURL(files[0])
+      this.image = files[0]
+      console.log(this.image)
+    },
     reportPothole() {
       //this.newPothole.dateReported = this.dateToday;
       this.newPothole.latitude = this.newPothole.latitude.toString();
       this.newPothole.longitude = this.newPothole.longitude.toString();
+      if (this.image) {
+        PotholeService.uploadImage(this.image).then((response) => {
+          console.log(response);
+        })
+      }
       PotholeService.reportPothole(this.newPothole).then((response) => {
         this.$store.commit("REPORT_POTHOLE", response.data);
         this.$router.push({ name: "AllPotholes" });
@@ -152,7 +192,6 @@ export default {
         array.push(this.newPothole.latitude);
         array.push(this.newPothole.longitude);
         this.newPothole.arrayLatLong = array;
-
         this.showMarker = true;
       });
     },
