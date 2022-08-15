@@ -93,7 +93,7 @@
 import PotholeService from "../services/PotholeService.js";
 import { LMap, LTileLayer, LCircleMarker } from "vue2-leaflet";
 import { initializeApp } from "firebase/app";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes, } from "firebase/storage";
 //import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
@@ -254,7 +254,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 30rem;
+  height: auto;
   width: 100%;
 }
 
