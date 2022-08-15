@@ -1,9 +1,11 @@
 <template>
+<div class="all">
   <l-map
-    ref="myMap"
+    ref="myMap" class="map"
     style="
-      height: 550px;
-      width: auto;
+      min-height: 550px;
+      height:80vh
+      width: 100vw;
       min-width: 600px;
       border: black solid 2px;
     "
@@ -28,9 +30,12 @@
           <p class="id">ID: {{ pothole.id }}</p>
         </router-link>
         <p>{{ pothole.address }}</p>
+        <p>{{pothole.status}}</p>
       </l-popup>
     </l-circle-marker>
   </l-map>
+    <img class="legend" src="../images/mapLegend.png">
+    </div>
 </template>
 
 <script>
@@ -110,4 +115,19 @@ export default {
 </script>
 
 <style>
+.all {
+  display: flex;
+}
+.legend {
+  position: absolute;
+  bottom: 3%;
+  right: 0;
+  z-index: 1;
+  scale: 60%;
+
+}
+
+.map {
+  z-index: 0;
+}
 </style>

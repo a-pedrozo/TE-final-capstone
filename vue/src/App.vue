@@ -4,12 +4,12 @@
 <template>
   <div id="app">
     <!-- If you start to get random styling you don't like, remove container from this div -->
-    <div id="nav">
+    <!-- <div id="nav"> -->
       <!--navbar-->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-dark">
         <router-link class="navbar-brand" v-bind:to="{ name: 'home' }">
-                HoleHuntr Premium<i class="far fa-kiss-wink-heart"></i>
-              </router-link>
+          HoleHuntr Premium <i class="far fa-kiss-wink-heart"></i>
+        </router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -25,15 +25,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              
-              <router-link class="nav-link" v-bind:to="{ name: 'home' }">
-                <i class="fas fa-home"></i>
-                Home
-              </router-link>
-            </li>
-
-            <li class="nav-item">
-            
               <router-link class="nav-link" v-bind:to="{ name: 'AllPotholes' }">
                 <i class="fas fa-car-crash"></i>
                 View All Potholes
@@ -41,7 +32,6 @@
             </li>
 
             <li class="nav-item">
-           
               <router-link
                 class="nav-link"
                 v-if="$store.state.token"
@@ -65,7 +55,6 @@
                 Login/Logout
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            
                 <router-link
                   class="dropdown-item"
                   id="register"
@@ -83,7 +72,6 @@
                   Login
                 </router-link>
 
-             
                 <router-link
                   class="dropdown-item"
                   id="logout"
@@ -104,11 +92,11 @@
           </ul>
         </div>
       </nav>
-     
+
       <div id="view-window">
         <router-view />
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -125,9 +113,40 @@ export default {};
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 // Your custom styles go below this point
-#view-window {
-  padding: 1rem;
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: red;
+  //background-color: #CFDDC4;
 }
 
+#view-window {
+  padding: 1rem;
+  margin:1rem 1rem 1rem 1rem;
+ 
+  background-color: #CFDDC4;
+  flex-grow: 1;
+  height: auto;
+  //padding-top: 3rem;
+  
+  margin: 0;
+}
+html {
+  background-color: green;
+  height: 100%;
+}
 
+.navbar {
+  background-color: #1c2915;
+  color: #cfddc4;
+  padding-bottom: 1.5rem;
+  padding-top: 1rem;
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // right:0;
+}
 </style>
