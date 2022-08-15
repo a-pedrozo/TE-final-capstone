@@ -50,9 +50,10 @@
               placeholder="click on the map to autofill!"
             />
           </div>
-          <div>
-          <button @clic="onPickFile">Upload photo</button>
-          <input type="file" ref="fileInput" accept="image/*" @change="onFilePicked"/>
+          <div class="image-preview">
+            <p>pic goes here ish</p>
+            <input type="file" @change="onFileSelected" />
+            <!-- <button @click.prevent="onUpload">Upload</button> -->
           </div>
           <input type="submit" id="submitButton" />
         </form>
@@ -88,12 +89,12 @@
   </div>
 </template>
 
-<script> 
-
+<script>
 import PotholeService from "../services/PotholeService.js";
 import { LMap, LTileLayer, LCircleMarker } from "vue2-leaflet";
-import { initializeApp } from 'firebase/app';
-import { getStorage } from "firebase/storage";
+import { initializeApp } from "firebase/app";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+//import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBQeW0yeRjWlRkshtjTqTFtpAcgo1xhfg0",
@@ -101,12 +102,22 @@ const firebaseConfig = {
   projectId: "capstone-f5ad4",
   storageBucket: "capstone-f5ad4.appspot.com",
   messagingSenderId: "978395809050",
-  appId: "1:978395809050:web:c5e77ab85b9bd8c5cb98a3"
+  appId: "1:978395809050:web:c5e77ab85b9bd8c5cb98a3",
 };
 
-const firebase = initializeApp(firebaseConfig);
+// const firebase = initializeApp(firebaseConfig);
 
-const storage = getStorage(firebase);
+// // Get a reference to the storage service, which is used to create references in your storage bucket
+// const storage = getStorage(firebase);
+
+// // Create a storage reference from our storage service
+// const storageRef = ref(storage, "/image/pothole.jpg");
+// console.log(storageRef);
+
+// // 'file' comes from the Blob or File API
+// uploadBytes(storageRef, file).then((snapshot) => {
+//   console.log('Uploaded a blob or file!');
+// });
 
 export default {
   components: {
@@ -116,7 +127,8 @@ export default {
   },
   data() {
     return {
-      image: null,
+      selectedFile: null,
+
       newPothole: {
         latitude: "",
         longitude: "",
@@ -149,30 +161,34 @@ export default {
     },
   },
   methods: {
-    onPickFile() {
-      this.$refs.fileInput.click()
+    onFileSelected(event) {
+      console.log("event", event);
+      this.selectedFile = event.target.files[0];
     },
-    onFilePicked(event) {
-      const files = event.target.files
-      const fileReader = new FileReader()
-      fileReader.addEventListener('load', () => {
-        this.imageUrl = fileReader.result
-      })
-      fileReader.readAsDataURL(files[0])
-      this.image = files[0]
-      console.log(this.image)
+    onUpload(id) {
+      const firebase = initializeApp(firebaseConfig);
+
+      // Get a reference to the storage service, which is used to create references in your storage bucket
+      const storage = getStorage(firebase);
+
+      // Create a storage reference from our storage service
+      const storageRef = ref(storage, `images/${id}.jpeg`);
+      console.log(storageRef);
+
+      // 'file' comes from the Blob or File API
+      uploadBytes(storageRef, this.selectedFile).then((response) => {
+        console.log("Uploaded a blob or file!", response);
+      });
+      
     },
     reportPothole() {
       //this.newPothole.dateReported = this.dateToday;
       this.newPothole.latitude = this.newPothole.latitude.toString();
       this.newPothole.longitude = this.newPothole.longitude.toString();
-      if (this.image) {
-        PotholeService.uploadImage(this.image).then((response) => {
-          console.log(response);
-        })
-      }
       PotholeService.reportPothole(this.newPothole).then((response) => {
+        console.log("Response", response.data);
         this.$store.commit("REPORT_POTHOLE", response.data);
+        this.onUpload(response.data.id);
         this.$router.push({ name: "AllPotholes" });
       });
     },
