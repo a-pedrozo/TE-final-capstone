@@ -78,7 +78,7 @@ export default {
       } else return "black";
     },
     testing(event) {
-      console.log(event);
+      console.log("clicked",event);
     },
     doSomethingOnReady() {
       this.map = this.$refs.myMap.mapObject;

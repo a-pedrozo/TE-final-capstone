@@ -76,15 +76,12 @@
           class="cards"
         >
           <p class="location-address">Address: {{ pothole.address }}</p>
+          <p class="city">City: {{ pothole.city }}</p>
           <p class="date-reported">
             Date Reported: {{ pothole.reportDate.substring(0, 10) }}
           </p>
-          <!-- <p class="reviewed" v-if="$store.state.user.role == 'admin'">
-            Reviewed: {{ pothole.isReviewed == true ? "Yes" : "No" }}
-          </p> -->
-          <p class="location-lat-and-long">Latitude: {{ pothole.latitude }}</p>
-          <p>Longitude: {{ pothole.longitude }}</p>
-          <p class="city">City: {{ pothole.city }}</p>
+          <!-- <p class="location-lat-and-long">Latitude: {{ pothole.latitude }}</p>
+          <p>Longitude: {{ pothole.longitude }}</p> -->
           <p class="status">Status: {{ pothole.status }}</p>
           <router-link
             v-bind:to="{ name: 'PotholeDetails', params: { id: pothole.id } }"
@@ -214,7 +211,7 @@ export default {
   margin: auto;
 }
 .cards {
-  border: 2px solid black;
+  
   margin: 1rem 0 1rem 0;
   padding: 2rem;
   max-width: calc(98.2%/3);
