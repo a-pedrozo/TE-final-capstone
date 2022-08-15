@@ -149,4 +149,8 @@ html {
   // left: 0;
   // right:0;
 }
+@import url("https://fonts.google.com/specimen/Chivo");
+html{
+  font-family: Chivo;
+}
 </style>
