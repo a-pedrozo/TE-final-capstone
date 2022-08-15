@@ -13,15 +13,16 @@
     v-on:click="testing"
   >
     <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+    <!-- TODO: evaluate visible condition -->
     <l-circle-marker
-      v-for="pothole in $store.state.potholes"
+      v-for="pothole in validPotholes"
       :lat-lng="pothole.arrayLatLong"
       :key="pothole.id"
       :visible="pothole.isReviewed || $store.state.user.role == 'admin'"
       :color="markerColor(pothole)"
     >
-      <l-popup
-        ><router-link
+      <l-popup>
+        <router-link
           v-bind:to="{ name: 'PotholeDetails', params: { id: pothole.id } }"
         >
           <p class="id">ID: {{ pothole.id }}</p>
@@ -61,7 +62,17 @@ export default {
       },
     };
   },
-  computed: {},
+  computed: {
+    validPotholes() {
+      // TODO: Evaluate this condition
+      return this.$store.state.potholes.filter((pothole) => {
+        const arrayLatLong = pothole.arrayLatLong;
+        const lat = arrayLatLong[0];
+        const lng = arrayLatLong[1];
+        return !isNaN(lat) && !isNaN(lng);
+      });
+    },
+  },
   methods: {
     markerColor(pothole) {
       if (pothole.isRepaired) {

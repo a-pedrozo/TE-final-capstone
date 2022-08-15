@@ -1,17 +1,17 @@
 <template>
   <div>
-    
     <body class="content">
       <div class="sweatyholes">
         <h3>Hot sweaty holes in your area</h3>
         <div
           id="potholelist"
-          v-for="pothole in $store.state.potholes"
+          v-for="pothole in potholes"
           v-bind:key="pothole.id"
         >
           <ul>
-            <li v-if="pothole.isReviewed || $store.state.user.role == 'admin'"> <!--&& !pothole.isRepaired-->
-              {{ pothole.address }}:  {{ pothole.status }}
+            <li>
+              <!--&& !pothole.isRepaired-->
+              {{ pothole.address }}: {{ pothole.status }}
             </li>
           </ul>
         </div>
@@ -36,13 +36,22 @@ export default {
       this.$store.commit("LIST_POTHOLES", response.data);
     });
   },
+  computed: {
+    potholes() {
+      if (this.$store.state.user.role == "admin") {
+        return this.$store.state.potholes;
+      }
+      return this.$store.state.potholes.filter(
+        (pothole) => pothole.isReviewed || pothole.isInspected
+      );
+    },
+  },
 };
 </script>
 <style>
 body {
   max-width: 100vw;
 }
-
 
 #potholelist {
   display: flex;
@@ -66,5 +75,4 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.3);
   max-width: fit-content;
 }
-
 </style>

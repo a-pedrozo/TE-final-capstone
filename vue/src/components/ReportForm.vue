@@ -24,11 +24,12 @@
       v-on:click="testing"
     >
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-          <l-circle-marker v-if="showMarker == true"
-      :lat-lng="this.newPothole.arrayLatLong"
-      :color="red"
-    >
-    </l-circle-marker>
+      <l-circle-marker
+        v-if="showMarker == true"
+        :lat-lng="this.newPothole.arrayLatLong"
+        :color="red"
+      >
+      </l-circle-marker>
     </l-map>
   </div>
 </template>
@@ -40,7 +41,7 @@ export default {
   components: {
     LMap,
     LTileLayer,
-    LCircleMarker
+    LCircleMarker,
   },
   data() {
     return {
@@ -50,19 +51,19 @@ export default {
         city: "",
         address: "",
         severity: 0,
-        showMarker: 'false',
-        arrayLatLong: []
+        showMarker: "false",
+        arrayLatLong: [],
       },
-        map: null,
-        url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        attribution:
-            '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        zoom: 11,
-        center: [39.962851, -82.998311],
-        circle: {
-            radius: 50
-        },
-      }
+      map: null,
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      attribution:
+        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      zoom: 11,
+      center: [39.962851, -82.998311],
+      circle: {
+        radius: 50,
+      },
+    };
   },
   computed: {
     dateToday() {
@@ -85,13 +86,14 @@ export default {
       });
     },
     testing(event) {
-    let array = [];
-    this.newPothole.latitude = event.latlng.lat;
-    this.newPothole.longitude = event.latlng.lng;
-    array.push(this.newPothole.latitude);
-    array.push(this.newPothole.longitude);
-    this.newPothole.arrayLatLong = array;
-    this.showMarker = true;
+      let array = [];
+      // TODO: make sure the lat and long are numbers
+      this.newPothole.latitude = event.latlng.lat;
+      this.newPothole.longitude = event.latlng.lng;
+      array.push(this.newPothole.latitude);
+      array.push(this.newPothole.longitude);
+      this.newPothole.arrayLatLong = array;
+      this.showMarker = true;
     },
     doSomethingOnReady() {
       this.map = this.$refs.myMap.mapObject;
