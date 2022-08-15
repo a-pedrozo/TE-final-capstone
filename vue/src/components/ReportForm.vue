@@ -11,6 +11,7 @@
             <input
               type="text"
               name="latitude"
+              disabled="noTypeBro"
               v-model="newPothole.latitude"
               v-bind:class="{ test: !newPothole.latitude }"
               placeholder="click on the map to autofill!"
@@ -19,6 +20,7 @@
           <div class="form-info">
             <label for="longitude">Longitude</label>
             <input
+              disabled="noTypeBro"
               type="text"
               name="longitude"
               v-model="newPothole.longitude"
@@ -28,22 +30,32 @@
           </div>
           <div class="form-info">
             <label for="address">Address</label>
-            <input type="text" name="address" v-model="newPothole.address" v-bind:class="{ test: !newPothole.address }"
-              placeholder="click on the map to autofill!"/>
+            <input
+              disabled="noTypeBro"
+              type="text"
+              name="address"
+              v-model="newPothole.address"
+              v-bind:class="{ test: !newPothole.address }"
+              placeholder="click on the map to autofill!"
+            />
           </div>
           <div class="form-info">
             <label for="city">City</label>
-            <input type="text" name="city" v-model="newPothole.city" v-bind:class="{ test: !newPothole.city }"
-              placeholder="click on the map to autofill!" />
+            <input
+              disabled="noTypeBro"
+              type="text"
+              name="city"
+              v-model="newPothole.city"
+              v-bind:class="{ test: !newPothole.city }"
+              placeholder="click on the map to autofill!"
+            />
           </div>
-          <!--<label for="date">Date Reported</label>
-        <input type="date" name="date" v-model="newPothole.dateReported">-->
           <input type="submit" id="submitButton" />
         </form>
-          <p>
-            Your hole will need to be reviewed by an employee before displaying
-            on the map
-          </p>
+        <p>
+          Your hole will need to be reviewed by an employee before displaying on
+          the map
+        </p>
       </div>
       <div class="map">
         <l-map
@@ -93,6 +105,7 @@ export default {
         showMarker: "false",
         arrayLatLong: [],
       },
+      noTypeBro: true,
       map: null,
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
@@ -126,19 +139,22 @@ export default {
     },
     testing(event) {
       let array = [];
-      this.newPothole.latitude = event.latlng.lat;
-      this.newPothole.longitude = event.latlng.lng;
-      array.push(this.newPothole.latitude);
-      array.push(this.newPothole.longitude);
-      this.newPothole.arrayLatLong = array;
-      this.showMarker = true;
-      let lat = parseFloat(this.newPothole.latitude);
-      let long = parseFloat(this.newPothole.longitude) 
+
+      let lat = parseFloat(event.latlng.lat);
+      let long = parseFloat(event.latlng.lng);
       PotholeService.reverseGeoCode(lat, long).then((response) => {
         console.log(response.data);
-        this.newPothole.address = response.data.features[0].properties.address_line1;
+        this.newPothole.address =
+          response.data.features[0].properties.address_line1;
         this.newPothole.city = response.data.features[0].properties.city;
-      })
+        this.newPothole.latitude = event.latlng.lat;
+        this.newPothole.longitude = event.latlng.lng;
+        array.push(this.newPothole.latitude);
+        array.push(this.newPothole.longitude);
+        this.newPothole.arrayLatLong = array;
+
+        this.showMarker = true;
+      });
     },
     doSomethingOnReady() {
       this.map = this.$refs.myMap.mapObject;
@@ -188,7 +204,8 @@ h1 {
   width: 100%;
 }
 
-.left, .map {
+.left,
+.map {
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
@@ -235,7 +252,9 @@ h1 {
   height: auto;
   width: 75%;
   border-radius: 5px;
+  border-color: black;
   padding: 0 0 0 1rem;
+  background-color: white;
 }
 
 .test {
