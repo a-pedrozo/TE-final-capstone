@@ -5,97 +5,97 @@
   <div id="app">
     <!-- If you start to get random styling you don't like, remove container from this div -->
     <!-- <div id="nav"> -->
-      <!--navbar-->
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <router-link class="navbar-brand" v-bind:to="{ name: 'home' }">
-          HoleHuntr Premium <i class="far fa-kiss-wink-heart"></i>
-        </router-link>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <!--navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <router-link class="navbar-brand" v-bind:to="{ name: 'home' }">
+        HoleHuntr Premium <i class="far fa-kiss-wink-heart"></i>
+      </router-link>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <router-link class="nav-link" v-bind:to="{ name: 'AllPotholes' }">
-                <i class="fas fa-car-crash"></i>
-                View All Potholes
-              </router-link>
-            </li>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <router-link class="nav-link" v-bind:to="{ name: 'AllPotholes' }">
+              <i class="fas fa-car-crash"></i>
+              View All Potholes
+            </router-link>
+          </li>
 
-            <li class="nav-item">
+          <li class="nav-item">
+            <router-link
+              class="nav-link"
+              v-if="$store.state.token"
+              v-bind:to="{ name: 'report' }"
+            >
+              <i class="fas fa-clipboard-list"></i>
+              Report a Pothole</router-link
+            >
+          </li>
+
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Login/Logout
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <router-link
-                class="nav-link"
+                class="dropdown-item"
+                id="register"
+                v-bind:to="{ name: 'register' }"
+                v-if="!$store.state.token"
+                >Register
+              </router-link>
+
+              <router-link
+                class="dropdown-item"
+                id="login"
+                v-bind:to="{ name: 'login' }"
+                v-if="!$store.state.token"
+              >
+                Login
+              </router-link>
+
+              <router-link
+                class="dropdown-item"
+                id="logout"
+                v-bind:to="{ name: 'logout' }"
                 v-if="$store.state.token"
-                v-bind:to="{ name: 'report' }"
               >
-                <i class="fas fa-clipboard-list"></i>
-                Report a Pothole</router-link
-              >
-            </li>
-
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Login/Logout
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <router-link
-                  class="dropdown-item"
-                  id="register"
-                  v-bind:to="{ name: 'register' }"
-                  v-if="!$store.state.token"
-                  >Register
-                </router-link>
-
-                <router-link
-                  class="dropdown-item"
-                  id="login"
-                  v-bind:to="{ name: 'login' }"
-                  v-if="!$store.state.token"
-                >
-                  Login
-                </router-link>
-
-                <router-link
-                  class="dropdown-item"
-                  id="logout"
-                  v-bind:to="{ name: 'logout' }"
-                  v-if="$store.state.token"
-                >
-                  Logout
-                </router-link>
-              </div>
-            </li>
-            <!--<li class="nav-item">
+                Logout
+              </router-link>
+            </div>
+          </li>
+          <!--<li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>-->
-          </ul>
-        </div>
-      </nav>
-
-      <div id="view-window">
-        <router-view />
+        </ul>
       </div>
+    </nav>
+
+    <div id="view-window">
+      <router-view />
+    </div>
     <!-- </div> -->
   </div>
 </template>
@@ -123,18 +123,19 @@ export default {};
 
 #view-window {
   padding: 1rem;
-  margin:1rem 1rem 1rem 1rem;
- 
-  background-color: #CFDDC4;
+  margin: 1rem 1rem 1rem 1rem;
+
+  background-color: #cfddc4;
   flex-grow: 1;
   height: auto;
   //padding-top: 3rem;
-  
+
   margin: 0;
 }
 html {
   background-color: green;
   height: 100%;
+  width: 100%;
 }
 
 .navbar {
