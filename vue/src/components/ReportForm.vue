@@ -101,7 +101,6 @@ export default {
         severity: 0,
         showMarker: "false",
         arrayLatLong: [],
-<<<<<<< HEAD
       },
       map: null,
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -112,18 +111,6 @@ export default {
       circle: {
         radius: 50,
       },
-=======
-      },
-      map: null,
-      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      attribution:
-        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      zoom: 11,
-      center: [39.962851, -82.998311],
-      circle: {
-        radius: 50,
-      },
->>>>>>> 875cf4ff1d426cdddd31ec139612b0732d1b86b0
     };
   },
   computed: {
@@ -148,26 +135,20 @@ export default {
     },
     testing(event) {
       let array = [];
-<<<<<<< HEAD
-      // TODO: make sure the lat and long are numbers
-=======
->>>>>>> 875cf4ff1d426cdddd31ec139612b0732d1b86b0
       this.newPothole.latitude = event.latlng.lat;
       this.newPothole.longitude = event.latlng.lng;
       array.push(this.newPothole.latitude);
       array.push(this.newPothole.longitude);
       this.newPothole.arrayLatLong = array;
       this.showMarker = true;
-<<<<<<< HEAD
-=======
       let lat = parseFloat(this.newPothole.latitude);
-      let long = parseFloat(this.newPothole.longitude) 
+      let long = parseFloat(this.newPothole.longitude);
       PotholeService.reverseGeoCode(lat, long).then((response) => {
         console.log(response.data);
-        this.newPothole.address = response.data.features[0].properties.address_line1;
+        this.newPothole.address =
+          response.data.features[0].properties.address_line1;
         this.newPothole.city = response.data.features[0].properties.city;
-      })
->>>>>>> 875cf4ff1d426cdddd31ec139612b0732d1b86b0
+      });
     },
     doSomethingOnReady() {
       this.map = this.$refs.myMap.mapObject;

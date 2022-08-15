@@ -1,41 +1,42 @@
 <template>
-<div class="all">
-  <l-map
-    ref="myMap" class="map"
-    style="
+  <div class="all">
+    <l-map
+      ref="myMap"
+      class="map"
+      style="
       min-height: 550px;
       height:80vh
       width: 100vw;
       min-width: 600px;
       border: black solid 2px;
     "
-    :zoom="zoom"
-    :center="center"
-    @ready="doSomethingOnReady()"
-    v-on:click="testing"
-  >
-    <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-    <!-- TODO: evaluate visible condition -->
-    <l-circle-marker
-      v-for="pothole in validPotholes"
-      :lat-lng="pothole.arrayLatLong"
-      :key="pothole.id"
-      :visible="pothole.isReviewed || $store.state.user.role == 'admin'"
-      :color="markerColor(pothole)"
+      :zoom="zoom"
+      :center="center"
+      @ready="doSomethingOnReady()"
+      v-on:click="testing"
     >
-      <l-popup>
-        <router-link
-          v-bind:to="{ name: 'PotholeDetails', params: { id: pothole.id } }"
-        >
-          <p class="id">ID: {{ pothole.id }}</p>
-        </router-link>
-        <p>{{ pothole.address }}</p>
-        <p>{{pothole.status}}</p>
-      </l-popup>
-    </l-circle-marker>
-  </l-map>
-    <img class="legend" src="../images/mapLegend.png">
-    </div>
+      <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+      <!-- TODO: evaluate visible condition -->
+      <l-circle-marker
+        v-for="pothole in validPotholes"
+        :lat-lng="pothole.arrayLatLong"
+        :key="pothole.id"
+        :visible="pothole.isReviewed || $store.state.user.role == 'admin'"
+        :color="markerColor(pothole)"
+      >
+        <l-popup>
+          <router-link
+            v-bind:to="{ name: 'PotholeDetails', params: { id: pothole.id } }"
+          >
+            <p class="id">ID: {{ pothole.id }}</p>
+          </router-link>
+          <p>{{ pothole.address }}</p>
+          <p>{{ pothole.status }}</p>
+        </l-popup>
+      </l-circle-marker>
+    </l-map>
+    <img class="legend" src="../images/mapLegend.png" />
+  </div>
 </template>
 
 <script>
@@ -124,7 +125,6 @@ export default {
   right: 0;
   z-index: 1;
   scale: 60%;
-
 }
 
 .map {

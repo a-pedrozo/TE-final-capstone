@@ -2,18 +2,28 @@
   <div>
     <body class="contents">
       <div class="sweatyholes">
-        <h3>Hot sweaty holes in your area</h3>
-        <div>
-          <div
-            id="potholelist"
-            v-for="pothole in $store.state.potholes"
-            v-bind:key="pothole.id"
+        <div class="header">
+          <h3>Known Potholes in Columbus</h3>
+        </div>
+
+        <div
+          id="potholelist"
+          v-for="pothole in $store.state.potholes"
+          v-bind:key="pothole.id"
+        >
+          <p
+            class="pholeaddress"
+            v-if="pothole.isReviewed || $store.state.user.role == 'admin'"
           >
-            <p v-if="pothole.isReviewed || $store.state.user.role == 'admin'">
-              <!--&& !pothole.isRepaired-->
-              &#8226; {{ pothole.address }}: {{ pothole.status }}
-            </p>
-          </div>
+            <!--&& !pothole.isRepaired-->
+            &#8226; {{ pothole.address }}:
+          </p>
+          <p
+            class="pholestatus"
+            v-if="pothole.isReviewed || $store.state.user.role == 'admin'"
+          >
+            {{ pothole.status }}
+          </p>
         </div>
       </div>
       <div class="elmap">
@@ -58,6 +68,10 @@ body {
   display: flex;
   flex-direction: column;
   align-content: center;
+  padding-left: 8rem;
+  font-size: 20px;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 }
 
 .contents {
@@ -69,7 +83,6 @@ body {
 }
 
 .sweatyholes {
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   /* margin-left: 5rem; */
@@ -80,8 +93,26 @@ body {
   box-shadow: 0 1px 18px rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.3);
   max-width: 80%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
+
 .elmap {
   /* padding-right: 5rem; */
+}
+.header {
+  padding-left: 3rem;
+  position: sticky;
+  top: 0;
+  background-color: #1c2915;
+  color: white;
+  padding: 10px;
+  border: 2px solid #1c2915;
+}
+.pholestatus {
+  margin-left: 50px;
+}
+.pholeaddress {
+  font-weight: bold;
 }
 </style>
