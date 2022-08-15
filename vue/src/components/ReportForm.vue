@@ -11,6 +11,7 @@
             <input
               type="text"
               name="latitude"
+              disabled="noTypeBro"
               v-model="newPothole.latitude"
               v-bind:class="{ test: !newPothole.latitude }"
               placeholder="click on the map to autofill!"
@@ -19,6 +20,7 @@
           <div class="form-info">
             <label for="longitude">Longitude</label>
             <input
+              disabled="noTypeBro"
               type="text"
               name="longitude"
               v-model="newPothole.longitude"
@@ -29,6 +31,7 @@
           <div class="form-info">
             <label for="address">Address</label>
             <input
+              disabled="noTypeBro"
               type="text"
               name="address"
               v-model="newPothole.address"
@@ -39,6 +42,7 @@
           <div class="form-info">
             <label for="city">City</label>
             <input
+              disabled="noTypeBro"
               type="text"
               name="city"
               v-model="newPothole.city"
@@ -46,8 +50,6 @@
               placeholder="click on the map to autofill!"
             />
           </div>
-          <!--<label for="date">Date Reported</label>
-        <input type="date" name="date" v-model="newPothole.dateReported">-->
           <input type="submit" id="submitButton" />
         </form>
         <p>
@@ -102,6 +104,7 @@ export default {
         showMarker: "false",
         arrayLatLong: [],
       },
+      noTypeBro: true,
       map: null,
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
@@ -135,19 +138,21 @@ export default {
     },
     testing(event) {
       let array = [];
-      this.newPothole.latitude = event.latlng.lat;
-      this.newPothole.longitude = event.latlng.lng;
-      array.push(this.newPothole.latitude);
-      array.push(this.newPothole.longitude);
-      this.newPothole.arrayLatLong = array;
-      this.showMarker = true;
-      let lat = parseFloat(this.newPothole.latitude);
-      let long = parseFloat(this.newPothole.longitude);
+
+      let lat = parseFloat(event.latlng.lat);
+      let long = parseFloat(event.latlng.lng);
       PotholeService.reverseGeoCode(lat, long).then((response) => {
         console.log(response.data);
         this.newPothole.address =
           response.data.features[0].properties.address_line1;
         this.newPothole.city = response.data.features[0].properties.city;
+        this.newPothole.latitude = event.latlng.lat;
+        this.newPothole.longitude = event.latlng.lng;
+        array.push(this.newPothole.latitude);
+        array.push(this.newPothole.longitude);
+        this.newPothole.arrayLatLong = array;
+
+        this.showMarker = true;
       });
     },
     doSomethingOnReady() {
@@ -246,7 +251,9 @@ h1 {
   height: auto;
   width: 75%;
   border-radius: 5px;
+  border-color: black;
   padding: 0 0 0 1rem;
+  background-color: white;
 }
 
 .test {
