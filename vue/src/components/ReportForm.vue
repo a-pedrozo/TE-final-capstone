@@ -50,9 +50,9 @@
               placeholder="click on the map to autofill!"
             />
           </div>
-          <div class="image-preview">
-            <p>pic goes here ish</p>
-            <input type="file" @change="onFileSelected" />
+          <div class="image-preview ">
+            <p class="pic-text">OPTIONAL: Upload a picture of the pothole</p>
+            <input type="file" name="picture" @change="onFileSelected" />
             <!-- <button @click.prevent="onUpload">Upload</button> -->
           </div>
           <input type="submit" id="submitButton" />
@@ -311,7 +311,11 @@ h1 {
   background-color: white;
 }
 
-.test {
+.test, .image-preview {
   font-style: italic;
+}
+
+.image-preview {
+  margin: 0 2rem;
 }
 </style>

@@ -8,8 +8,8 @@
     <!--navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark">
       <router-link class="navbar-brand" v-bind:to="{ name: 'home' }">
-        <img src="@/images/logo.png" class="logo">
-        PotholeHuntr
+        <img src="@/images/logo_icon2.png" class="logo"><span id="logo-title">
+        PotholeHuntr</span>
         <!-- HoleHuntr Premium <i class="far fa-kiss-wink-heart"></i> -->
       </router-link>
       <button
@@ -147,6 +147,7 @@ html {
   padding-top: 1rem;
   box-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
   // position: fixed;
   // top: 0;
   // left: 0;
@@ -156,6 +157,10 @@ html {
 // html{
 //   font-family: Chivo;
 // }
+.navbar-brand{
+  display: flex;
+  align-items: center;
+}
 .inspect{
   font-style: italic;
 }
@@ -167,6 +172,10 @@ html {
 }
 .logo{
   max-width: 75px;
+  margin: 0 1rem;
 }
-
+#logo-title {
+  font-size: 35px;
+  font-weight: bold;
+}
 </style>
