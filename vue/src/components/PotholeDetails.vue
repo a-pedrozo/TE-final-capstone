@@ -47,7 +47,12 @@
 export default {
   name: "PotholeDetails",
   props: ["pothole"],
-};
+  methods: {
+    
+  },
+  created () {
+  }
+}
 </script>
 
 <style>

@@ -15,7 +15,7 @@
       <div class="right-side">
         <img
           class="image"
-          src="https://media.istockphoto.com/photos/pot-hole-picture-id174662203?k=20&m=174662203&s=612x612&w=0&h=pcvejYWQ1S43k-VG4J5x36ikro37hRzQS-Ms7Lmgwkw="
+         v-bind:src='imageSrc'
           alt="pothole in the road"
         />
         <br/>
@@ -33,6 +33,18 @@ import ReviewPothole from "@/components/ReviewPothole.vue";
 import PotholeService from "@/services/PotholeService.js";
 import ScheduleRepair from "@/components/ScheduleRepair.vue";
 import MarkAsRepaired from "@/components/MarkAsRepaired.vue";
+import { initializeApp } from "firebase/app";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+//import { getStorage } from "firebase/storage";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBQeW0yeRjWlRkshtjTqTFtpAcgo1xhfg0",
+  authDomain: "capstone-f5ad4.firebaseapp.com",
+  projectId: "capstone-f5ad4",
+  storageBucket: "capstone-f5ad4.appspot.com",
+  messagingSenderId: "978395809050",
+  appId: "1:978395809050:web:c5e77ab85b9bd8c5cb98a3",
+};
 
 //import { LMap, LTileLayer } from "vue2-leaflet";
 // import PotholeImagesCarousel from '@/components/PotholeImagesCarousel.vue';
@@ -50,12 +62,13 @@ export default {
   },
   created() {
     let potholeId = parseInt(this.$route.params.id);
-
+    this.imageURL();
     PotholeService.getPothole(potholeId)
       .then((response) => {
-        console.log(response);
+        console.log("pothole service response", response);
         this.pothole = response.data;
-        console.log(response.data);
+        // this.imageURL();
+        console.log("pothole response data", response.data);
         if (!this.pothole) {
           this.$router.push({ name: "NotFound" });
         }
@@ -67,10 +80,28 @@ export default {
   data() {
     return {
       pothole: null,
+      imageSrc: '',
+      
       
     };
   },
-  methods: {},
+  
+  methods: {
+    imageURL(){
+      let potholeId = parseInt(this.$route.params.id);
+      const firebase = initializeApp(firebaseConfig);
+      console.log("firebase", firebase);
+      const storage = getStorage(firebase);
+      console.log("storage?", storage);
+        let getRef = ref(storage,'images/'+ potholeId +'.jpeg')
+        console.log(getRef);
+      getDownloadURL(getRef)
+        .then( url => {
+          console.log("url response data", url);
+          this.imageSrc = url;
+        })
+    }
+  },
 };
 </script>
 
