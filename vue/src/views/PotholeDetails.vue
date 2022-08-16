@@ -4,7 +4,7 @@
       <div class="left-side">
         <pothole-details :pothole="pothole" class="details-page" />
         <div class="form-buttons">
-          <h5>Update Hole</h5>
+          <h4 class="font-weight-bold">Update Hole</h4>
           <!-- After create hook, when pothole object is populated, Bind the pothole object to each child component so it's available And reactive -->
           <delete-pothole :pothole="pothole" />
           <review-pothole :pothole="pothole" />
@@ -18,6 +18,8 @@
           src="https://media.istockphoto.com/photos/pot-hole-picture-id174662203?k=20&m=174662203&s=612x612&w=0&h=pcvejYWQ1S43k-VG4J5x36ikro37hRzQS-Ms7Lmgwkw="
           alt="pothole in the road"
         />
+        <br/>
+        <small class="font-italic"></small>
       </div>
       <!-- <pothole-images-carousel class="pics"/> -->
     </div>
@@ -81,6 +83,9 @@ export default {
 .left-side {
   width: auto;
 }
+/* .right-side{
+  padding-left: 25rem;
+} */
 
 .details-page,
 .form-buttons {
@@ -100,6 +105,7 @@ export default {
   backdrop-filter: blur(20px);
   margin: 1rem;
   height: min-content;
+  
 }
 
 /* .details-page {
