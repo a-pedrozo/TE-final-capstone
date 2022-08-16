@@ -6,6 +6,7 @@
     <div v-if="pothole" class="details">
       <!-- <p class="id">ID: {{ pothole.id }}</p> -->
       <!-- <p class="city">City: {{ pothole.city }}</p> -->
+      <div class="reported-reviewed">
       <p class="date-reported">Date Reported: {{ pothole.reportDate.substring(0, 10) }}</p>
       <p class="severity">Severity: {{ pothole.severity }}</p>
       <p class="location-lat-and-long">Latitude: {{ pothole.latitude }}</p>
@@ -15,11 +16,12 @@
       <p class="reviewed">
         Reviewed: {{ pothole.isReviewed == true ? "Yes" : "No" }}
       </p>
-
       <p class="inspected">
         Inspected: {{ pothole.isInspected == true ? "Yes" : "No" }}
       </p>
 
+      </div>
+      <div class="repaired-inspected">
       <p class="inspection-date">
         Inspection Date:
         {{
@@ -38,7 +40,7 @@
       </p>
 
       <p class="reviewed">Status: {{ pothole.status }}</p>
-
+      </div>
     </div>
   </div>
 </template>
@@ -62,31 +64,22 @@ export default {
 }
 .location-address{
   text-decoration: none;
+  padding-left: 1rem;
+  
 }
-/* .details{
-   padding-left: 3rem;
-   display: flex;
-   flex-direction: row;
-   flex-wrap: wrap;
-   justify-content: space-evenly;
-} */
-
-/* .severity{
-  padding-left: 5rem;
+.details{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
-.location-lat-and-long{
-  padding-left: 5rem;
+.reported-reviewed{
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
 }
-.repaired{
-  padding-left: 5rem;
+.repaired-inspected{
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
 }
-.repair-date{
-  padding-left: 5rem;
-}
-.reviewed{
-  padding-left: 5rem;
-}
-.inspected{
-  padding-left: 5rem;
-} */
 </style>

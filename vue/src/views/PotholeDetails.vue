@@ -131,7 +131,6 @@ export default {
   width: 65%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   
   overflow-y: scroll;
   overflow-x: hidden;
@@ -146,6 +145,9 @@ export default {
 
 .form-buttons {
   width: 30%
+}
+h4{
+  padding-left: 1rem;
 }
 
 </style>
