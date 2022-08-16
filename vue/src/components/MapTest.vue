@@ -90,7 +90,7 @@ export default {
       } else return "black";
     },
     testing(event) {
-      console.log("clicked",event);
+      console.log("clicked", event);
     },
     doSomethingOnReady() {
       this.map = this.$refs.myMap.mapObject;
@@ -121,10 +121,11 @@ export default {
 }
 .legend {
   position: absolute;
-  bottom: 3%;
-  right: 0;
+  bottom: 0px;
+  right: 0px;
   z-index: 1;
   scale: 60%;
+  padding-right: 39.5rem;
 }
 
 .map {
