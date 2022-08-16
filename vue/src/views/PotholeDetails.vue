@@ -1,8 +1,14 @@
 <template>
   <div>
     <div v-if="pothole" class="details-all">
-      <div class="left-side">
-        <pothole-details :pothole="pothole" class="details-page" />
+      <div class="details-page">
+        <img
+          class="image"
+         v-bind:src='imageSrc'
+          alt="pothole in the road"
+        />
+        <pothole-details :pothole="pothole"  />
+      </div>
         <div class="form-buttons">
           <h4 class="font-weight-bold">Update Hole</h4>
           <!-- After create hook, when pothole object is populated, Bind the pothole object to each child component so it's available And reactive -->
@@ -11,13 +17,8 @@
           <schedule-repair :pothole="pothole" />
           <mark-as-repaired :pothole="pothole" />
         </div>
-      </div>
       <div class="right-side">
-        <img
-          class="image"
-         v-bind:src='imageSrc'
-          alt="pothole in the road"
-        />
+        
         <br/>
         <small class="font-italic"></small>
       </div>
@@ -109,14 +110,11 @@ export default {
 .details-all {
   display: flex;
   flex-wrap: nowrap;
-  width: 100%;
+  flex-direction: row;
+  /* width: 100%; */
+  align-items: flex-start;
+  margin-top: 0;
 }
-.left-side {
-  width: auto;
-}
-/* .right-side{
-  padding-left: 25rem;
-} */
 
 .details-page,
 .form-buttons {
@@ -128,28 +126,26 @@ export default {
   backdrop-filter: blur(20px);
   margin: 1rem;
 }
-.image {
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(20px);
-  margin: 1rem;
-  height: min-content;
+
+.details-page {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-/* .details-page {
-  width: auto;
-} */
-/* .pics {
-  width: 100%;
-  height: min-content;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(20px);
-  margin: 1rem;
-} */
+.image {
+  object-fit: cover;
+  width: 70rem;
+  height: 20rem;
+  margin-bottom:1rem ;
+}
+
+.form-buttons {
+  width: 30%
+}
+
 </style>

@@ -28,9 +28,8 @@
           <router-link
             v-bind:to="{ name: 'PotholeDetails', params: { id: pothole.id } }"
           >
-            <p class="id">ID: {{ pothole.id }}</p>
+            <p class="id">{{ pothole.address }} </p>
           </router-link>
-          <p>{{ pothole.address }}</p>
           <p>{{ pothole.status }}</p>
         </l-popup>
       </l-circle-marker>
