@@ -97,7 +97,7 @@ namespace Capstone
                 {
                     Version = "v1",
                     Title = "Customize me in Startup.cs",
-                    Description = "Or just leave it and hope no hiring manager notices..."
+                    Description = "Or change it because HoleHuntr Premium was shut down cause lame"
                 });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
