@@ -8,7 +8,9 @@
     <!--navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark">
       <router-link class="navbar-brand" v-bind:to="{ name: 'home' }">
-        HoleHuntr Premium <i class="far fa-kiss-wink-heart"></i>
+        <img src="@/images/logo.png" class="logo">
+        PotholeHuntr
+        <!-- HoleHuntr Premium <i class="far fa-kiss-wink-heart"></i> -->
       </router-link>
       <button
         class="navbar-toggler"
@@ -22,8 +24,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+      <div class="collapse navbar-collapse links" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
             <router-link class="nav-link" v-bind:to="{ name: 'AllPotholes' }">
               <i class="fas fa-car-crash"></i>
@@ -141,7 +143,7 @@ html {
 .navbar {
   background-color: #1c2915;
   color: #cfddc4;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
   padding-top: 1rem;
   box-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
@@ -163,4 +165,8 @@ html {
 .update-hole{
   padding-left: 3rem;
 }
+.logo{
+  max-width: 75px;
+}
+
 </style>
