@@ -63,13 +63,13 @@ export default {
 .location-address{
   text-decoration: none;
 }
-.details{
+/* .details{
    padding-left: 3rem;
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
    justify-content: space-evenly;
-}
+} */
 
 /* .severity{
   padding-left: 5rem;
