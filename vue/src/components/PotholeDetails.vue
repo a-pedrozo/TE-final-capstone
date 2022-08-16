@@ -33,16 +33,16 @@
         }}
       </p>
 
-      <p class="repaired">
+      <!-- <p class="repaired">
         Repaired 
         <i v-if="!pothole.isRepaired && !pothole.repairDate == null" class="fas fa-times-circle"></i>
         <i v-if="pothole.isRepaired && pothole.repairDate == null" class="fas fa-check-circle"></i>
         {{pothole.repairDate.substring(0, 10)}}
-      </p> 
-      <!-- <p class="repair-date">
+      </p>  -->
+      <p class="repair-date">
         Repair Date:
         {{ pothole.repairDate ? pothole.repairDate.substring(0, 10) : "None" }}
-      </p> -->
+      </p>
 
       <p class="reviewed">Status: {{ pothole.status }}</p>
       </div>
