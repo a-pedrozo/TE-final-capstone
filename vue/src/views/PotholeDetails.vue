@@ -114,31 +114,29 @@ export default {
   /* width: 100%; */
   align-items: flex-start;
   margin-top: 0;
+  justify-content: space-evenly;
 }
 
 .details-page,
 .form-buttons {
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(20px);
-  margin: 1rem;
+  margin: 2rem;
 }
 
 .details-page {
-  width: 65%;
+  width: 46%;
   display: flex;
   flex-direction: column;
-  
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
+  }
 
 .image {
   object-fit: cover;
-  width: 70rem;
+  width: 50rem;
   height: 20rem;
   margin-bottom:1rem ;
 }

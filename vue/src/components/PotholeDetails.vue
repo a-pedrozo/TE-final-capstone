@@ -73,7 +73,7 @@ export default {
 .details{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 .reported-reviewed{
   display: flex;
@@ -84,5 +84,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: right;
+}
+.deetzhead{
+  padding-bottom: 2rem;
 }
 </style>
