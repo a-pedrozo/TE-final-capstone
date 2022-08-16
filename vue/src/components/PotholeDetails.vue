@@ -6,14 +6,16 @@
     <div v-if="pothole" class="details">
       
       <div class="reported-reviewed">
-      <p class="location-lat-and-long">Latitude: {{ pothole.latitude }}</p>
-      <p class="location-lat-and-long">Longitude: {{ pothole.longitude }}</p>
-      <p class="date-reported">Date Reported: {{ pothole.reportDate.substring(0, 10) }}</p>
-      <p class="severity" v-if="pothole.severity==0">Severity: N/A</p>
-      <p class="severity" v-else-if="pothole.severity==1">Severity: Low</p>
-      <p class="severity" v-else-if="pothole.severity==2">Severity: Medium</p>
-      <p class="severity" v-else>Severity: High</p>
-      <p class="report-date">Report Date: {{pothole.reportDate.substring(0,10)}}</p>
+      <p class="location-lat-and-long"><strong>Latitude:</strong> {{ pothole.latitude }}</p>
+      <p class="location-lat-and-long"><strong>Longitude:</strong> {{ pothole.longitude }}</p>
+      <p class="date-reported"><strong> Reported:</strong> {{ pothole.reportDate.substring(0, 10) }}</p>
+      <p class="severity" v-if="pothole.severity==0"><strong>Severity:</strong> N/A</p>
+      <p class="severity" v-else-if="pothole.severity==1"><strong>Severity:</strong> Low</p>
+      <p class="severity" v-else-if="pothole.severity==2"><strong>Severity:</strong> Medium</p>
+      <p class="severity" v-else><strong>Severity:</strong> High</p>
+      </div>
+      <div class="repaired-inspected">
+      <p class="report-date"><strong>Report Date:</strong> {{pothole.reportDate.substring(0,10)}}</p>
 
       <!-- <p class="reviewed">
         Reviewed: {{ pothole.isReviewed == true ? "Yes" : "No" }}
@@ -22,10 +24,8 @@
         Inspected: {{ pothole.isInspected == true ? "Yes" : "No" }}
       </p> -->
 
-      </div>
-      <div class="repaired-inspected">
       <p class="inspection-date">
-        Inspection Date:
+        <strong>Inspection Date:</strong>
         {{
           pothole.inspectionDate
             ? pothole.inspectionDate.substring(0, 10)
@@ -40,11 +40,11 @@
         {{pothole.repairDate.substring(0, 10)}}
       </p>  -->
       <p class="repair-date">
-        Repair Date:
+        <strong>Repair Date:</strong>
         {{ pothole.repairDate ? pothole.repairDate.substring(0, 10) : "None" }}
       </p>
 
-      <p class="reviewed">Status: {{ pothole.status }}</p>
+      <p class="reviewed"><strong>Status:</strong> {{ pothole.status }}</p>
       </div>
     </div>
   </div>
@@ -64,9 +64,7 @@ export default {
 
 <style>
 
-.reviewed {
-  font-weight: bolder;
-}
+
 .location-address{
   text-decoration: none;
   padding-left: 1rem;
