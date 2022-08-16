@@ -9,7 +9,7 @@
         />
         <pothole-details :pothole="pothole"  />
       </div>
-        <div class="form-buttons">
+        <div v-if="$store.state.user.role == 'admin'" class="form-buttons">
           <h4 class="font-weight-bold">Update Hole</h4>
           <!-- After create hook, when pothole object is populated, Bind the pothole object to each child component so it's available And reactive -->
           <delete-pothole :pothole="pothole" />

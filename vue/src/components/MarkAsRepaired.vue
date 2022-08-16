@@ -1,6 +1,8 @@
 <template>
   <div v-show="pothole.isInspected" class="update-hole">
     <button
+    type="button"
+    class="btn btn-primary"
       v-if="$store.state.user.role == 'admin'"
       v-on:click.prevent="markAsRepaired()"
       :disabled="!pothole.isInspected"

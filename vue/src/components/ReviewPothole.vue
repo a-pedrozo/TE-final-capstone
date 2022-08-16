@@ -13,6 +13,7 @@
     <br />
 
     <button 
+    class="btn btn-primary"
         name="review" v-if="$store.state.user.role=='admin'" 
         v-on:click.prevent="reviewPothole()"
         :disabled='(!date && !pothole.isReviewed) || pothole.isInspected'
