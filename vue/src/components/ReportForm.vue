@@ -50,6 +50,11 @@
               placeholder="click on the map to autofill!"
             />
           </div>
+          <div class="image-preview">
+            <p>pic goes here ish</p>
+            <input type="file" @change="onFileSelected" />
+            <!-- <button @click.prevent="onUpload">Upload</button> -->
+          </div>
           <input type="submit" id="submitButton" />
         </form>
         <p>
@@ -87,6 +92,33 @@
 <script>
 import PotholeService from "../services/PotholeService.js";
 import { LMap, LTileLayer, LCircleMarker } from "vue2-leaflet";
+import { initializeApp } from "firebase/app";
+import { getStorage, ref, uploadBytes, } from "firebase/storage";
+//import { getStorage } from "firebase/storage";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBQeW0yeRjWlRkshtjTqTFtpAcgo1xhfg0",
+  authDomain: "capstone-f5ad4.firebaseapp.com",
+  projectId: "capstone-f5ad4",
+  storageBucket: "capstone-f5ad4.appspot.com",
+  messagingSenderId: "978395809050",
+  appId: "1:978395809050:web:c5e77ab85b9bd8c5cb98a3",
+};
+
+// const firebase = initializeApp(firebaseConfig);
+
+// // Get a reference to the storage service, which is used to create references in your storage bucket
+// const storage = getStorage(firebase);
+
+// // Create a storage reference from our storage service
+// const storageRef = ref(storage, "/image/pothole.jpg");
+// console.log(storageRef);
+
+// // 'file' comes from the Blob or File API
+// uploadBytes(storageRef, file).then((snapshot) => {
+//   console.log('Uploaded a blob or file!');
+// });
+
 export default {
   components: {
     LMap,
@@ -95,6 +127,8 @@ export default {
   },
   data() {
     return {
+      selectedFile: null,
+
       newPothole: {
         latitude: "",
         longitude: "",
@@ -127,12 +161,34 @@ export default {
     },
   },
   methods: {
+    onFileSelected(event) {
+      console.log("event", event);
+      this.selectedFile = event.target.files[0];
+    },
+    onUpload(id) {
+      const firebase = initializeApp(firebaseConfig);
+
+      // Get a reference to the storage service, which is used to create references in your storage bucket
+      const storage = getStorage(firebase);
+
+      // Create a storage reference from our storage service
+      const storageRef = ref(storage, `images/${id}.jpeg`);
+      console.log(storageRef);
+
+      // 'file' comes from the Blob or File API
+      uploadBytes(storageRef, this.selectedFile).then((response) => {
+        console.log("Uploaded a blob or file!", response);
+      });
+      
+    },
     reportPothole() {
       //this.newPothole.dateReported = this.dateToday;
       this.newPothole.latitude = this.newPothole.latitude.toString();
       this.newPothole.longitude = this.newPothole.longitude.toString();
       PotholeService.reportPothole(this.newPothole).then((response) => {
+        console.log("Response", response.data);
         this.$store.commit("REPORT_POTHOLE", response.data);
+        this.onUpload(response.data.id);
         this.$router.push({ name: "AllPotholes" });
       });
     },
@@ -151,7 +207,6 @@ export default {
         array.push(this.newPothole.latitude);
         array.push(this.newPothole.longitude);
         this.newPothole.arrayLatLong = array;
-
         this.showMarker = true;
       });
     },
@@ -199,7 +254,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 30rem;
+  height: auto;
   width: 100%;
 }
 

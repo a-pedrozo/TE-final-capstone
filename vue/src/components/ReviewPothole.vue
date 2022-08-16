@@ -1,8 +1,17 @@
 <template>
 
-<div>
-    <label for="date">Inspection Date:</label>
+<div class="update-hole">
+
+    <label class="input-name" for="date">Inspection Date:</label>
+    <br/>
+    <label class="inspect" name="review" v-if="!date">Please provide an Inspection Date.</label>
+
+    <br/>
+
     <input type="date" name= "date" v-model="date">
+
+    <br />
+
     <button 
         name="review" v-if="$store.state.user.role=='admin'" 
         v-on:click.prevent="reviewPothole()"
@@ -12,8 +21,11 @@
             (pothole.isReviewed === false) ? "Review & Schedule Inspection" : "Unreview & Unschedule Inspection" 
         }}
     </button>
-    <label name="review" v-if="pothole.isInspected">Unable to Unreview Inspected potholes. Uninspect to Unreview.</label>
-    <label name="review" v-if="!date">Provide an Inspection Date.</label>
+
+    <br />
+
+    <label class="inspect" name="review" v-if="pothole.isInspected">Unable to Unreview Inspected potholes. Uninspect to Unreview.</label>
+
 </div>
 
 </template>

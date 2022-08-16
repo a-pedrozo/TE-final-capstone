@@ -1,5 +1,5 @@
 <template>
-  <div v-show="pothole.isInspected">
+  <div v-show="pothole.isInspected" class="update-hole">
     <button
       v-if="$store.state.user.role == 'admin'"
       v-on:click.prevent="markAsRepaired()"

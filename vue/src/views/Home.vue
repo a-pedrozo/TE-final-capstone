@@ -11,13 +11,12 @@
           v-for="pothole in $store.state.potholes"
           v-bind:key="pothole.id"
         >
-          <p
+            <router-link v-if="pothole.isReviewed || $store.state.user.role == 'admin'"
             class="pholeaddress"
-            v-if="pothole.isReviewed || $store.state.user.role == 'admin'"
-          >
-            <!--&& !pothole.isRepaired-->
+            v-bind:to="{ name: 'PotholeDetails', params: {id: pothole.id} }">
             &#8226; {{ pothole.address }}:
-          </p>
+            </router-link>
+          
           <p
             class="pholestatus"
             v-if="pothole.isReviewed || $store.state.user.role == 'admin'"

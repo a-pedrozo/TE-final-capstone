@@ -150,8 +150,17 @@ html {
   // left: 0;
   // right:0;
 }
-@import url("https://fonts.google.com/specimen/Chivo");
-html{
-  font-family: Chivo;
+// @import url("https://fonts.google.com/specimen/Chivo");
+// html{
+//   font-family: Chivo;
+// }
+.inspect{
+  font-style: italic;
+}
+.input-name{
+  font-weight: bold;
+}
+.update-hole{
+  padding-left: 3rem;
 }
 </style>
