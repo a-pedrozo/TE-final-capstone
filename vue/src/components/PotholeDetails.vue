@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="deetzhead">
-      <h1 class="location-address">Address: {{ pothole.address }}, {{pothole.city}}</h1>
+      <h1 class="location-address">{{ pothole.address }}, {{pothole.city}}</h1>
     </div>
     <div v-if="pothole" class="details">
       <!-- <p class="id">ID: {{ pothole.id }}</p> -->
