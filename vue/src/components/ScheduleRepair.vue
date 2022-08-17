@@ -26,12 +26,12 @@
       :disabled="!pothole.isReviewed || ((!date || severity < 1) && !pothole.isInspected) || pothole.isRepaired"
     >
       {{
-        pothole.isInspected === false ? "Inspect & Schedule Repair" : "Uninspect & Unschedule Repair"
+        pothole.isInspected === false ? "Inspect & Schedule Repair" : "Cancel Inspection"
       }}
     </button>
     <br />
     <div class="inspect">
-        <label name="inspect" v-if="pothole.isRepaired">Unable to Uninspect Repaired potholes. Unrepair to Uninspect.</label>
+        <label name="inspect" v-if="pothole.isRepaired">Unable to Cancel Repaired potholes. Click cancel to Undo.</label>
         <br />
         <label name="inspect" v-if="(!pothole.isInspected && (!date && severity < 1))">Provide a Severity and Repair Date.</label>
         <label name="inspect" v-else-if="(!pothole.isInspected && (severity < 1))">Provide a Severity.</label>

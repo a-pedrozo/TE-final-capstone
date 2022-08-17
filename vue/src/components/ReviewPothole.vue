@@ -19,13 +19,13 @@
         :disabled='(!date && !pothole.isReviewed) || pothole.isInspected'
     >
         {{ 
-            (pothole.isReviewed === false) ? "Review & Schedule Inspection" : "Unreview & Unschedule Inspection" 
+            (pothole.isReviewed === false) ? "Review & Schedule Inspection" : "Cancel Review" 
         }}
     </button>
 
     <br />
 
-    <label class="inspect" name="review" v-if="pothole.isInspected">Unable to Unreview Inspected potholes. Uninspect to Unreview.</label>
+    <label class="inspect" name="review" v-if="pothole.isInspected">Unable to cancel already inspected potholes. Click cancel to undo review.</label>
 
 </div>
 

@@ -8,7 +8,7 @@
       :disabled="!pothole.isInspected"
     >
       {{
-        pothole.isRepaired === false ? "Mark as Repaired" : "Unmark as Repaired"
+        pothole.isRepaired === false ? "Mark as Repaired" : "Cancel Repair"
       }}
     </button>
   </div>

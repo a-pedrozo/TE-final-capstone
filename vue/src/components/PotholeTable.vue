@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1 id="title">View All Potholes</h1>
     <div class="pothole-table">
       <div class="search">
         <h4 class="search-option">Search</h4>
@@ -75,15 +74,16 @@
           v-bind:key="pothole.id"
           class="cards"
         >
-          <p class="location-address">Address: {{ pothole.address }}</p>
-          <p class="city">City: {{ pothole.city }}</p>
-          <p class="date-reported">
-            Date Reported: {{ pothole.reportDate.substring(0, 10) }}
+          <p class="location-address">{{ pothole.address }}</p>
+          <p class="content"><strong>City:</strong> {{ pothole.city }}</p>
+          <p class="content">
+            <strong>Date Reported:</strong> {{ pothole.reportDate.substring(0, 10) }}
           </p>
           <!-- <p class="location-lat-and-long">Latitude: {{ pothole.latitude }}</p>
           <p>Longitude: {{ pothole.longitude }}</p> -->
-          <p class="status">Status: {{ pothole.status }}</p>
+          <p class="content"><strong>Status:</strong> {{ pothole.status }}</p>
           <router-link
+          class="detailslink"
             v-bind:to="{ name: 'PotholeDetails', params: { id: pothole.id } }"
           >
             See Details
@@ -156,9 +156,7 @@ export default {
   justify-content: space-around;
   align-items: center;
 }
-#title {
-  text-align: left;
-}
+
 .search {
   padding: 1rem;
   display: flex;
@@ -169,7 +167,7 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
   background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(1px);
   width: 100%;
   margin: 1rem 0;
   
@@ -221,7 +219,7 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
   background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(1px);
 
 }
 .status {
@@ -231,5 +229,14 @@ export default {
 .location-address {
   font-weight: bold;
   font-size: 1.5rem;
+}
+.content{
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+.detailslink{
+  display: flex;
+  justify-content: right;
+  padding-right: 3rem;
 }
 </style>

@@ -77,8 +77,10 @@ body {
   margin: 2rem;
   display: grid;
   grid-template-columns: 50% 50%;
-  background-color: #cfddc4;
   height: 100%;
+  background-color: #d3fca6;
+  background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 .sweatyholes {
@@ -87,13 +89,14 @@ body {
   /* margin-left: 5rem; */
   height: 80vh;
   border-radius: 8px;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(1px);
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 18px rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.3);
   max-width: 80%;
   overflow-y: scroll;
   overflow-x: hidden;
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 .elmap {

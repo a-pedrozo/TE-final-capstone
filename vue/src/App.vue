@@ -126,8 +126,9 @@ export default {};
 #view-window {
   padding: 1rem;
   margin: 1rem 1rem 1rem 1rem;
-
-  background-color: #cfddc4;
+  background-color: #d3fca6;
+background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   flex-grow: 1;
   height: auto;
   //padding-top: 3rem;
@@ -138,6 +139,9 @@ html {
   background-color: green;
   height: 100%;
   width: 100%;
+  background-color: #d3fca6;
+  background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 .navbar {
