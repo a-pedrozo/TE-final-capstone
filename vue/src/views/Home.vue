@@ -99,9 +99,7 @@ body {
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
-.elmap {
-  /* padding-right: 5rem; */
-}
+
 .header {
   padding-left: 3rem;
   position: sticky;

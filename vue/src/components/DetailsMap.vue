@@ -1,10 +1,29 @@
 <template>
-    <l-map
+    <l-map v-if="$store.state.user.role == 'admin'"
       ref="myMap"
       class="map"
       style="
-      height:300px;
-      width: 600px;
+      height: 300px;
+      width: 690px;
+      border: black solid 2px;
+    "
+      :zoom="zoom"
+      :center="center"
+      @ready="doSomethingOnReady()"
+    >
+      <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+      <l-circle-marker
+        :lat-lng="pothole.arrayLatLong"
+        :color="markerColor(pothole)"
+      >
+      </l-circle-marker>
+    </l-map>
+     <l-map v-else
+      ref="myMap"
+      class="map"
+      style="
+      height: 630px;
+      width: 690px;
       border: black solid 2px;
     "
       :zoom="zoom"

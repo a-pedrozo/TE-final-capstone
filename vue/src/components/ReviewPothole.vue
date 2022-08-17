@@ -1,18 +1,11 @@
 <template>
 
 <div class="update-hole">
-
+    <div>
     <label class="input-name" for="date">Inspection Date:</label>
-    <br/>
-    <label class="inspect" name="review" v-if="!pothole.inspectionDate">Please provide an Inspection Date.</label>
-
-    <br/>
-
-    <input  v-if="!pothole.isReviewed" type="date" name= "date" v-model="pothole.inspectionDate">
-    <input  v-else type="date" :disabled="noTypeBro" name= "date" v-model="pothole.inspectionDate">
-
-    <br />
-
+    <input class="field" v-if="!pothole.isReviewed" type="date" name= "date" v-model="pothole.inspectionDate">
+    <input class="field" v-else type="date" :disabled="noTypeBro" name= "date" v-model="pothole.inspectionDate">
+    </div>
     <button 
     class="btn btn-primary"
         name="review" v-if="$store.state.user.role=='admin'" 
@@ -23,11 +16,12 @@
             (pothole.isReviewed === false) ? "Review & Schedule Inspection" : "Cancel Review" 
         }}
     </button>
-
-    <br />
-
+    <div>
+    <label class="inspect" name="review" v-show="!pothole.inspectionDate">Please provide an Inspection Date.</label>
+    </div>
+    <div>
     <label class="inspect" name="review" v-if="pothole.isInspected">Unable to cancel already inspected potholes. Click cancel to undo review.</label>
-
+    </div>
 </div>
 
 </template>
@@ -73,5 +67,9 @@ export default {
 </script>
 
 <style>
-
+  .field{
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
 </style>

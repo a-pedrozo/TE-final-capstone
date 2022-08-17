@@ -19,6 +19,10 @@
         <schedule-repair :pothole="pothole" />
         <mark-as-repaired :pothole="pothole" />
     </div>
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 800ea48889aed4e0d48d7af8b9d0b2e115d36c8b
   </div>
 </template>
 
@@ -104,7 +108,7 @@ export default {
 <style>
 .details-all {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   grid-template-areas: 
     "content map"
     "content form";
@@ -117,19 +121,23 @@ export default {
 }
 
 .details-page {
-  /* width: 65%; */
+  /* width: 100%; */
   /* display: flex;
   flex-direction: column; */
   grid-area: content;
 }
 
 .form-buttons {
-  /* width: 30%; */
+  /* width: 75%;  */
   grid-area: form;
 }
 
 .map {
   grid-area: map;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  border-radius: 8px;
 }
 
 .details-page,
@@ -144,14 +152,14 @@ export default {
 }
 
 .details-page {
-  /* width: 46%; */
+  /* width: 60%; */
   display: flex;
   flex-direction: column;
   }
 
 .image {
   object-fit: cover;
-  width: 50rem;
+  /* width: 100%; */
   height: 20rem;
   margin-bottom:1rem ;
 }
