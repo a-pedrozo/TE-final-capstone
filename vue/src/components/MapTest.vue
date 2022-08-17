@@ -34,7 +34,8 @@
         </l-popup>
       </l-circle-marker>
     </l-map>
-    <img class="legend" src="../images/mapLegend.png" />
+    <img class="legend" v-if="$store.state.user.role != 'admin'" src="../images/mapLegend.png" />
+    <img class="legendAdmin" v-if="$store.state.user.role == 'admin'" src="../images/mapLegendAdmin.png" />
   </div>
 </template>
 
@@ -118,10 +119,22 @@ export default {
 .all {
   display: flex;
 }
+
+.legendAdmin {
+  position: absolute;
+  border-bottom-left-radius: 30px;
+  top: 736px;
+  left: 764px;
+  z-index: 1;
+  scale: 60%;
+  padding-right: 39.5rem;
+}
+
 .legend {
   position: absolute;
-  bottom: 0px;
-  right: 0px;
+  border-bottom-left-radius: 30px;
+  top: 765px;
+  left: 764px;
   z-index: 1;
   scale: 60%;
   padding-right: 39.5rem;

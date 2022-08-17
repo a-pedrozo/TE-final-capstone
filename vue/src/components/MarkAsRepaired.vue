@@ -1,6 +1,8 @@
 <template>
   <div v-show="pothole.isInspected" class="update-hole">
     <button
+    type="button"
+    class="btn btn-primary"
       v-if="$store.state.user.role == 'admin'"
       v-on:click.prevent="markAsRepaired()"
       :disabled="!pothole.isInspected"
@@ -35,14 +37,16 @@ export default {
         PotholeService.markAsRepaired(this.pothole.id, this.pothole).then(
           () => {
             this.updateStore();
+            this.pothole.status = "Repaired On: " + this.pothole.repairDate.substring(5,7)+ '/' + this.pothole.repairDate.substring(8,10)+'/'+ this.pothole.repairDate.substring(0,4);
             this.pothole.isRepaired = true;
           }
         );
       }
         else if (this.pothole.isRepaired == true) {
             PotholeService.markAsUnrepaired(this.pothole.id).then(() => {
-                this.updateStore();
-            this.pothole.isRepaired = false;
+              this.updateStore();
+              this.pothole.status = "Inspected On: " + this.pothole.inspectionDate.substring(5,7)+ '/' + this.pothole.inspectionDate.substring(8,10)+'/'+ this.pothole.inspectionDate.substring(0,4);
+              this.pothole.isRepaired = false;
           });
         }
     }

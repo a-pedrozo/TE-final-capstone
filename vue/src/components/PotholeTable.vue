@@ -75,8 +75,7 @@
           v-bind:key="pothole.id"
           class="cards"
         >
-          <p class="location-address">Address: {{ pothole.address }}</p>
-          <p class="city">City: {{ pothole.city }}</p>
+          <p class="location-address">{{ pothole.address }}</p>
           <p class="date-reported">
             Date Reported: {{ pothole.reportDate.substring(0, 10) }}
           </p>

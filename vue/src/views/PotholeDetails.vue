@@ -1,28 +1,23 @@
 <template>
-  <div>
-    <div v-if="pothole" class="details-all">
-      <div class="details-page">
-        <img
-          class="image"
-         v-bind:src='imageSrc'
-          alt="pothole in the road"
-        />
-        <pothole-details :pothole="pothole"  />
-      </div>
-        <div class="form-buttons">
-          <h4 class="font-weight-bold">Update Hole</h4>
-          <!-- After create hook, when pothole object is populated, Bind the pothole object to each child component so it's available And reactive -->
-          <delete-pothole :pothole="pothole" />
-          <review-pothole :pothole="pothole" />
-          <schedule-repair :pothole="pothole" />
-          <mark-as-repaired :pothole="pothole" />
-        </div>
-      <div class="right-side">
-        
-        <br/>
-        <small class="font-italic"></small>
-      </div>
-      <!-- <pothole-images-carousel class="pics"/> -->
+  <div v-if="pothole" class="details-all">
+    <div class="details-page">
+      <img
+        class="image"
+        v-bind:src='imageSrc'
+        alt="pothole in the road"
+      />
+      <pothole-details :pothole="pothole"  />
+    </div>
+    <div v-if="$store.state.user.role == 'admin'" class="form-buttons">
+        <h4 class="font-weight-bold">Update Hole</h4>
+        <!-- After create hook, when pothole object is populated, Bind the pothole object to each child component so it's available And reactive -->
+        <delete-pothole v-show="!pothole.isReviewed" :pothole="pothole" />
+        <review-pothole v-show="!pothole.isInspected" :pothole="pothole" />
+        <schedule-repair :pothole="pothole" />
+        <mark-as-repaired :pothole="pothole" />
+    </div>
+    <div class="map">
+      <details-map :pothole="pothole" />
     </div>
   </div>
 </template>
@@ -36,6 +31,7 @@ import ScheduleRepair from "@/components/ScheduleRepair.vue";
 import MarkAsRepaired from "@/components/MarkAsRepaired.vue";
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import DetailsMap from '@/components/DetailsMap.vue';
 //import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
@@ -58,8 +54,7 @@ export default {
     ReviewPothole,
     ScheduleRepair,
     MarkAsRepaired,
-
-    // PotholeImagesCarousel,
+    DetailsMap,
   },
   created() {
     let potholeId = parseInt(this.$route.params.id);
@@ -108,44 +103,62 @@ export default {
 
 <style>
 .details-all {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  /* width: 100%; */
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-areas: 
+    "content form"
+    "content map";
+  /* flex-wrap: nowrap;
+  flex-direction: row; */
+  /* width: 100%; 
+  align-items: flex-start; */
   margin-top: 0;
+  justify-content: space-evenly;
+}
+
+.details-page {
+  width: 65%;
+  /* display: flex;
+  flex-direction: column; */
+  grid-area: content;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.form-buttons {
+  width: 30%;
+  grid-area: form;
+}
+
+.map {
+  grid-area: map;
 }
 
 .details-page,
 .form-buttons {
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(20px);
-  margin: 1rem;
+  margin: 2rem;
 }
 
 .details-page {
-  width: 65%;
+  width: 46%;
   display: flex;
   flex-direction: column;
-  
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
+  }
 
 .image {
   object-fit: cover;
-  width: 70rem;
+  width: 50rem;
   height: 20rem;
   margin-bottom:1rem ;
 }
 
-.form-buttons {
-  width: 30%
-}
+
 h4{
   padding-left: 1rem;
 }

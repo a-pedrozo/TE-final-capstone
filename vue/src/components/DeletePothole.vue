@@ -4,6 +4,8 @@
   <label class="inspect" name="delete" v-if="pothole.isReviewed">Unable to Delete Reviewed potholes. Unreview to Delete.</label>
 <br/>
   <button
+    type="button"
+    class="btn btn-danger"
     v-if="$store.state.user.role == 'admin'"
     v-on:click.prevent="deletePothole()"
   :disabled="pothole.isReviewed">
