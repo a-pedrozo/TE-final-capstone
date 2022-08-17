@@ -9,7 +9,7 @@
       <p class="location-lat-and-long"><strong>Latitude:</strong> {{ pothole.latitude }}</p>
       <p class="location-lat-and-long"><strong>Longitude:</strong> {{ pothole.longitude }}</p>
      
-      <p class="severity" v-if="pothole.severity==0"><strong>Severity:</strong> N/A</p>
+      <p class="severity" v-if="pothole.severity==0"><strong>Severity:</strong> Awaiting Inspection </p>
       <p class="severity" v-else-if="pothole.severity==1"><strong>Severity:</strong> Low</p>
       <p class="severity" v-else-if="pothole.severity==2"><strong>Severity:</strong> Medium</p>
       <p class="severity" v-else><strong>Severity:</strong> High</p>
@@ -29,7 +29,7 @@
         {{
           pothole.inspectionDate
             ? ( pothole.inspectionDate.substring(5,7)+ '/'+pothole.inspectionDate.substring(8,10)+'/'+pothole.inspectionDate.substring(0,4))
-            : "None"
+            : "--"
         }}
       </p>
 
@@ -41,7 +41,7 @@
       </p>  -->
       <p class="repair-date">
         <strong>Repair Date:</strong>
-        {{ pothole.repairDate ? pothole.repairDate.substring(5,7)+ '/'+pothole.repairDate.substring(8,10)+'/'+pothole.repairDate.substring(0,4) : "None" }}
+        {{ pothole.repairDate ? pothole.repairDate.substring(5,7)+ '/'+pothole.repairDate.substring(8,10)+'/'+pothole.repairDate.substring(0,4) : "--" }}
       </p>
 
       <p class="reviewed"><strong>Status:</strong> {{ pothole.status }}</p>

@@ -2,10 +2,7 @@
   <div v-show="pothole.isReviewed" class="update-hole">
     
     <label class="input-name" v-if="!pothole.isInspected" for="severity">Severity: </label>
-
-    <br />
-
-    <select v-if="!pothole.isInspected" name="severity" v-model.number="severity">
+    <select class="severity" v-if="!pothole.isInspected" name="severity" v-model.number="severity">
         <option value="0"></option>
         <option value="1">Low</option>
         <option value="2">Medium</option>
@@ -13,12 +10,9 @@
         </select>
 
         <br />
-<br/>
     <label class="input-name" for="date">Repair Date:</label>
-
-    <br />
-    <input type="date" v-if="!pothole.isInspected" name="date" v-model="pothole.repairDate" />
-    <input type="date" v-else :disabled="noTypeBro" name="date" v-model="pothole.repairDate" />
+    <input class="severity" type="date" v-if="!pothole.isInspected" name="date" v-model="pothole.repairDate" />
+    <input class="severity" type="date" v-else :disabled="noTypeBro" name="date" v-model="pothole.repairDate" />
     <br/>
     <button name="inspect"
     class="btn btn-primary"
@@ -30,7 +24,6 @@
         pothole.isInspected === false ? "Inspect & Schedule Repair" : "Cancel Inspection"
       }}
     </button>
-    <br />
     <div class="inspect">
         <label name="inspect" v-if="pothole.isRepaired">Unable to Cancel Repaired potholes. Click cancel to Undo.</label>
         <br />
@@ -90,5 +83,10 @@ export default {
 <style>
   .inspect{
     font-style: italic;
+  }
+
+  .severity{
+    margin-left: 5px;
+    margin-top: 5px;
   }
 </style>

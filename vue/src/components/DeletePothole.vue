@@ -1,8 +1,8 @@
 <template>
 <div class="update-hole">
-
+<div>
   <label class="inspect" name="delete" v-if="pothole.isReviewed">Unable to Delete Reviewed potholes. Click cancel to Delete.</label>
-<br/>
+</div>
   <button
     type="button"
     class="btn btn-danger"
