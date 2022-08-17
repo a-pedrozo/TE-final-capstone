@@ -40,7 +40,7 @@
         {{pothole.repairDate.substring(0, 10)}}
       </p>  -->
       <p class="repair-date">
-        Repair Date:
+        <strong>Repair Date:</strong>
         {{ pothole.repairDate ? pothole.repairDate.substring(5,7)+ '/'+pothole.repairDate.substring(8,10)+'/'+pothole.repairDate.substring(0,4) : "None" }}
       </p>
 
