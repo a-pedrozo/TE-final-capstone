@@ -7,7 +7,7 @@
       <!-- <p class="id">ID: {{ pothole.id }}</p> -->
       <!-- <p class="city">City: {{ pothole.city }}</p> -->
       <div class="reported-reviewed">
-      <p class="date-reported">Date Reported: {{ pothole.reportDate.substring(0, 10) }}</p>
+      <p class="date-reported">Date Reported: {{ pothole.reportDate.substring(5,7)+ '/'+pothole.reportDate.substring(8,10)+'/'+pothole.reportDate.substring(0,4) }}</p>
       <p class="severity">Severity: {{ pothole.severity }}</p>
       <p class="location-lat-and-long">Latitude: {{ pothole.latitude }}</p>
       <p class="location-lat-and-long">Longitude: {{ pothole.longitude }}</p>
@@ -26,7 +26,7 @@
         Inspection Date:
         {{
           pothole.inspectionDate
-            ? pothole.inspectionDate.substring(0, 10)
+            ? ( pothole.inspectionDate.substring(5,7)+ '/'+pothole.inspectionDate.substring(8,10)+'/'+pothole.inspectionDate.substring(0,4))
             : "None"
         }}
       </p>
@@ -36,7 +36,7 @@
       </p>
       <p class="repair-date">
         Repair Date:
-        {{ pothole.repairDate ? pothole.repairDate.substring(0, 10) : "None" }}
+        {{ pothole.repairDate ? pothole.repairDate.substring(5,7)+ '/'+pothole.repairDate.substring(8,10)+'/'+pothole.repairDate.substring(0,4) : "None" }}
       </p>
 
       <p class="reviewed">Status: {{ pothole.status }}</p>
@@ -53,6 +53,14 @@ export default {
     
   },
   created () {
+  },
+  method: {
+    stringToDate(stringDate){
+      let day = stringDate.substring();
+      let month = stringDate.substring(5,2);
+      let year = stringDate.substring(0,4)
+      return month + '/'+day+'/'+year;
+    }
   }
 }
 </script>
