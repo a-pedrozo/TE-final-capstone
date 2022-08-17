@@ -5,7 +5,7 @@
       class="map"
       style="
       min-height: 550px;
-      height:80vh
+      height:80vh;
       width: 100vw;
       min-width: 600px;
       border: black solid 2px;

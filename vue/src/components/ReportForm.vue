@@ -194,6 +194,7 @@ export default {
     },
     testing(event) {
       let array = [];
+      console.log(event);
 
       let lat = parseFloat(event.latlng.lat);
       let long = parseFloat(event.latlng.lng);

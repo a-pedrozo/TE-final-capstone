@@ -75,7 +75,6 @@
           class="cards"
         >
           <p class="location-address">{{ pothole.address }}</p>
-          <p class="content"><strong>City:</strong> {{ pothole.city }}</p>
           <p class="content">
             <strong>Date Reported:</strong> {{ pothole.reportDate.substring(0, 10) }}
           </p>
@@ -205,6 +204,7 @@ export default {
   width: 100%;
   align-content: center;
   column-gap: 1em;
+
   
   margin: auto;
 }
@@ -212,8 +212,8 @@ export default {
   
   margin: 1rem 0 1rem 0;
   padding: 2rem;
-  max-width: calc(98.2%/3);
-  width: calc(98.2%/3); 
+  max-width: calc(97%/3);
+  width: calc(97%/3); 
   flex-grow: 1;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.3);

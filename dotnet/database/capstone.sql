@@ -69,6 +69,8 @@ CREATE TABLE users (
 -- These values should not be kept when going to Production
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
+INSERT INTO users (username, password_hash, salt, user_role) VALUES ('jimothy','yZTP3HjGnpELdELpsS2YsM1e0z0=', 'R+IFi2NICls=','admin');
+INSERT INTO users (username, password_hash, salt, user_role) VALUES ('testuser','lGCwMrq2x7PPlCdI4FHSULskiJ4=','/93YdmNM1lU=','user');
 
 INSERT INTO potholes (latitude, longitude, address, city) VALUES ('39.998159','-83.042176','1256-1280 Kinnear Rd', 'Columbus');
 INSERT INTO reports (pothole_id, report_date, is_Reviewed, report_notes) VALUES (1000, '8/9/2022', 0, 'No notes at this time');

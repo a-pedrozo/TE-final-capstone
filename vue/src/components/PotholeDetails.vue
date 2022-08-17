@@ -8,14 +8,14 @@
       <div class="reported-reviewed">
       <p class="location-lat-and-long"><strong>Latitude:</strong> {{ pothole.latitude }}</p>
       <p class="location-lat-and-long"><strong>Longitude:</strong> {{ pothole.longitude }}</p>
-      <p class="date-reported"><strong> Reported:</strong> {{ pothole.reportDate.substring(0, 10) }}</p>
+     
       <p class="severity" v-if="pothole.severity==0"><strong>Severity:</strong> N/A</p>
       <p class="severity" v-else-if="pothole.severity==1"><strong>Severity:</strong> Low</p>
       <p class="severity" v-else-if="pothole.severity==2"><strong>Severity:</strong> Medium</p>
       <p class="severity" v-else><strong>Severity:</strong> High</p>
       </div>
       <div class="repaired-inspected">
-      <p class="report-date"><strong>Report Date:</strong> {{pothole.reportDate.substring(0,10)}}</p>
+      <p class="report-date"><strong>Report Date:</strong> {{ pothole.reportDate.substring(5,7)+ '/'+pothole.reportDate.substring(8,10)+'/'+pothole.reportDate.substring(0,4) }}</p>
 
       <!-- <p class="reviewed">
         Reviewed: {{ pothole.isReviewed == true ? "Yes" : "No" }}
@@ -28,7 +28,7 @@
         <strong>Inspection Date:</strong>
         {{
           pothole.inspectionDate
-            ? pothole.inspectionDate.substring(0, 10)
+            ? ( pothole.inspectionDate.substring(5,7)+ '/'+pothole.inspectionDate.substring(8,10)+'/'+pothole.inspectionDate.substring(0,4))
             : "None"
         }}
       </p>
@@ -40,8 +40,8 @@
         {{pothole.repairDate.substring(0, 10)}}
       </p>  -->
       <p class="repair-date">
-        <strong>Repair Date:</strong>
-        {{ pothole.repairDate ? pothole.repairDate.substring(0, 10) : "None" }}
+        Repair Date:
+        {{ pothole.repairDate ? pothole.repairDate.substring(5,7)+ '/'+pothole.repairDate.substring(8,10)+'/'+pothole.repairDate.substring(0,4) : "None" }}
       </p>
 
       <p class="reviewed"><strong>Status:</strong> {{ pothole.status }}</p>
@@ -58,6 +58,14 @@ export default {
     
   },
   created () {
+  },
+  method: {
+    stringToDate(stringDate){
+      let day = stringDate.substring();
+      let month = stringDate.substring(5,2);
+      let year = stringDate.substring(0,4)
+      return month + '/'+day+'/'+year;
+    }
   }
 }
 </script>
