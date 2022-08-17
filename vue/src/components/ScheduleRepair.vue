@@ -21,6 +21,7 @@
     <input type="date" v-else :disabled="noTypeBro" name="date" v-model="pothole.repairDate" />
     <br/>
     <button name="inspect"
+    class="btn btn-primary"
       v-if="$store.state.user.role == 'admin'"
       v-on:click.prevent="scheduleRepair()"
       :disabled="!pothole.isReviewed || ((!pothole.repairDate || severity < 1) && !pothole.isInspected) || pothole.isRepaired"

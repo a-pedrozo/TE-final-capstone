@@ -8,7 +8,7 @@
       />
       <pothole-details :pothole="pothole"  />
     </div>
-    <div class="form-buttons">
+    <div v-if="$store.state.user.role == 'admin'" class="form-buttons">
         <h4 class="font-weight-bold">Update Hole</h4>
         <!-- After create hook, when pothole object is populated, Bind the pothole object to each child component so it's available And reactive -->
         <delete-pothole v-show="!pothole.isReviewed" :pothole="pothole" />
@@ -19,10 +19,6 @@
     <div class="map">
       <details-map :pothole="pothole" />
     </div>
-     <!-- <div class="right-side">
-        <br/>
-        <small class="font-italic"></small>
-      </div> -->
   </div>
 </template>
 
@@ -117,6 +113,7 @@ export default {
   /* width: 100%; 
   align-items: flex-start; */
   margin-top: 0;
+  justify-content: space-evenly;
 }
 
 .details-page {
@@ -139,20 +136,24 @@ export default {
 
 .details-page,
 .form-buttons {
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(20px);
-  margin: 1rem;
+  margin: 2rem;
 }
 
-
+.details-page {
+  width: 46%;
+  display: flex;
+  flex-direction: column;
+  }
 
 .image {
   object-fit: cover;
-  width: 70rem;
+  width: 50rem;
   height: 20rem;
   margin-bottom:1rem ;
 }
