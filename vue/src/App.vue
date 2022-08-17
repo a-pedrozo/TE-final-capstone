@@ -136,7 +136,7 @@ background-image: url("https://www.transparenttextures.com/patterns/cartographer
   margin: 0;
 }
 html {
-  background-color: green;
+ 
   height: 100%;
   width: 100%;
   background-color: #d3fca6;
