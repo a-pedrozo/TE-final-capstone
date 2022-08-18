@@ -104,7 +104,7 @@ INSERT INTO inspections (pothole_id, inspection_date, is_Inspected, inspection_n
 VALUES (1004, '8/20/2022', 0, '');
 
 INSERT INTO potholes (latitude, longitude, address, city, severity)
-VALUES ('40.01729173288799','-82.84554004669191','5983 Havens Corners Road', 'Gahanna',0);
+VALUES ('40.01729173288799','-82.84554004669191','5983 Havens Corners Road', 'Gahanna', 1);
 INSERT INTO reports (pothole_id, report_date, is_Reviewed, report_notes)
 VALUES (1005, '8/12/2022', 1, '');
 INSERT INTO inspections (pothole_id, inspection_date,is_Inspected)
