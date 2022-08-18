@@ -8,10 +8,10 @@
 
         <div
           id="potholelist"
-          v-for="pothole in $store.state.potholes"
+          v-for="pothole in filteredPotholes"
           v-bind:key="pothole.id"
         >
-            <router-link v-if="pothole.isReviewed || $store.state.user.role == 'admin'"
+            <router-link 
             class="pholeaddress"
             v-bind:to="{ name: 'PotholeDetails', params: {id: pothole.id} }">
             &#8226; {{ pothole.address }}:
@@ -54,9 +54,16 @@ export default {
         (pothole) => pothole.isReviewed || pothole.isInspected
       );
     },
-  },
-};
+    filteredPotholes() {
+      return this.$store.state.potholes.filter((p) => (p.isReviewed || this.$store.state.user.role == "admin"));
+  }
+},
+}
+
+
 </script>
+
+
 <style>
 body {
   max-width: 100vw;
