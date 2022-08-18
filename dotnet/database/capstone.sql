@@ -177,7 +177,6 @@ VALUES (1014, '8/15/2022', 1, 'none');
 INSERT INTO repairs (pothole_id, repair_date, is_Repaired, repair_notes)
 VALUES (1014, '8/18/22', 1, 'doneskis');
 
-
 select * from potholes
 select * from reports
 select * from inspections
