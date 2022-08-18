@@ -81,7 +81,6 @@ INSERT INTO reports (pothole_id, report_date, is_Reviewed, report_notes) VALUES 
 INSERT INTO potholes (latitude, longitude, address, city) VALUES ('40.146961','-82.911106','7165-7151 Hilmar Dr,', 'Westerville');
 INSERT INTO reports (pothole_id, report_date, is_Reviewed, report_notes) VALUES (1002, '8/11/2022', 0, 'woohoo');
 
-
 select * from potholes
 select * from reports
 select * from inspections
