@@ -8,8 +8,9 @@
     <!--navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark">
       <router-link class="navbar-brand" v-bind:to="{ name: 'home' }">
-        <img src="@/images/logo_icon2.png" class="logo"><span id="logo-title">
-        PotholeHuntr</span>
+        <img src="@/images/logo_icon2.png" class="logo" /><span id="logo-title">
+          PotholeHuntr</span
+        >
         <!-- HoleHuntr Premium <i class="far fa-kiss-wink-heart"></i> -->
       </router-link>
       <button
@@ -127,8 +128,8 @@ export default {};
   padding: 1rem;
   margin: 1rem 1rem 1rem 1rem;
   background-color: #d3fca6;
-background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   flex-grow: 1;
   height: auto;
   //padding-top: 3rem;
@@ -136,15 +137,11 @@ background-image: url("https://www.transparenttextures.com/patterns/cartographer
   margin: 0;
 }
 html {
-<<<<<<< HEAD
- 
-=======
->>>>>>> 800ea48889aed4e0d48d7af8b9d0b2e115d36c8b
   height: 100%;
   width: 100%;
   background-color: #d3fca6;
   background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 .navbar {
@@ -164,20 +161,20 @@ html {
 // html{
 //   font-family: Chivo;
 // }
-.navbar-brand{
+.navbar-brand {
   display: flex;
   align-items: center;
 }
-.inspect{
+.inspect {
   font-style: italic;
 }
-.input-name{
+.input-name {
   font-weight: bold;
 }
-.update-hole{
+.update-hole {
   padding-left: 3rem;
 }
-.logo{
+.logo {
   max-width: 75px;
   margin: 0 1rem;
 }
@@ -185,5 +182,4 @@ html {
   font-size: 35px;
   font-weight: bold;
 }
-
 </style>

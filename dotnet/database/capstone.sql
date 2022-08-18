@@ -78,7 +78,7 @@ INSERT INTO reports (pothole_id, report_date, is_Reviewed, report_notes) VALUES 
 INSERT INTO potholes (latitude, longitude, address, city) VALUES ('39.975428','-83.003223','High & Russell', 'Columbus');
 INSERT INTO reports (pothole_id, report_date, is_Reviewed, report_notes) VALUES (1001, '8/9/2022', 0, 'This one is a doozy, folks');
 
-INSERT INTO potholes (latitude, longitude, address, city) VALUES ('40.146961','-82.911106','7165-7151 Hilmar Dr,', 'Westerville');
+INSERT INTO potholes (latitude, longitude, address, city) VALUES ('40.146961','-82.911106','7165-7151 Hilmar Dr', 'Westerville');
 INSERT INTO reports (pothole_id, report_date, is_Reviewed, report_notes) VALUES (1002, '8/11/2022', 0, 'woohoo');
 
 

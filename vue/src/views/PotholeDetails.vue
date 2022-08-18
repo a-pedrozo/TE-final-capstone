@@ -1,28 +1,20 @@
 <template>
   <div v-if="pothole" class="details-all">
     <div class="details-page">
-      <img
-        class="image"
-        v-bind:src='imageSrc'
-        alt="pothole in the road"
-      />
-      <pothole-details :pothole="pothole"  />
+      <img class="image" v-bind:src="imageSrc" alt="pothole in the road" />
+      <pothole-details :pothole="pothole" />
     </div>
     <div class="map">
       <details-map :pothole="pothole" />
     </div>
     <div v-if="$store.state.user.role == 'admin'" class="form-buttons">
-        <h4 class="font-weight-bold">Update Hole</h4>
-        <!-- After create hook, when pothole object is populated, Bind the pothole object to each child component so it's available And reactive -->
-        <delete-pothole v-show="!pothole.isReviewed" :pothole="pothole" />
-        <review-pothole v-show="!pothole.isInspected" :pothole="pothole" />
-        <schedule-repair :pothole="pothole" />
-        <mark-as-repaired :pothole="pothole" />
+      <h4 class="font-weight-bold">Update Hole</h4>
+      <!-- After create hook, when pothole object is populated, Bind the pothole object to each child component so it's available And reactive -->
+      <delete-pothole v-show="!pothole.isReviewed" :pothole="pothole" />
+      <review-pothole v-show="!pothole.isInspected" :pothole="pothole" />
+      <schedule-repair :pothole="pothole" />
+      <mark-as-repaired :pothole="pothole" />
     </div>
-<<<<<<< HEAD
-=======
-    
->>>>>>> 800ea48889aed4e0d48d7af8b9d0b2e115d36c8b
   </div>
 </template>
 
@@ -35,7 +27,7 @@ import ScheduleRepair from "@/components/ScheduleRepair.vue";
 import MarkAsRepaired from "@/components/MarkAsRepaired.vue";
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import DetailsMap from '@/components/DetailsMap.vue';
+import DetailsMap from "@/components/DetailsMap.vue";
 //import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
@@ -80,27 +72,24 @@ export default {
   data() {
     return {
       pothole: null,
-      imageSrc: '',
-      
-      
+      imageSrc: "",
     };
   },
-  
+
   methods: {
-    imageURL(){
+    imageURL() {
       let potholeId = parseInt(this.$route.params.id);
       const firebase = initializeApp(firebaseConfig);
       console.log("firebase", firebase);
       const storage = getStorage(firebase);
       console.log("storage?", storage);
-        let getRef = ref(storage,'images/'+ potholeId +'.jpeg')
-        console.log(getRef);
-      getDownloadURL(getRef)
-        .then( url => {
-          console.log("url response data", url);
-          this.imageSrc = url;
-        })
-    }
+      let getRef = ref(storage, "images/" + potholeId + ".jpeg");
+      console.log(getRef);
+      getDownloadURL(getRef).then((url) => {
+        console.log("url response data", url);
+        this.imageSrc = url;
+      });
+    },
   },
 };
 </script>
@@ -109,7 +98,7 @@ export default {
 .details-all {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
-  grid-template-areas: 
+  grid-template-areas:
     "content map"
     "content form";
   /* flex-wrap: nowrap;
@@ -155,18 +144,16 @@ export default {
   /* width: 60%; */
   display: flex;
   flex-direction: column;
-  }
+}
 
 .image {
   object-fit: cover;
   /* width: 100%; */
   height: 20rem;
-  margin-bottom:1rem ;
+  margin-bottom: 1rem;
 }
 
-
-h4{
+h4 {
   padding-left: 1rem;
 }
-
 </style>
