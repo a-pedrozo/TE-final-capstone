@@ -96,6 +96,7 @@ body {
   max-width: 80%;
   overflow-y: scroll;
   overflow-x: hidden;
+  margin-top: 1rem;
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
