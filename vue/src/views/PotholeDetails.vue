@@ -19,10 +19,7 @@
         <schedule-repair :pothole="pothole" />
         <mark-as-repaired :pothole="pothole" />
     </div>
-<<<<<<< HEAD
-=======
     
->>>>>>> 800ea48889aed4e0d48d7af8b9d0b2e115d36c8b
   </div>
 </template>
 
