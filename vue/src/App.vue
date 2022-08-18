@@ -136,16 +136,12 @@ background-image: url("https://www.transparenttextures.com/patterns/cartographer
   margin: 0;
 }
 html {
-<<<<<<< HEAD
- 
-=======
->>>>>>> 800ea48889aed4e0d48d7af8b9d0b2e115d36c8b
   height: 100%;
   width: 100%;
   background-color: #d3fca6;
   background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 
 .navbar {
   background-color: #1c2915;
