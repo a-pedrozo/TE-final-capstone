@@ -140,8 +140,8 @@ html {
   width: 100%;
   background-color: #d3fca6;
   background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 
 .navbar {
   background-color: #1c2915;
