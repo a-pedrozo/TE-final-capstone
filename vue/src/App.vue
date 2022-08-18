@@ -8,10 +8,13 @@
     <!--navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark">
       <router-link class="navbar-brand" v-bind:to="{ name: 'home' }">
-        <img src="@/images/logo_icon2.png" class="logo"><span id="logo-title">
+        
+    <img src="@/images/logo_icon2.png" class="logo">
+    <span id="logo-title">
         PotholeHuntr</span>
         <!-- HoleHuntr Premium <i class="far fa-kiss-wink-heart"></i> -->
       </router-link>
+      
       <button
         class="navbar-toggler"
         type="button"
