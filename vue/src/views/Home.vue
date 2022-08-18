@@ -81,6 +81,7 @@ body {
   background-color: #d3fca6;
   background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+
 }
 
 .sweatyholes {
@@ -97,6 +98,7 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  margin-top: 1rem;
 }
 
 
