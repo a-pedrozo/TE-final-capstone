@@ -4,12 +4,12 @@
       ref="myMap"
       class="map"
       style="
-      min-height: 550px;
-      height:80vh;
-      width: 100vw;
-      min-width: 600px;
-      border: black solid 2px;
-    "
+        min-height: 550px;
+        height: 80vh;
+        width: 100vw;
+        min-width: 600px;
+        border: black solid 2px;
+      "
       :zoom="zoom"
       :center="center"
       @ready="doSomethingOnReady()"
@@ -28,14 +28,22 @@
           <router-link
             v-bind:to="{ name: 'PotholeDetails', params: { id: pothole.id } }"
           >
-            <p class="id">{{ pothole.address }} </p>
+            <p class="id">{{ pothole.address }}</p>
           </router-link>
           <p>{{ pothole.status }}</p>
         </l-popup>
       </l-circle-marker>
     </l-map>
-    <img class="legend" v-if="$store.state.user.role != 'admin'" src="../images/mapLegend.png" />
-    <img class="legendAdmin" v-if="$store.state.user.role == 'admin'" src="../images/mapLegendAdmin.png" />
+    <img
+      class="legend"
+      v-if="$store.state.user.role != 'admin'"
+      src="../images/mapLegend.png"
+    />
+    <img
+      class="legendAdmin"
+      v-if="$store.state.user.role == 'admin'"
+      src="../images/mapLegendAdmin.png"
+    />
   </div>
 </template>
 
@@ -123,8 +131,8 @@ export default {
 .legendAdmin {
   position: absolute;
   border-bottom-left-radius: 30px;
-  top: 736px;
-  left: 764px;
+  top: 609px;
+  left: 571px;
   z-index: 1;
   scale: 60%;
   padding-right: 39.5rem;
@@ -133,8 +141,8 @@ export default {
 .legend {
   position: absolute;
   border-bottom-left-radius: 30px;
-  top: 765px;
-  left: 764px;
+  top: 609px;
+  left: 571px;
   z-index: 1;
   scale: 60%;
   padding-right: 39.5rem;

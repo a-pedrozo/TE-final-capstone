@@ -8,11 +8,11 @@
     <!--navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark">
       <router-link class="navbar-brand" v-bind:to="{ name: 'home' }">
-        <img src="@/images/logo_icon2.png" class="logo" /><span id="logo-title">
-          PotholeHuntr</span
-        >
+        <img src="@/images/logo_icon2.png" class="logo" />
+        <span id="logo-title"> PotholeHuntr</span>
         <!-- HoleHuntr Premium <i class="far fa-kiss-wink-heart"></i> -->
       </router-link>
+
       <button
         class="navbar-toggler"
         type="button"
@@ -143,6 +143,7 @@ html {
   background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 
 .navbar {
   background-color: #1c2915;
