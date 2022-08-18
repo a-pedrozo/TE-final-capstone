@@ -134,8 +134,6 @@ background-image: url("https://www.transparenttextures.com/patterns/cartographer
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   flex-grow: 1;
   height: auto;
-  //padding-top: 3rem;
-
   margin: 0;
 }
 html {
