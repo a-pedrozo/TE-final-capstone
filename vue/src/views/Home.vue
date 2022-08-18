@@ -8,10 +8,10 @@
 
         <div
           id="potholelist"
-          v-for="pothole in $store.state.potholes"
+          v-for="pothole in filteredPotholes"
           v-bind:key="pothole.id"
         >
-            <router-link v-if="pothole.isReviewed || $store.state.user.role == 'admin'"
+            <router-link 
             class="pholeaddress"
             v-bind:to="{ name: 'PotholeDetails', params: {id: pothole.id} }">
             &#8226; {{ pothole.address }}:
@@ -54,9 +54,16 @@ export default {
         (pothole) => pothole.isReviewed || pothole.isInspected
       );
     },
-  },
-};
+    filteredPotholes() {
+      return this.$store.state.potholes.filter((p) => (p.isReviewed || this.$store.state.user.role == "admin"));
+  }
+},
+}
+
+
 </script>
+
+
 <style>
 body {
   max-width: 100vw;
@@ -81,6 +88,7 @@ body {
   background-color: #d3fca6;
   background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+
 }
 
 .sweatyholes {
@@ -96,7 +104,9 @@ body {
   max-width: 80%;
   overflow-y: scroll;
   overflow-x: hidden;
+  margin-top: 1rem;
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  margin-top: 1rem;
 }
 
 

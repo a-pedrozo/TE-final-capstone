@@ -130,7 +130,7 @@ export default {
 
 .legendAdmin {
   position: absolute;
-  border-bottom-left-radius: 30px;
+  border-bottom-left-radius: 13px;
   border-block: 2px;
   border-bottom: 5px;
   border-bottom-color: black;
@@ -143,7 +143,7 @@ export default {
 
 .legend {
   position: absolute;
-  border-bottom-left-radius: 30px;
+  border-bottom-left-radius: 13px;
   top: 609px;
   left: 571px;
   z-index: 1;
