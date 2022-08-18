@@ -52,15 +52,16 @@
           </div>
           <div class="image-preview ">
             <p class="pic-text">OPTIONAL: Upload a picture of the pothole</p>
-            <input type="file" name="picture" @change="onFileSelected" />
+            <input type="file" name="picture" class="image-input" @change="onFileSelected" />
             <!-- <button @click.prevent="onUpload">Upload</button> -->
           </div>
+
+        <p class="small">
+          Your hole will need to be reviewed by an employee before displaying on
+          the Home page
+        </p>
           <input type="submit" id="submitButton" />
         </form>
-        <p>
-          Your hole will need to be reviewed by an employee before displaying on
-          the map
-        </p>
       </div>
       <div class="map">
         <l-map
@@ -68,7 +69,7 @@
           style="
             min-height: 550px;
             height: 80vh;
-            width: 55vw;
+            width: 50vw;
             border: black solid 2px;
             border-radius: 10px;
           "
@@ -242,13 +243,14 @@ h1 {
 }
 .form h4 {
   text-align: center;
-  margin: 2rem 0 1rem 0;
+  margin: 1rem 0 1rem 0;
 }
-.left > p {
+.left form .small {
   font-style: italic;
-  margin: 0 0 1rem 0;
+  margin: .5rem 0 0 0;
   text-align: center;
-  font-size: 1.4vmin;
+  font-size: 13px;
+  font-weight: bold;
 }
 
 .form {
@@ -320,4 +322,9 @@ h1 {
 .image-preview {
   margin: 0 2rem;
 }
+
+.image-input{
+  margin: .5rem;
+}
+
 </style>
