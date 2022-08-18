@@ -123,8 +123,11 @@ export default {
 .legendAdmin {
   position: absolute;
   border-bottom-left-radius: 30px;
-  top: 752px;
-  left: 764px;
+  border-block: 2px;
+  border-bottom: 5px;
+  border-bottom-color: black;
+  top: 579px;
+  left: 571px;
   z-index: 1;
   scale: 60%;
   padding-right: 39.5rem;
@@ -133,8 +136,8 @@ export default {
 .legend {
   position: absolute;
   border-bottom-left-radius: 30px;
-  top: 781px;
-  left: 764px;
+  top: 609px;
+  left: 571px;
   z-index: 1;
   scale: 60%;
   padding-right: 39.5rem;
